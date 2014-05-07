@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
+		backgroundColor="0x000000"
+		backgroundAlpha="0.6"
+		creationComplete="creationCompleteHandler(event)"
+		actionBarVisible="false"
+		xmlns:mx="library://ns.adobe.com/flex/mx"
+		xmlns:s="library://ns.adobe.com/flex/spark"
+		xmlns:details="views.details.*"
+		xmlns:mobile="com.soenkerohde.mobile.*">
+	<fx:Script>
+		<![CDATA[
+			import assets.AssetsLibrary;
+
+			import flash.utils.setTimeout;
+
+			import mx.events.FlexEvent;
+			import mx.events.PropertyChangeEvent;
+			import mx.managers.SystemManager;
+
+			import spark.events.ViewNavigatorEvent;
+
+			import vo.VoNews;
+
+			[Bindable]
+			private var titleLabel:String;
+
+			[Bindable]
+			private var bodyLabel:String;
+
+			[Bindable]
+			private var dateLabel:String;
+
+			private var voNews:VoNews;
+
+			override public function set data(value:Object):void
+			{
+				super.data = value;
+				voNews = VoNews(value);
+				titleLabel = voNews.title;
+				dateLabel = voNews.date;
+				bodyLabel = voNews.body;
+			}
+
+			/**
+			 * Handle scroll position changes
+			 */
+			protected function creationCompleteHandler(event:FlexEvent):void
+			{
+				idScroller.viewport.addEventListener(PropertyChangeEvent.PROPERTY_CHANGE, handle);
+			}
+
+			private function handle(e:PropertyChangeEvent):void
+			{
+				if (e.source == e.target && e.property == "verticalScrollPosition")
+				{
+					trace(e.property, "changed to", e.newValue);
+				}
+
+				if (e.source == e.target && e.property == "horizontalScrollPosition")
+				{
+					trace(e.property, "changed to", e.newValue);
+				}
+			}
+
+			protected function idNewsPhoto_creationCompleteHandler(event:FlexEvent):void
+			{
+				if (voNews.cache)
+				{
+					idNewsPhoto.source = voNews.cache;
+				}
+				else
+				{
+					idNewsPhoto.source = voNews.photo;
+				}
+			}
+		]]>
+	</fx:Script>
+
+	<s:BitmapImage source="{AssetsLibrary.generalBackground}"
+				   left="0"
+				   alpha="0.6"
+				   right="0"
+				   width="100%"
+				   height="100%"/>
+	<s:Scroller width="100%"
+				id="idScroller"
+				height="100%"
+				top="77">
+		<s:VGroup horizontalAlign="center"
+				  width="100%"
+				  paddingTop="20"
+				  paddingLeft="20"
+				  paddingRight="20"
+				  paddingBottom="20">
+			<s:RichText text="{titleLabel}"
+						textAlign="center"
+						width="100%"
+						fontSize="28"/>
+			<s:Image id="idNewsPhoto"
+					 creationComplete="idNewsPhoto_creationCompleteHandler(event)"
+					 horizontalCenter="0"
+					 scaleMode="zoom"
+					 scaleX="0.3"
+					 scaleY="0.3"/>
+			<s:RichText text="Fecha de publicación: {dateLabel}"
+						textAlign="center"
+						width="100%"
+						fontSize="16"/>
+			<s:Spacer height="10"/>
+			<s:RichText text="{bodyLabel}"
+						textAlign="justify"
+						width="100%"
+						fontSize="20"/>
+		</s:VGroup>
+	</s:Scroller>
+</s:View>

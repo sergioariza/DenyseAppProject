@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
+		xmlns:s="library://ns.adobe.com/flex/spark"
+		title="ShowsDetailsView">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			[Bindable]
+			private var mapGoogle:String = "<!DOCTYPE html><html><head><style>html, body, #map-canvas{height: 100%; margin: 0px; padding:0px}</style><script src=\"https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false\"></script><script>var map;function initialize(){var mapOptions = {zoom: 12,center: new google.maps.LatLng(-34.397, 150.644), disableDefaultUI: true};map = new google.maps.Map(document.getElementById('map-canvas'),mapOptions);}google.maps.event.addDomListener(window, 'load', initialize);</script></head><body><div id=\"map-canvas\"></div></body></html>";
+
+			[Bindable]
+			private var mapGoogle2:String = "http://maps.googleapis.com/maps/api/staticmap?center=40.4356207,-3.669930499999964&zoom=18&size=400x400&markers=color:red%7Ccolor:red%7Clabel:%7C40.4356207,-3.669930499999964&sensor=true";
+
+			private function addedToStageHandler(event:Event):void
+			{
+				//idStageWebViewUIComponent.text = mapGoogle;
+				//idStageWebViewUIComponent.addEventListener(Event.COMPLETE, completeURLLoaded);
+			}
+
+			private function completeURLLoaded(event:Event):void
+			{
+				idStageWebViewUIComponent.removeEventListener(Event.COMPLETE, completeURLLoaded);
+				setTimeout(URLLoaded, 5000);
+			}
+
+			private function URLLoaded():void
+			{
+				var bitmapData:BitmapData = new BitmapData(idStageWebViewUIComponent.mapWidth, idStageWebViewUIComponent.mapHeight);
+				idStageWebViewUIComponent.stageWebView.drawViewPortToBitmapData(bitmapData);
+				var webViewBitmap:Bitmap = new Bitmap(bitmapData);
+				idBitmapImage.source = webViewBitmap;
+				idStageWebViewUIComponent.dispose();
+			}
+		]]>
+	</fx:Script>
+	<s:Image id="idBitmapImage"
+			 source="{mapGoogle2}"/>
+	<details:StageWebViewUIComponent id="idStageWebViewUIComponent"
+									 xOffset="-1000"
+									 addedToStage="addedToStageHandler(event)"
+									 yOffset="2300"
+									 text="{mapGoogle}"
+									 mapHeight="300"
+									 mapWidth="300"/>
+</s:View>

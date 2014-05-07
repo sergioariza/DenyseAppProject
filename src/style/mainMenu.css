@@ -1,0 +1,29 @@
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace mx "library://ns.adobe.com/flex/halo";
+
+s|ActionBar
+{
+	/*chromeColor: #229988;*/
+	titleAlign: center;
+}
+
+s|ActionBar #titleDisplay
+{
+	color: #CCCCCC; /* default color is white */
+	fontSize: 35;
+	fontFamily: "Comic Sans MS";
+}
+
+s|TabbedViewNavigator 
+{
+	skinClass: ClassReference("skins.TabbedViewNavigatorSkin");
+}
+
+s|TabbedViewNavigator #tabBar
+{
+	/*chromeColor: #229988;*/
+	/*backgroundColor: #000000;*/
+	color: #CCCCCC;
+	iconPlacement:center;
+	fontSize : 18;
+}

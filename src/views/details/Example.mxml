@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
+		xmlns:s="library://ns.adobe.com/flex/spark"
+		viewActivate="openSWV(event)"
+		viewDeactivate="closeSWV(event)"
+		title="Help">
+
+	<s:states>
+		<s:State name="portrait"/>
+		<s:State name="landscape"/>
+	</s:states>
+
+	<s:navigationContent>
+		<s:Button label="Back"
+				  click="navigator.popView()"/>
+	</s:navigationContent>
+
+	<fx:Declarations>
+		<fx:String id="_help">
+			<![CDATA[
+			<html>
+			<body>
+			
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+			
+			<ul>
+			<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+			<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+			<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+			<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+			</ul>
+			
+			
+			<table border=1 width=100%>
+			<tr bgcolor="#CCCCCC">
+			<th>Blah</th><th>Blah</th><th>Blah</th><th>Blah</th>
+			</tr>
+			
+			<tr>
+			<th>6</th><td>2</td><td>4</td><td>2</td>
+			</tr>
+			<tr>
+			<th>7</th><td>4</td><td>2</td><td>1</td>
+			</tr>
+			<tr>
+			
+			<th>8</th><td>6</td><td>1*</td><td>1</td>
+			</tr>
+			<tr>
+			<th>Blah</th><td>10</td><td>-</td><td>-</td>
+			</tr>
+			<tr>
+			<th>9</th><td>8</td><td>1*</td><td>1</td>
+			
+			</tr>
+			<tr>
+			<th>10</th><td>10</td><td>0</td><td>0</td>
+			</tr>
+			</table>
+			
+			<p><i>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</i></p>
+			
+			</body>
+			</html>
+			]]>
+		</fx:String>
+	</fx:Declarations>
+
+	<fx:Script>
+		<![CDATA[
+			import mx.core.FlexGlobals;
+			import mx.events.FlexEvent;
+			import flash.media.StageWebView;
+
+			private var _swv:StageWebView;
+
+			private function openSWV(event:Event = null):void
+			{
+				_swv = new StageWebView();
+				stage.addEventListener(Event.RESIZE, resizeSWV);
+
+				_swv.stage = stage;
+				resizeSWV();
+
+				_swv.loadString(_help);
+			}
+
+			private function closeSWV(event:Event = null):void
+			{
+				stage.removeEventListener(Event.RESIZE, resizeSWV);
+				if (!_swv)
+					return;
+				_swv.dispose();
+				_swv = null;
+			}
+
+			private function resizeSWV(event:Event = null):void
+			{
+				if (!_swv)
+					return;
+
+				var scale:Number = 1;
+				// align to the right-bottom corner
+				_swv.viewPort = new Rectangle(stage.stageWidth - scale * width, stage.stageHeight - scale * height, scale * width, scale * height);
+			}
+		]]>
+	</fx:Script>
+</s:View>

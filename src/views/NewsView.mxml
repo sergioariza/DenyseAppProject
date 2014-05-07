@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
+		actionBarVisible="false"
+		initialize="initNews(event)"
+		xmlns:s="library://ns.adobe.com/flex/spark"
+		title="Noticias">
+
+	<fx:Declarations>
+		<s:ArrayCollection id="arrNews"/>
+	</fx:Declarations>
+
+	<fx:Script>
+		<![CDATA[
+			import assets.AssetsLibrary;
+
+			import model.NewsModel;
+
+			import mx.collections.ArrayCollection;
+			import mx.events.FlexEvent;
+
+			import spark.transitions.FlipViewTransition;
+
+			import views.details.Example;
+			import views.details.NewsDetailsView;
+
+			import vo.VoNews;
+
+			/* private static var instance:NewsView;
+
+			public static function getInstance():NewsView
+			{
+				if (instance == null)
+				{
+					instance = new NewsView();
+				}
+
+				return instance;
+			} */
+
+			private function initNews(event:FlexEvent):void
+			{
+				if ((NewsModel.arrNewsItems) && (NewsModel.arrNewsItems.length == 0))
+				{
+					var file:File = File.applicationDirectory.resolvePath("assets/xml/news.xml");
+					var stream:FileStream = new FileStream();
+					var xml:XML;
+					NewsModel.arrNewsItems = new ArrayCollection();
+					stream.open(file, FileMode.READ);
+					xml = XML(stream.readUTFBytes(stream.bytesAvailable));
+					stream.close();
+
+					for each (var newsItem:XML in xml.news)
+					{
+						var news:VoNews = new VoNews();
+						news.id = newsItem.id;
+						news.title = newsItem.title;
+						news.body = newsItem.body;
+						news.date = newsItem.date;
+						news.photo = newsItem.photo;
+						NewsModel.arrNewsItems.addItem(news);
+					}
+				}
+
+				idList.dataProvider = NewsModel.arrNewsItems;
+			}
+		]]>
+	</fx:Script>
+	<s:BitmapImage source="{AssetsLibrary.generalBackground}"
+				   left="0"
+				   alpha="0.6"
+				   right="0"
+				   width="100%"
+				   height="100%"/>
+	<s:List id="idList"
+			top="77"
+			contentBackgroundAlpha="0.0"
+			height="100%"
+			width="100%"
+			bottom="0"
+			left="0"
+			right="0"
+			change="navigator.pushView(NewsDetailsView, idList.selectedItem)"
+			itemRenderer="views.renderers.NewsRenderer">
+	</s:List>
+</s:View>

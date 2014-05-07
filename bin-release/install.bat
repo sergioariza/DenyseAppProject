@@ -1,0 +1,1 @@
+adt -package -target apk-captive-runtime -storetype pkcs12 -keystore DenyseCert.p12 Denyse.apk Denyse.air
