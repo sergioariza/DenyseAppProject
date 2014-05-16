@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:IconItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009"
+					xmlns:s="library://ns.adobe.com/flex/spark"
+					labelField="title"
+					iconField="photo"
+					fontSize="20"
+					textAlign="center"
+					iconHeight="55"
+					iconWidth="55"
+					cacheAsBitmap="true"
+					messageStyleName="messageStyle"
+					messageFunction="getBody">
+	<fx:Style>
+		.messageStyle {
+			fontSize: 15;
+			textAlign: left;
+		}
+
+	</fx:Style>
+	<fx:Script>
+		<![CDATA[
+			import mx.events.PropertyChangeEvent;
+
+			import spark.components.supportClasses.StyleableTextField;
+
+			private var oldUnscaledWidth:Number;
+
+			override protected function createChildren():void
+			{
+				super.createChildren();
+			}
+
+			override protected function createMessageDisplay():void
+			{
+				super.createMessageDisplay();
+			}
+
+			private function getBody(voNews:Object):String
+			{
+				return voNews.body.substr(0, 110) + "...";
+			}
+
+			override protected function measure():void
+			{
+				super.measure();
+			}
+
+			override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void
+			{
+				super.updateDisplayList(unscaledWidth, unscaledHeight);
+			}
+
+			override protected function drawBackground(unscaledWidth:Number, unscaledHeight:Number):void
+			{
+				// transparent background for hit detection
+				graphics.beginFill(0x000000, 0.15);
+				graphics.lineStyle();
+				graphics.drawRect(0, 0, unscaledWidth, unscaledHeight);
+				graphics.endFill();
+
+				graphics.moveTo(0, 0);
+				graphics.lineStyle(1, 0x484848, 1);
+				graphics.lineTo(unscaledWidth, 0);
+
+				graphics.moveTo(0, unscaledHeight);
+				graphics.lineTo(unscaledWidth, unscaledHeight);
+
+				// turn off opaqueBackground since this renderer has some transparency
+				opaqueBackground = null;
+			}
+
+			override protected function layoutContents(unscaledWidth:Number, unscaledHeight:Number):void
+			{
+				super.layoutContents(unscaledWidth, unscaledHeight);
+			}
+		]]>
+	</fx:Script>
+</s:IconItemRenderer>
