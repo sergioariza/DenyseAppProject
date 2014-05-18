@@ -23,14 +23,44 @@
 
 			import spark.components.supportClasses.StyleableTextField;
 
-			override protected function createChildren():void
+			import vo.VoNews;
+
+			private var voNews:VoNews;
+
+			//Métodos relacionados con el override de set data y otros propios
+			override public function set data(value:Object):void
 			{
-				super.createChildren();
+				super.data = value;
+
+				if (data == null)
+					return;
+
+				voNews = VoNews(value);
+
+				if (!data.cache)
+				{
+					saveImageInCache(voNews.photo);
+				}
 			}
 
-			override protected function createMessageDisplay():void
+			//Caché de imágenes
+			private function saveImageInCache(photoURL:String):void
 			{
-				super.createMessageDisplay();
+				var loader:Loader = new Loader();
+				var request:URLRequest;
+				request = new URLRequest(photoURL);
+				loader.contentLoaderInfo.addEventListener(Event.COMPLETE, imageLoadComplete);
+				loader.load(request);
+			}
+
+			private function imageLoadComplete(event:Event):void
+			{
+				if (!data.cache)
+				{
+					var bitmapData:BitmapData = new BitmapData(event.target.content.width, event.target.content.height, true);
+					bitmapData.draw(event.target.content);
+					data.cache = bitmapData;
+				}
 			}
 
 			override protected function measure():void
@@ -81,11 +111,6 @@
 				messageDisplay.text = messageDisplay.text + "...";
 			}
 
-			override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void
-			{
-				super.updateDisplayList(unscaledWidth, unscaledHeight);
-			}
-
 			override protected function drawBackground(unscaledWidth:Number, unscaledHeight:Number):void
 			{
 				// transparent background for hit detection
@@ -103,11 +128,6 @@
 
 				// turn off opaqueBackground since this renderer has some transparency
 				opaqueBackground = null;
-			}
-
-			override protected function layoutContents(unscaledWidth:Number, unscaledHeight:Number):void
-			{
-				super.layoutContents(unscaledWidth, unscaledHeight);
 			}
 		]]>
 	</fx:Script>

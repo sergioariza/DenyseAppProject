@@ -2,7 +2,6 @@
 <s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
 		backgroundColor="0x000000"
 		backgroundAlpha="0.6"
-		creationComplete="creationCompleteHandler(event)"
 		actionBarVisible="false"
 		xmlns:mx="library://ns.adobe.com/flex/mx"
 		xmlns:s="library://ns.adobe.com/flex/spark"
@@ -40,27 +39,6 @@
 				titleLabel = voNews.title;
 				dateLabel = voNews.date;
 				bodyLabel = voNews.body;
-			}
-
-			/**
-			 * Handle scroll position changes
-			 */
-			protected function creationCompleteHandler(event:FlexEvent):void
-			{
-				idScroller.viewport.addEventListener(PropertyChangeEvent.PROPERTY_CHANGE, handle);
-			}
-
-			private function handle(e:PropertyChangeEvent):void
-			{
-				if (e.source == e.target && e.property == "verticalScrollPosition")
-				{
-					trace(e.property, "changed to", e.newValue);
-				}
-
-				if (e.source == e.target && e.property == "horizontalScrollPosition")
-				{
-					trace(e.property, "changed to", e.newValue);
-				}
 			}
 
 			protected function idNewsPhoto_creationCompleteHandler(event:FlexEvent):void
