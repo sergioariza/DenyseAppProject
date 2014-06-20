@@ -48,7 +48,7 @@
 
 				voNews = VoNews(value);
 				titleLabel = voNews.title;
-				photo = voNews.photo;
+				photo = voNews.photoURL;
 				bodyLabel = voNews.body;
 				dateLabel = voNews.date;
 

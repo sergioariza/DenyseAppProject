@@ -49,7 +49,7 @@
 				}
 				else
 				{
-					idNewsPhoto.source = voNews.photo;
+					idNewsPhoto.source = voNews.photoURL;
 				}
 			}
 		]]>

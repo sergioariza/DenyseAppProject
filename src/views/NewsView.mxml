@@ -56,7 +56,7 @@
 						news.title = newsItem.title;
 						news.body = newsItem.body;
 						news.date = newsItem.date;
-						news.photo = newsItem.photo;
+						news.photoURL = newsItem.photoURL;
 						NewsModel.arrNewsItems.addItem(news);
 					}
 				}
@@ -80,6 +80,6 @@
 			left="0"
 			right="0"
 			change="navigator.pushView(NewsDetailsView, idList.selectedItem)"
-			itemRenderer="views.renderers.NewsItemRenderer">
+			itemRenderer="views.renderers.NewsRenderer_OLD">
 	</s:List>
 </s:View>

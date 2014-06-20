@@ -1,7 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" actionBarVisible = "false"
-		xmlns:s="library://ns.adobe.com/flex/spark" title="Conciertos">
-	<fx:Declarations>
-		<!-- Place non-visual elements (e.g., services, value objects) here -->
-	</fx:Declarations>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
+		actionBarVisible="false"
+		initialize="initShows(event)"
+		xmlns:s="library://ns.adobe.com/flex/spark"
+		title="Conciertos">
+	<fx:Script>
+		<![CDATA[
+			import assets.AssetsLibrary;
+
+			import model.ShowsModel;
+
+			import mx.collections.ArrayCollection;
+			import mx.events.FlexEvent;
+
+			import views.details.ShowsDetailsView;
+
+			import vo.VoShows;
+
+			private function initShows(event:FlexEvent):void
+			{
+				if ((ShowsModel.arrShowsItems) && (ShowsModel.arrShowsItems.length == 0))
+				{
+					var file:File = File.applicationDirectory.resolvePath("assets/xml/shows.xml");
+					var stream:FileStream = new FileStream();
+					var xml:XML;
+					ShowsModel.arrShowsItems = new ArrayCollection();
+					stream.open(file, FileMode.READ);
+					xml = XML(stream.readUTFBytes(stream.bytesAvailable));
+					stream.close();
+
+					for each (var showsItem:XML in xml.shows)
+					{
+						var shows:VoShows = new VoShows();
+						shows.id = showsItem.id;
+						shows.title = showsItem.title;
+						shows.body = showsItem.body;
+						shows.bandsWith = showsItem.bandsWith;
+						shows.datePublished = showsItem.datePublished;
+						shows.dateShow = showsItem.dateShow;
+						shows.latitude = showsItem.latitude;
+						shows.length = showsItem.length;
+						shows.photoURL = showsItem.photoURL;
+						ShowsModel.arrShowsItems.addItem(shows);
+					}
+				}
+
+				idList.dataProvider = ShowsModel.arrShowsItems;
+			}
+		]]>
+	</fx:Script>
+	<s:BitmapImage source="{AssetsLibrary.generalBackground}"
+				   left="0"
+				   alpha="0.6"
+				   right="0"
+				   width="100%"
+				   height="100%"/>
+	<s:List id="idList"
+			top="76"
+			contentBackgroundAlpha="0.0"
+			height="100%"
+			width="100%"
+			bottom="0"
+			left="0"
+			right="0"
+			change="navigator.pushView(ShowsDetailsView, idList.selectedItem)"
+			itemRenderer="views.renderers.ShowsItemRenderer"/>
 </s:View>

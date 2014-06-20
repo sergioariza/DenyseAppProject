@@ -7,7 +7,7 @@ package vo
 		public var title:String;
 		public var body:String;
 		public var date:String;
-		public var photo:String;
+		public var photoURL:String;
 		public var cache:Object = null;
 
 		public function VoNews()

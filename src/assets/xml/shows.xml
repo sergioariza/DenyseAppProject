@@ -9,7 +9,7 @@
 		<dateShow>14-06-2014</dateShow>
 		<latitude>40.4356207</latitude>
 		<length>-3.669930499999964</length>
-		<photo>http://s27.postimg.org/mmpus7ctf/1604454_754901277887727_2509144135328520581_n.jpg</photo>
+		<photoURL>http://s27.postimg.org/mmpus7ctf/1604454_754901277887727_2509144135328520581_n.jpg</photoURL>
 	</shows>
 	<shows>
 		<id>0</id>
@@ -20,6 +20,6 @@
 		<dateShow>01-07-2014</dateShow>
 		<latitude>40.4356207</latitude>
 		<length>-3.669930499999964</length>
-		<photo>http://s27.postimg.org/mmpus7ctf/1604454_754901277887727_2509144135328520581_n.jpg</photo>
+		<photoURL>http://s27.postimg.org/mmpus7ctf/1604454_754901277887727_2509144135328520581_n.jpg</photoURL>
 	</shows>
 </list>

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
 		xmlns:s="library://ns.adobe.com/flex/spark"
-		title="ShowsDetailsView">
+		actionBarVisible="false"
+		backgroundColor="0x000000"
+		backgroundAlpha="0.6">
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
@@ -19,7 +21,7 @@
 				//idStageWebViewUIComponent.addEventListener(Event.COMPLETE, completeURLLoaded);
 			}
 
-			private function completeURLLoaded(event:Event):void
+			/* private function completeURLLoaded(event:Event):void
 			{
 				idStageWebViewUIComponent.removeEventListener(Event.COMPLETE, completeURLLoaded);
 				setTimeout(URLLoaded, 5000);
@@ -32,16 +34,16 @@
 				var webViewBitmap:Bitmap = new Bitmap(bitmapData);
 				idBitmapImage.source = webViewBitmap;
 				idStageWebViewUIComponent.dispose();
-			}
+			} */
 		]]>
 	</fx:Script>
 	<s:Image id="idBitmapImage"
 			 source="{mapGoogle2}"/>
-	<details:StageWebViewUIComponent id="idStageWebViewUIComponent"
+	<!--<details:StageWebViewUIComponent id="idStageWebViewUIComponent"
 									 xOffset="-1000"
 									 addedToStage="addedToStageHandler(event)"
 									 yOffset="2300"
 									 text="{mapGoogle}"
 									 mapHeight="300"
-									 mapWidth="300"/>
+									 mapWidth="300"/>-->
 </s:View>
