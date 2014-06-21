@@ -3,16 +3,12 @@
 		actionBarVisible="false"
 		initialize="initNews(event)"
 		xmlns:s="library://ns.adobe.com/flex/spark"
-		title="Noticias">
-
-	<fx:Declarations>
-		<s:ArrayCollection id="arrNews"/>
-	</fx:Declarations>
-
+		title="{LocalizationModel.newsLabel}">
 	<fx:Script>
 		<![CDATA[
 			import assets.AssetsLibrary;
 
+			import model.LocalizationModel;
 			import model.NewsModel;
 
 			import mx.collections.ArrayCollection;

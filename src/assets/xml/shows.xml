@@ -2,24 +2,28 @@
 <list>
 	<shows>
 		<id>0</id>
-		<title>Denyse y los Histéricos en concierto 1</title>
+		<title>Concierto 1</title>
 		<body>Noche fantástica y lorem ipsum ad his scripta blandit partiendo, eum fastidii accumsan euripidis in, eum liber hendrerit an. Qui ut wisi vocibus suscipiantur, quo dicit ridens inciderint id. Quo mundi lobortis reformidans eu, legimus senserit definiebas an eos.</body>
 		<bandsWith>Octubre Rojo</bandsWith>
+		<place>Cambayá Club</place>
 		<datePublished>26-04-2014</datePublished>
 		<dateShow>14-06-2014</dateShow>
+		<hourShow>23:00</hourShow>
 		<latitude>40.4356207</latitude>
 		<length>-3.669930499999964</length>
-		<photoURL>http://s27.postimg.org/mmpus7ctf/1604454_754901277887727_2509144135328520581_n.jpg</photoURL>
+		<photoURL>https://scontent-a-mad.xx.fbcdn.net/hphotos-xaf1/t1.0-9/1920206_709808892419206_3058063485954182175_n.jpg</photoURL>
 	</shows>
 	<shows>
-		<id>0</id>
-		<title>Denyse y los Histéricos en concierto 2</title>
+		<id>1</id>
+		<title>Concierto 2</title>
 		<body>Noche fantástica y lorem ipsum ad his scripta blandit partiendo, eum fastidii accumsan euripidis in, eum liber hendrerit an. Qui ut wisi vocibus suscipiantur, quo dicit ridens inciderint id. Quo mundi lobortis reformidans eu, legimus senserit definiebas an eos.</body>
 		<bandsWith>Carmine e Irae</bandsWith>
+		<place>Cambayá Club</place>
 		<datePublished>18-05-2014</datePublished>
 		<dateShow>01-07-2014</dateShow>
+		<hourShow>23:00</hourShow>
 		<latitude>40.4356207</latitude>
 		<length>-3.669930499999964</length>
-		<photoURL>http://s27.postimg.org/mmpus7ctf/1604454_754901277887727_2509144135328520581_n.jpg</photoURL>
+		<photoURL>https://scontent-a-mad.xx.fbcdn.net/hphotos-xaf1/t1.0-9/1920206_709808892419206_3058063485954182175_n.jpg</photoURL>
 	</shows>
 </list>

@@ -1,34 +1,170 @@
 <?xml version="1.0" encoding="utf-8"?>
-<s:LabelItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009"
-					 xmlns:s="library://ns.adobe.com/flex/spark">
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
+		backgroundAlpha="0"
+		actionBarVisible="false"
+		xmlns:s="library://ns.adobe.com/flex/spark">
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
+
 	<fx:Script>
 		<![CDATA[
-			override protected function createChildren():void
+			import assets.AssetsLibrary;
+
+			import flash.utils.setTimeout;
+
+			import model.NewsModel;
+			import model.ShowsModel;
+
+			import mx.events.FlexEvent;
+
+			import spark.components.IconItemRenderer;
+			import spark.core.ContentCache;
+
+			import vo.VoShows;
+
+			[Bindable]
+			private var photo:String;
+
+			[Bindable]
+			private var place:String;
+
+			[Bindable]
+			private var bandsWith:String;
+
+			[Bindable]
+			private var dateShow:String;
+
+			[Bindable]
+			private var hourShow:String;
+
+			//Métodos relacionados con el override de set data y otros propios
+			override public function set data(value:Object):void
 			{
-				//super.createChildren();
+				super.data = value;
+
+				if (data == null)
+					return;
+
+				var voShows:VoShows = VoShows(value);
+				photo = voShows.photoURL;
+				place = voShows.place;
+				bandsWith = voShows.bandsWith;
+				dateShow = voShows.dateShow;
+				hourShow = voShows.hourShow;
+				checkCache();
+				setBackgroundImage();
 			}
 
-			override protected function drawBackground(unscaledWidth:Number, unscaledHeight:Number):void
+			private function setBackgroundImage():void
 			{
-				// transparent background for hit detection
-				graphics.beginFill(0x000000, 0.15);
-				graphics.lineStyle();
-				graphics.drawRect(0, 0, unscaledWidth, unscaledHeight);
-				graphics.endFill();
+				switch (ShowsModel.index)
+				{
+					case 1:
+						ShowsModel.index = 2;
+						idBackgroundContainer.source = AssetsLibrary.backgroundList1;
+						break;
+					case 2:
+						ShowsModel.index = 3;
+						idBackgroundContainer.source = AssetsLibrary.backgroundList2;
+						break;
+					case 3:
+						ShowsModel.index = 4;
+						idBackgroundContainer.source = AssetsLibrary.backgroundList3;
+						break;
+					case 4:
+						ShowsModel.index = 1;
+						idBackgroundContainer.source = AssetsLibrary.backgroundList4;
+						break;
+				}
+			}
 
-				graphics.moveTo(0, 0);
-				graphics.lineStyle(1, 0x484848, 1);
-				graphics.lineTo(unscaledWidth, 0);
+			//Caché de imágenes
+			private function checkCache():void
+			{
+				if (data.cache)
+				{
+					idPhotoLink.source = new Bitmap(data.cache);
+				}
+				else
+				{
+					idPhotoLink.source = photo;
+					saveImageInCache(photo);
+				}
+			}
 
-				graphics.moveTo(0, unscaledHeight);
-				graphics.lineTo(unscaledWidth, unscaledHeight);
+			private function saveImageInCache(photoURL:String):void
+			{
+				var loader:Loader = new Loader();
+				var request:URLRequest;
+				request = new URLRequest(photoURL);
+				loader.contentLoaderInfo.addEventListener(Event.COMPLETE, imageLoadComplete);
+				loader.load(request);
+			}
 
-				// turn off opaqueBackground since this renderer has some transparency
-				opaqueBackground = null;
+			private function imageLoadComplete(event:Event):void
+			{
+				if (!data.cache)
+				{
+					var bitmapData:BitmapData = new BitmapData(event.target.content.width, event.target.content.height, true);
+					bitmapData.draw(event.target.content);
+					data.cache = bitmapData;
+				}
 			}
 		]]>
 	</fx:Script>
-</s:LabelItemRenderer>
+
+	<s:Group width="100%"
+			 height="500">
+		<s:Rect top="0"
+				alpha="0.3"
+				bottom="-1"
+				left="0"
+				right="0">
+			<s:stroke>
+				<s:SolidColorStroke color="#000000"/>
+			</s:stroke>
+		</s:Rect>
+		<s:BitmapImage id="idBackgroundContainer"
+					   width="100%"
+					   alpha="0.3"
+					   height="100%"/>
+		<s:VGroup horizontalAlign="center"
+				  gap="5"
+				  verticalAlign="middle"
+				  height="100%"
+				  width="100%">
+			<s:Image id="idPhotoLink"
+					 height="400"
+					 width="400"/>
+			<s:Spacer height="10"/>
+			<s:HGroup width="100%"
+					  paddingLeft="10">
+				<s:Label fontSize="16"
+						 fontStyle="italic"
+						 text="Lugar: "/>
+				<s:Label fontSize="16"
+						 fontStyle="italic"
+						 text="{place}"/>
+			</s:HGroup>
+			<s:HGroup width="100%"
+					  paddingLeft="10">
+				<s:Label fontSize="16"
+						 fontStyle="italic"
+						 text="Fecha y hora: "/>
+				<s:Label fontSize="16"
+						 fontStyle="italic"
+						 text="{dateShow} {hourShow}h"/>
+			</s:HGroup>
+			<s:HGroup width="100%"
+					  paddingLeft="10">
+				<s:Label fontSize="16"
+						 fontStyle="italic"
+						 text="Bandas invitadas: "/>
+				<s:Label fontSize="16"
+						 fontStyle="italic"
+						 text="{bandsWith}"/>
+			</s:HGroup>
+		</s:VGroup>
+	</s:Group>
+</s:View>

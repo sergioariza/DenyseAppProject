@@ -3,11 +3,12 @@
 		actionBarVisible="false"
 		initialize="initShows(event)"
 		xmlns:s="library://ns.adobe.com/flex/spark"
-		title="Conciertos">
+		title="{LocalizationModel.showsLabel}">
 	<fx:Script>
 		<![CDATA[
 			import assets.AssetsLibrary;
 
+			import model.LocalizationModel;
 			import model.ShowsModel;
 
 			import mx.collections.ArrayCollection;
@@ -36,8 +37,10 @@
 						shows.title = showsItem.title;
 						shows.body = showsItem.body;
 						shows.bandsWith = showsItem.bandsWith;
+						shows.place = showsItem.place;
 						shows.datePublished = showsItem.datePublished;
 						shows.dateShow = showsItem.dateShow;
+						shows.hourShow = showsItem.hourShow;
 						shows.latitude = showsItem.latitude;
 						shows.length = showsItem.length;
 						shows.photoURL = showsItem.photoURL;
@@ -64,5 +67,6 @@
 			left="0"
 			right="0"
 			change="navigator.pushView(ShowsDetailsView, idList.selectedItem)"
-			itemRenderer="views.renderers.ShowsItemRenderer"/>
+			itemRenderer="views.renderers.ShowsItemRenderer">
+	</s:List>
 </s:View>

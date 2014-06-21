@@ -27,6 +27,10 @@ package assets
 		[Embed("assets/backgrounds/renderers/backgroundList4.png")]
 		public static var backgroundList4:Class;
 
+		[Bindable]
+		[Embed("assets/backgrounds/renderers/separator.png")]
+		public static var separator:Class;
+
 		public function AssetsLibrary()
 		{
 		}

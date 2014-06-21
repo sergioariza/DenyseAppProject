@@ -7,8 +7,10 @@ package vo
 		public var title:String;
 		public var body:String;
 		public var bandsWith:String;
+		public var place:String;
 		public var datePublished:String;
-		public var dateShow:String
+		public var dateShow:String;
+		public var hourShow:String;
 		public var latitude:Number;
 		public var length:Number;
 		public var photoURL:String;
