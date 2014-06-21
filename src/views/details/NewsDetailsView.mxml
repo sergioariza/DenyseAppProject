@@ -11,13 +11,7 @@
 		<![CDATA[
 			import assets.AssetsLibrary;
 
-			import flash.utils.setTimeout;
-
 			import mx.events.FlexEvent;
-			import mx.events.PropertyChangeEvent;
-			import mx.managers.SystemManager;
-
-			import spark.events.ViewNavigatorEvent;
 
 			import vo.VoNews;
 
@@ -54,7 +48,6 @@
 			}
 		]]>
 	</fx:Script>
-
 	<s:BitmapImage source="{AssetsLibrary.generalBackground}"
 				   left="0"
 				   alpha="0.6"
@@ -67,11 +60,14 @@
 				top="77">
 		<s:VGroup horizontalAlign="center"
 				  width="100%"
+				  gap="0"
 				  paddingTop="20"
 				  paddingLeft="20"
 				  paddingRight="20"
 				  paddingBottom="20">
-			<s:RichText text="{titleLabel}"
+			<s:TextArea text="{titleLabel}"
+						styleName="customStyleMX"
+						selectable="false"
 						textAlign="center"
 						width="100%"
 						fontSize="28"/>
@@ -81,12 +77,15 @@
 					 scaleMode="zoom"
 					 scaleX="0.3"
 					 scaleY="0.3"/>
-			<s:RichText text="Fecha de publicación: {dateLabel}"
+			<s:TextArea text="Fecha de publicación: {dateLabel}"
 						textAlign="center"
+						styleName="customStyleMX"
+						selectable="false"
 						width="100%"
 						fontSize="16"/>
-			<s:Spacer height="10"/>
-			<s:RichText text="{bodyLabel}"
+			<s:TextArea text="{bodyLabel}"
+						styleName="customStyleMX"
+						selectable="false"
 						textAlign="justify"
 						width="100%"
 						fontSize="20"/>

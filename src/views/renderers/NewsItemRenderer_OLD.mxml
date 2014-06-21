@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:IconItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009"
+					xmlns:s="library://ns.adobe.com/flex/spark"
+					labelField="title"
+					iconField="photoURL"
+					fontSize="20"
+					textAlign="center"
+					iconHeight="55"
+					iconWidth="55"
+					cacheAsBitmap="true"
+					messageStyleName="messageStyle"
+					messageField="body">
+	<fx:Style>
+		.messageStyle {
+			fontSize: 15;
+			textAlign: justify;
+		}
+
+	</fx:Style>
+	<fx:Script>
+		<![CDATA[
+			import mx.events.PropertyChangeEvent;
+
+			import spark.components.supportClasses.StyleableTextField;
+
+			import vo.VoNews;
+
+			private var voNews:VoNews;
+
+			//Métodos relacionados con el override de set data y otros propios
+			override public function set data(value:Object):void
+			{
+				super.data = value;
+
+				if (data == null)
+					return;
+
+				voNews = VoNews(value);
+
+				if (!data.cache)
+				{
+					saveImageInCache(voNews.photoURL);
+				}
+			}
+
+			//Caché de imágenes
+			private function saveImageInCache(photoURL:String):void
+			{
+				var loader:Loader = new Loader();
+				var request:URLRequest;
+				request = new URLRequest(photoURL);
+				loader.contentLoaderInfo.addEventListener(Event.COMPLETE, imageLoadComplete);
+				loader.load(request);
+			}
+
+			private function imageLoadComplete(event:Event):void
+			{
+				if (!data.cache)
+				{
+					var bitmapData:BitmapData = new BitmapData(event.target.content.width, event.target.content.height, true);
+					bitmapData.draw(event.target.content);
+					data.cache = bitmapData;
+				}
+			}
+
+			override protected function measure():void
+			{
+				super.measure();
+				formatMessageFieldText();
+
+				//Resize measuredHeight after formatting messageField
+				var realHeightSize:int = iconHeight > (labelDisplay.textHeight + messageDisplay.textHeight) ? iconHeight : (labelDisplay.textHeight + messageDisplay.textHeight);
+				var marginTopBottom:int = realHeightSize * 0.15;
+				measuredHeight = realHeightSize + (marginTopBottom * 2);
+			}
+
+			private function formatMessageFieldText(numLinesParam:int = 2):void
+			{
+				var messageText:String = messageDisplay.text;
+				var enoughTrim:Boolean = false;
+
+				while (!enoughTrim)
+				{
+					if (messageDisplay.numLines > numLinesParam)
+					{
+						messageText = messageText.substr(0, messageText.length - 1);
+						messageDisplay.text = messageText;
+					}
+					else
+					{
+						enoughTrim = true;
+					}
+				}
+
+				enoughTrim = false;
+				messageDisplay.text = messageDisplay.text.substr(0, messageDisplay.text.length - 3);
+
+				while (!enoughTrim)
+				{
+					if (messageDisplay.text.charAt(messageDisplay.text.length - 1) == ' ')
+					{
+						messageDisplay.text = messageDisplay.text.substr(0, messageDisplay.text.length - 1);
+						enoughTrim = true;
+					}
+					else
+					{
+						messageDisplay.text = messageDisplay.text.substr(0, messageDisplay.text.length - 1);
+					}
+				}
+
+				messageDisplay.text = messageDisplay.text + "...";
+			}
+
+			override protected function drawBackground(unscaledWidth:Number, unscaledHeight:Number):void
+			{
+				// transparent background for hit detection
+				graphics.beginFill(0x000000, 0.15);
+				graphics.lineStyle();
+				graphics.drawRect(0, 0, unscaledWidth, unscaledHeight);
+				graphics.endFill();
+
+				graphics.moveTo(0, 0);
+				graphics.lineStyle(1, 0x484848, 1);
+				graphics.lineTo(unscaledWidth, 0);
+
+				graphics.moveTo(0, unscaledHeight);
+				graphics.lineTo(unscaledWidth, unscaledHeight);
+
+				// turn off opaqueBackground since this renderer has some transparency
+				opaqueBackground = null;
+			}
+		]]>
+	</fx:Script>
+</s:IconItemRenderer>

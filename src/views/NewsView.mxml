@@ -76,6 +76,6 @@
 			left="0"
 			right="0"
 			change="navigator.pushView(NewsDetailsView, idList.selectedItem)"
-			itemRenderer="views.renderers.NewsRenderer_OLD">
+			itemRenderer="views.renderers.NewsItemRenderer">
 	</s:List>
 </s:View>

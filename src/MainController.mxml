@@ -14,9 +14,7 @@
 			import model.LocalizationModel;
 		]]>
 	</fx:Script>
-
 	<fx:Style source="/style/mainMenu.css"/>
-
 	<s:navigators>
 		<s:ViewNavigator label="{LocalizationModel.newsLabel}"
 						 id="idNewsView"

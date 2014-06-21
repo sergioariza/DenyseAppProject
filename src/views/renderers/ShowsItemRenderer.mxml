@@ -118,7 +118,7 @@
 			 height="500">
 		<s:Rect top="0"
 				alpha="0.3"
-				bottom="-1"
+				bottom="0"
 				left="0"
 				right="0">
 			<s:stroke>
@@ -131,40 +131,40 @@
 					   height="100%"/>
 		<s:VGroup horizontalAlign="center"
 				  gap="5"
+				  paddingLeft="10"
 				  verticalAlign="middle"
 				  height="100%"
 				  width="100%">
+			<s:Spacer height="10"/>
 			<s:Image id="idPhotoLink"
 					 height="400"
 					 width="400"/>
-			<s:Spacer height="10"/>
-			<s:HGroup width="100%"
-					  paddingLeft="10">
-				<s:Label fontSize="16"
-						 fontStyle="italic"
-						 text="Lugar: "/>
-				<s:Label fontSize="16"
-						 fontStyle="italic"
-						 text="{place}"/>
-			</s:HGroup>
-			<s:HGroup width="100%"
-					  paddingLeft="10">
-				<s:Label fontSize="16"
-						 fontStyle="italic"
-						 text="Fecha y hora: "/>
-				<s:Label fontSize="16"
-						 fontStyle="italic"
-						 text="{dateShow} {hourShow}h"/>
-			</s:HGroup>
-			<s:HGroup width="100%"
-					  paddingLeft="10">
-				<s:Label fontSize="16"
-						 fontStyle="italic"
-						 text="Bandas invitadas: "/>
-				<s:Label fontSize="16"
-						 fontStyle="italic"
-						 text="{bandsWith}"/>
-			</s:HGroup>
+			<s:VGroup gap="-55"
+					  width="100%">
+				<s:TextArea fontSize="18"
+							width="100%"
+							styleName="customStyleMX"
+							selectable="false"
+							text="Lugar: {place}"/>
+				<s:TextArea fontSize="18"
+							width="100%"
+							styleName="customStyleMX"
+							selectable="false"
+							text="Fecha y hora: {dateShow} {hourShow}h"/>
+				<s:TextArea fontSize="18"
+							width="100%"
+							styleName="customStyleMX"
+							selectable="false"
+							text="Bandas invitadas: {bandsWith}"/>
+			</s:VGroup>
 		</s:VGroup>
+		<s:Image source="{AssetsLibrary.nextIcon}"
+				 smooth="true"
+				 top="250"
+				 right="5"
+				 smoothingQuality="high"
+				 buttonMode="true"
+				 height="25"
+				 width="25"/>
 	</s:Group>
 </s:View>

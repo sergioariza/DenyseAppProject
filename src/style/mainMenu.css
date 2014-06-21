@@ -27,3 +27,28 @@ s|TabbedViewNavigator #tabBar
 	iconPlacement:center;
 	fontSize : 18;
 }
+
+@font-face { 
+	src: url("/style/fonts/TravelingTypewriter.ttf"); 
+	fontFamily: myFontFamilyMX; 
+	embedAsCFF: false; 
+}
+
+@font-face {
+	src:url("/style/fonts/TravelingTypewriter.ttf");
+	fontFamily: myFontFamilySpark;
+	embedAsCFF: true;
+}
+
+.customStyleMX {
+	fontFamily: myFontFamilyMX;
+	borderSkin: null;
+	focusAlpha: 0;
+	contentBackgroundAlpha: 0;
+	borderVisible: false;
+	skinClass: ClassReference("spark.skins.mobile.TextAreaSkin");
+}
+
+.customStyleSpark {
+	fontFamily: myFontFamilySpark;
+}
