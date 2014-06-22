@@ -11,16 +11,32 @@
 		<![CDATA[
 			import assets.AssetsLibrary;
 
+			import flash.net.navigateToURL;
+
+			import mx.events.FlexEvent;
+
 			import vo.VoShows;
 
 			[Bindable]
 			private var mapGoogleJavaScript:String = "<!DOCTYPE html><html><head><style>html, body, #map-canvas{height: 100%; margin: 0px; padding:0px}</style><script src=\"https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false\"></script><script>var map;function initialize(){var mapOptions = {zoom: 12,center: new google.maps.LatLng(-34.397, 150.644), disableDefaultUI: true};map = new google.maps.Map(document.getElementById('map-canvas'),mapOptions);}google.maps.event.addDomListener(window, 'load', initialize);</script></head><body><div id=\"map-canvas\"></div></body></html>";
 
 			[Bindable]
-			private var mapGoogleStaticImage:String = "http://maps.googleapis.com/maps/api/staticmap?center=40.4356207,-3.669930499999964&zoom=18&size=400x400&markers=color:red%7Ccolor:red%7Clabel:%7C40.4356207,-3.669930499999964&sensor=true";
+			private var mapGoogleStaticImageURL:String = "http://maps.googleapis.com/maps/api/staticmap?center=";
 
 			[Bindable]
-			private var mapGoogleURL:String = "http://maps.google.com/maps?q=40.4356207,-3.669930499999964";
+			private var mapGoogleStaticImageParams:String = "&zoom=18&size=400x400&markers=color:red%7Ccolor:red%7Clabel:%7C40.4356207,-3.669930499999964&sensor=true";
+
+			[Bindable]
+			private var mapGoogleURL:String = "http://maps.google.com/maps?q=";
+
+			[Bindable]
+			private var titleShows:String;
+
+			[Bindable]
+			private var body:String;
+
+			[Bindable]
+			private var datePublished:String;
 
 			private var voShows:VoShows;
 
@@ -28,6 +44,31 @@
 			{
 				super.data = value;
 				voShows = VoShows(value);
+				titleShows = voShows.title;
+				datePublished = voShows.datePublished;
+				body = voShows.body;
+			}
+
+			protected function idShowsPhoto_creationCompleteHandler(event:FlexEvent):void
+			{
+				if (voShows.cache)
+				{
+					idShowsPhoto.source = voShows.cache;
+				}
+				else
+				{
+					idShowsPhoto.source = voShows.photoURL;
+				}
+			}
+
+			protected function idBitmapImage_creationCompleteHandler(event:FlexEvent):void
+			{
+				idBitmapImage.source = mapGoogleStaticImageURL + voShows.latitude.toString() + "," + voShows.length.toString() + mapGoogleStaticImageParams;
+			}
+
+			protected function idBitmapImage_clickHandler(event:MouseEvent):void
+			{
+				navigateToURL(new URLRequest(mapGoogleURL + voShows.latitude.toString() + "," + voShows.length.toString()));
 			}
 		]]>
 	</fx:Script>
@@ -37,10 +78,94 @@
 				   right="0"
 				   width="100%"
 				   height="100%"/>
-	<s:Image id="idBitmapImage"
-			 verticalCenter="0"
-			 horizontalCenter="0"
-			 source="{mapGoogleStaticImage}"/>
+	<s:Scroller width="100%"
+				id="idScroller"
+				height="100%"
+				top="77">
+		<s:VGroup horizontalAlign="center"
+				  width="100%"
+				  gap="0"
+				  paddingTop="20"
+				  paddingLeft="20"
+				  paddingRight="20"
+				  paddingBottom="20">
+			<s:TextArea text="{titleShows}"
+						styleName="customStyleMX"
+						selectable="false"
+						textAlign="center"
+						width="100%"
+						fontSize="28"/>
+			<s:Image id="idShowsPhoto"
+					 creationComplete="idShowsPhoto_creationCompleteHandler(event)"
+					 horizontalCenter="0"
+					 scaleMode="zoom"
+					 scaleX="0.4"
+					 scaleY="0.4"/>
+			<s:TextArea text="Fecha de publicación: {datePublished}"
+						textAlign="center"
+						styleName="customStyleMX"
+						selectable="false"
+						width="100%"
+						fontSize="16"/>
+			<s:TextArea text="{body}"
+						styleName="customStyleMX"
+						selectable="false"
+						textAlign="justify"
+						width="100%"
+						fontSize="20"/>
+			<s:VGroup gap="-50"
+					  width="100%">
+				<s:TextArea fontSize="20"
+							width="100%"
+							styleName="customStyleMX"
+							selectable="false"
+							textDecoration="underline"
+							text="Datos del concierto:"/>
+				<s:Spacer height="55"/>
+				<s:TextArea fontSize="20"
+							width="100%"
+							styleName="customStyleMX"
+							selectable="false"
+							text="Lugar: {voShows.place}"/>
+				<s:TextArea fontSize="20"
+							width="100%"
+							styleName="customStyleMX"
+							selectable="false"
+							text="Fecha y hora: {voShows.dateShow} {voShows.hourShow}h"/>
+				<s:TextArea fontSize="20"
+							width="100%"
+							styleName="customStyleMX"
+							selectable="false"
+							text="Bandas invitadas: {voShows.bandsWith}"/>
+			</s:VGroup>
+			<s:Spacer height="10"/>
+			<s:VGroup gap="-20"
+					  horizontalAlign="center"
+					  width="100%">
+				<s:TextArea fontSize="20"
+							width="100%"
+							textDecoration="underline"
+							paragraphSpaceAfter="0"
+							paragraphSpaceBefore="0"
+							textAlign="center"
+							styleName="customStyleMX"
+							selectable="false"
+							text="Mapa del lugar:"/>
+				<s:Image id="idBitmapImage"
+						 click="idBitmapImage_clickHandler(event)"
+						 creationComplete="idBitmapImage_creationCompleteHandler(event)"
+						 verticalCenter="0"
+						 horizontalCenter="0"/>
+				<s:Spacer height="30"/>
+				<s:TextArea fontSize="14"
+							width="100%"
+							textAlign="center"
+							styleName="customStyleMX"
+							selectable="false"
+							text="Pulsa en el mapa para acceder a Google Maps"/>
+			</s:VGroup>
+		</s:VGroup>
+	</s:Scroller>
 	<!--<details:StageWebViewUIComponent id="idStageWebViewUIComponent"
 									 xOffset="-1000"
 									 addedToStage="addedToStageHandler(event)"

@@ -75,8 +75,8 @@
 					 creationComplete="idNewsPhoto_creationCompleteHandler(event)"
 					 horizontalCenter="0"
 					 scaleMode="zoom"
-					 scaleX="0.3"
-					 scaleY="0.3"/>
+					 scaleX="0.4"
+					 scaleY="0.4"/>
 			<s:TextArea text="Fecha de publicación: {dateLabel}"
 						textAlign="center"
 						styleName="customStyleMX"
