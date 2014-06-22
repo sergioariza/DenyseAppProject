@@ -44,6 +44,7 @@ s|TabbedViewNavigator #tabBar
 	fontFamily: myFontFamilyMX;
 	borderSkin: null;
 	focusAlpha: 0;
+	color: black;
 	contentBackgroundAlpha: 0;
 	borderVisible: false;
 	skinClass: ClassReference("spark.skins.mobile.TextAreaSkin");
@@ -51,4 +52,5 @@ s|TabbedViewNavigator #tabBar
 
 .customStyleSpark {
 	fontFamily: myFontFamilySpark;
+	color: black;
 }

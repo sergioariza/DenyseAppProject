@@ -31,6 +31,18 @@ package assets
 		[Embed("assets/backgrounds/renderers/separator.png")]
 		public static var separator:Class;
 
+		[Bindable]
+		[Embed("assets/icons/bands.png")]
+		public static var bands:Class;
+
+		[Bindable]
+		[Embed("assets/icons/clock.png")]
+		public static var clock:Class;
+
+		[Bindable]
+		[Embed("assets/icons/place.png")]
+		public static var place:Class;
+
 		public function AssetsLibrary()
 		{
 		}

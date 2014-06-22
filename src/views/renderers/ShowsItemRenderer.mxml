@@ -115,7 +115,7 @@
 	</fx:Script>
 
 	<s:Group width="100%"
-			 height="500">
+			 height="530">
 		<s:Rect top="0"
 				alpha="0.3"
 				bottom="0"
@@ -139,23 +139,42 @@
 			<s:Image id="idPhotoLink"
 					 height="400"
 					 width="400"/>
-			<s:VGroup gap="-55"
+			<s:Spacer height="10"/>
+			<s:VGroup gap="5"
 					  width="100%">
-				<s:TextArea fontSize="18"
-							width="100%"
-							styleName="customStyleMX"
-							selectable="false"
-							text="Lugar: {place}"/>
-				<s:TextArea fontSize="18"
-							width="100%"
-							styleName="customStyleMX"
-							selectable="false"
-							text="Fecha y hora: {dateShow} {hourShow}h"/>
-				<s:TextArea fontSize="18"
-							width="100%"
-							styleName="customStyleMX"
-							selectable="false"
-							text="Bandas invitadas: {bandsWith}"/>
+				<s:HGroup width="100%">
+					<s:Image width="22"
+							 smooth="true"
+							 height="22"
+							 source="{AssetsLibrary.place}"/>
+					<s:Label fontSize="22"
+							 width="100%"
+							 maxDisplayedLines="1"
+							 styleName="customStyleSpark"
+							 text="{place}"/>
+				</s:HGroup>
+				<s:HGroup width="100%">
+					<s:Image width="22"
+							 height="22"
+							 smooth="true"
+							 source="{AssetsLibrary.clock}"/>
+					<s:Label fontSize="22"
+							 width="100%"
+							 maxDisplayedLines="1"
+							 styleName="customStyleSpark"
+							 text="{dateShow} {hourShow}h"/>
+				</s:HGroup>
+				<s:HGroup width="100%">
+					<s:Image width="22"
+							 smooth="true"
+							 height="22"
+							 source="{AssetsLibrary.bands}"/>
+					<s:Label fontSize="22"
+							 width="100%"
+							 maxDisplayedLines="1"
+							 styleName="customStyleSpark"
+							 text="{bandsWith}"/>
+				</s:HGroup>
 			</s:VGroup>
 		</s:VGroup>
 		<s:Image source="{AssetsLibrary.nextIcon}"

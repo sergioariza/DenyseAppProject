@@ -3,7 +3,7 @@
 		xmlns:s="library://ns.adobe.com/flex/spark"
 		actionBarVisible="false"
 		backgroundColor="0x000000"
-		backgroundAlpha="0.6">
+		backgroundAlpha="0.3">
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
@@ -24,7 +24,7 @@
 			private var mapGoogleStaticImageURL:String = "http://maps.googleapis.com/maps/api/staticmap?center=";
 
 			[Bindable]
-			private var mapGoogleStaticImageParams:String = "&zoom=18&size=400x400&markers=color:red%7Ccolor:red%7Clabel:%7C40.4356207,-3.669930499999964&sensor=true";
+			private var mapGoogleStaticImageParams:String = "&zoom=18&size=400x400&markers=color:red%7Ccolor:red%7Clabel:%7C";
 
 			[Bindable]
 			private var mapGoogleURL:String = "http://maps.google.com/maps?q=";
@@ -63,7 +63,7 @@
 
 			protected function idBitmapImage_creationCompleteHandler(event:FlexEvent):void
 			{
-				idBitmapImage.source = mapGoogleStaticImageURL + voShows.latitude.toString() + "," + voShows.length.toString() + mapGoogleStaticImageParams;
+				idBitmapImage.source = mapGoogleStaticImageURL + voShows.latitude.toString() + "," + voShows.length.toString() + mapGoogleStaticImageParams + voShows.latitude.toString() + "," + voShows.length.toString() + "&sensor=true";
 			}
 
 			protected function idBitmapImage_clickHandler(event:MouseEvent):void
