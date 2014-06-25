@@ -141,36 +141,34 @@
 					 width="400"/>
 			<s:Spacer height="10"/>
 			<s:VGroup gap="5"
+					  horizontalAlign="center"
 					  width="100%">
-				<s:HGroup width="100%">
+				<s:HGroup>
 					<s:Image width="22"
 							 smooth="true"
 							 height="22"
 							 source="{AssetsLibrary.place}"/>
 					<s:Label fontSize="22"
-							 width="100%"
 							 maxDisplayedLines="1"
 							 styleName="customStyleSpark"
 							 text="{place}"/>
 				</s:HGroup>
-				<s:HGroup width="100%">
+				<s:HGroup>
 					<s:Image width="22"
 							 height="22"
 							 smooth="true"
 							 source="{AssetsLibrary.clock}"/>
 					<s:Label fontSize="22"
-							 width="100%"
 							 maxDisplayedLines="1"
 							 styleName="customStyleSpark"
 							 text="{dateShow} {hourShow}h"/>
 				</s:HGroup>
-				<s:HGroup width="100%">
+				<s:HGroup>
 					<s:Image width="22"
 							 smooth="true"
 							 height="22"
 							 source="{AssetsLibrary.bands}"/>
 					<s:Label fontSize="22"
-							 width="100%"
 							 maxDisplayedLines="1"
 							 styleName="customStyleSpark"
 							 text="{bandsWith}"/>

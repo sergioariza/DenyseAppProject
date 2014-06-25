@@ -20,6 +20,7 @@
 			import mx.events.FlexEvent;
 
 			import spark.components.IconItemRenderer;
+			import spark.components.Image;
 			import spark.core.ContentCache;
 
 			import vo.VoNews;
@@ -45,8 +46,18 @@
 				titleLabel = voNews.title;
 				photo = voNews.photoURL;
 				bodyLabel = voNews.body;
-				checkCache();
 				setBackgroundImage();
+
+				if (NewsModel.index % 2 == 0)
+				{
+					setLeftLayout();
+				}
+				else
+				{
+					setRightLayout();
+				}
+
+				checkCache();
 			}
 
 			private function setBackgroundImage():void
@@ -72,16 +83,76 @@
 				}
 			}
 
+			private function setLeftLayout():void
+			{
+				var photo:Image = new Image();
+				photo.width = 55;
+				photo.height = 55;
+				photo.id = "idPhotoLink";
+				photo.name = "idPhotoLink";
+
+				var labelNews:Label = new Label();
+				labelNews.text = bodyLabel;
+				labelNews.id = "bodyText"
+				labelNews.styleName = "customStyleSpark"
+				labelNews.maxDisplayedLines = 4;
+				labelNews.percentWidth = 100;
+				labelNews.setStyle("fontSize", "14");
+
+				var next:Image = new Image();
+				next.width = 25;
+				next.height = 25;
+				next.source = AssetsLibrary.nextIcon;
+				next.smooth = true;
+				next.setStyle("smoothingQuality", "high");
+				next.buttonMode = true;
+
+				mainLayout.addElement(photo);
+				mainLayout.addElement(labelNews);
+				mainLayout.addElement(next);
+			}
+
+			private function setRightLayout():void
+			{
+				var photo:Image = new Image();
+				photo.width = 55;
+				photo.height = 55;
+				photo.id = "idPhotoLink";
+				photo.name = "idPhotoLink";
+
+				var labelNews:Label = new Label();
+				labelNews.text = bodyLabel;
+				labelNews.id = "bodyText";
+				labelNews.styleName = "customStyleSpark"
+				labelNews.maxDisplayedLines = 4;
+				labelNews.percentWidth = 100;
+				labelNews.setStyle("fontSize", "14");
+
+				var next:Image = new Image();
+				next.width = 25;
+				next.height = 25;
+				next.source = AssetsLibrary.nextIcon;
+				next.smooth = true;
+				next.setStyle("smoothingQuality", "high");
+				next.buttonMode = true;
+
+				mainLayout.addElement(labelNews);
+				mainLayout.addElement(photo);
+				mainLayout.addElement(next);
+			}
+
 			//Caché de imágenes
 			private function checkCache():void
 			{
+				var displayObject:DisplayObject = mainLayout.getChildByName("idPhotoLink");
+
 				if (data.cache)
 				{
-					idPhotoLink.source = new Bitmap(data.cache);
+					Image(displayObject).source = new Bitmap(data.cache);
 				}
 				else
 				{
-					idPhotoLink.source = photo;
+					Image(displayObject).source = photo;
 					saveImageInCache(photo);
 				}
 			}
@@ -133,26 +204,27 @@
 					 styleName="customStyleSpark"
 					 fontSize="20"/>
 			<s:HGroup width="100%"
+					  id="mainLayout"
 					  paddingLeft="5"
 					  height="100%"
 					  paddingBottom="10"
 					  paddingRight="5"
 					  verticalAlign="middle">
-				<s:Image id="idPhotoLink"
+				<!--<s:Image id="idPhotoLink" name="idPhotoLink"
 						 height="55"
-						 width="55"/>
-				<s:Label text="{bodyLabel}"
+						 width="55"/>-->
+				<!--<s:Label text="{bodyLabel}"
 						 id="bodyText"
 						 styleName="customStyleSpark"
 						 maxDisplayedLines="4"
 						 width="100%"
-						 fontSize="14"/>
-				<s:Image source="{AssetsLibrary.nextIcon}"
+						 fontSize="14"/>-->
+				<!--<s:Image source="{AssetsLibrary.nextIcon}"
 						 smooth="true"
 						 smoothingQuality="high"
 						 buttonMode="true"
 						 height="25"
-						 width="25"/>
+						 width="25"/>-->
 			</s:HGroup>
 		</s:VGroup>
 	</s:Group>
