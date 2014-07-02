@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
+		backgroundAlpha="0"
+		xmlns:s="library://ns.adobe.com/flex/spark"
+		xmlns:mx="library://ns.adobe.com/flex/mx"
+		actionBarVisible="false">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+
+	<fx:Script>
+		<![CDATA[
+			import assets.AssetsLibrary;
+
+			import flash.utils.setTimeout;
+
+			import model.NewsModel;
+
+			import mx.core.mx_internal;
+			import mx.events.FlexEvent;
+
+			import spark.components.IconItemRenderer;
+			import spark.components.Image;
+			import spark.core.ContentCache;
+
+			import vo.VoNews;
+
+			[Bindable]
+			private var titleLabel:String;
+
+			[Bindable]
+			private var bodyLabel:String;
+
+			[Bindable]
+			private var photo:String;
+
+			//Métodos relacionados con el override de set data y otros propios
+			override public function set data(value:Object):void
+			{
+				super.data = value;
+
+				if (data == null)
+					return;
+
+				var voNews:VoNews = VoNews(value);
+				titleLabel = voNews.title;
+				photo = voNews.photoURL;
+				bodyLabel = voNews.body;
+				setBackgroundImage();
+
+				if (NewsModel.index % 2 == 0)
+				{
+					setLeftLayout();
+				}
+				else
+				{
+					setRightLayout();
+				}
+
+				checkCache();
+			}
+
+			private function setBackgroundImage():void
+			{
+				switch (NewsModel.index)
+				{
+					case 1:
+						NewsModel.index = 2;
+						idBackgroundContainer.source = AssetsLibrary.backgroundList1;
+						break;
+					case 2:
+						NewsModel.index = 3;
+						idBackgroundContainer.source = AssetsLibrary.backgroundList2;
+						break;
+					case 3:
+						NewsModel.index = 4;
+						idBackgroundContainer.source = AssetsLibrary.backgroundList3;
+						break;
+					case 4:
+						NewsModel.index = 1;
+						idBackgroundContainer.source = AssetsLibrary.backgroundList4;
+						break;
+				}
+			}
+
+			private function setLeftLayout():void
+			{
+				var photo:Image = new Image();
+				photo.width = 55;
+				photo.height = 55;
+				photo.id = "idPhotoLink";
+				photo.name = "idPhotoLink";
+
+				var labelNews:Label = new Label();
+				labelNews.text = bodyLabel;
+				labelNews.id = "bodyText"
+				labelNews.styleName = "customStyleSpark"
+				labelNews.maxDisplayedLines = 4;
+				labelNews.percentWidth = 100;
+				labelNews.setStyle("fontSize", "14");
+
+				var next:Image = new Image();
+				next.width = 25;
+				next.height = 25;
+				next.source = AssetsLibrary.nextIcon;
+				next.smooth = true;
+				next.setStyle("smoothingQuality", "high");
+				next.buttonMode = true;
+
+				mainLayout.addElement(photo);
+				mainLayout.addElement(labelNews);
+				mainLayout.addElement(next);
+			}
+
+			private function setRightLayout():void
+			{
+				var photo:Image = new Image();
+				photo.width = 55;
+				photo.height = 55;
+				photo.id = "idPhotoLink";
+				photo.name = "idPhotoLink";
+
+				var labelNews:Label = new Label();
+				labelNews.text = bodyLabel;
+				labelNews.id = "bodyText";
+				labelNews.styleName = "customStyleSpark"
+				labelNews.maxDisplayedLines = 4;
+				labelNews.percentWidth = 100;
+				labelNews.setStyle("fontSize", "14");
+
+				var next:Image = new Image();
+				next.width = 25;
+				next.height = 25;
+				next.source = AssetsLibrary.nextIcon;
+				next.smooth = true;
+				next.setStyle("smoothingQuality", "high");
+				next.buttonMode = true;
+
+				mainLayout.addElement(labelNews);
+				mainLayout.addElement(photo);
+				mainLayout.addElement(next);
+			}
+
+			//Caché de imágenes
+			private function checkCache():void
+			{
+				var displayObject:DisplayObject = mainLayout.getChildByName("idPhotoLink");
+
+				if (data.cache)
+				{
+					Image(displayObject).source = new Bitmap(data.cache);
+				}
+				else
+				{
+					Image(displayObject).source = photo;
+					saveImageInCache(photo);
+				}
+			}
+
+			private function saveImageInCache(photoURL:String):void
+			{
+				var loader:Loader = new Loader();
+				var request:URLRequest;
+				request = new URLRequest(photoURL);
+				loader.contentLoaderInfo.addEventListener(Event.COMPLETE, imageLoadComplete);
+				loader.load(request);
+			}
+
+			private function imageLoadComplete(event:Event):void
+			{
+				if (!data.cache)
+				{
+					var bitmapData:BitmapData = new BitmapData(event.target.content.width, event.target.content.height, true);
+					bitmapData.draw(event.target.content);
+					data.cache = bitmapData;
+				}
+			}
+		]]>
+	</fx:Script>
+
+	<s:Group width="100%"
+			 height="120">
+		<s:Rect top="0"
+				alpha="0.3"
+				bottom="0"
+				left="0"
+				right="0">
+			<s:stroke>
+				<s:SolidColorStroke color="#000000"/>
+			</s:stroke>
+		</s:Rect>
+		<s:BitmapImage id="idBackgroundContainer"
+					   width="100%"
+					   height="100%"
+					   alpha="0.3"/>
+		<s:VGroup width="100%"
+				  paddingLeft="10"
+				  paddingRight="10"
+				  paddingTop="10">
+			<s:Label text="{titleLabel}"
+					 width="100%"
+					 textAlign="center"
+					 maxDisplayedLines="1"
+					 styleName="customStyleSpark"
+					 fontSize="20"/>
+			<s:HGroup width="100%"
+					  id="mainLayout"
+					  paddingLeft="5"
+					  height="100%"
+					  paddingBottom="10"
+					  paddingRight="5"
+					  verticalAlign="middle">
+				<!--<s:Image id="idPhotoLink" name="idPhotoLink"
+						 height="55"
+						 width="55"/>-->
+				<!--<s:Label text="{bodyLabel}"
+						 id="bodyText"
+						 styleName="customStyleSpark"
+						 maxDisplayedLines="4"
+						 width="100%"
+						 fontSize="14"/>-->
+				<!--<s:Image source="{AssetsLibrary.nextIcon}"
+						 smooth="true"
+						 smoothingQuality="high"
+						 buttonMode="true"
+						 height="25"
+						 width="25"/>-->
+			</s:HGroup>
+		</s:VGroup>
+	</s:Group>
+</s:View>

@@ -4,7 +4,7 @@ package assets
 	public class AssetsLibrary
 	{
 		[Bindable]
-		[Embed("assets/next.png")]
+		[Embed("assets/icons/next.png")]
 		public static var nextIcon:Class;
 
 		[Bindable]
