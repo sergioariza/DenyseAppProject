@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<list>
+	<videos>
+		<id>0</id>
+		<videoTitle>Amor Efervescente</videoTitle>
+		<youtubeURL>https://www.youtube.com/watch?v=ztueOLwB178</youtubeURL>
+		<!-- <youtubeURL2>http://www.youtube.com/v/ztueOLwB178?version=3</youtubeURL2> -->
+	</videos>
+	<videos>
+		<id>1</id>
+		<videoTitle>Bourbon sobre tu piel</videoTitle>
+		<youtubeURL>https://www.youtube.com/watch?v=99c8_xDLFaM</youtubeURL>
+		<!-- <youtubeURL2>http://www.youtube.com/v/99c8_xDLFaM?version=3</youtubeURL2> -->
+	</videos>
+</list>

@@ -14,9 +14,6 @@
 			import mx.collections.ArrayCollection;
 			import mx.events.FlexEvent;
 
-			import spark.transitions.FlipViewTransition;
-
-			import views.details.Example;
 			import views.details.NewsDetailsView;
 
 			import vo.VoNews;

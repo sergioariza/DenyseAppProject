@@ -1,7 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" actionBarVisible = "false"
-		xmlns:s="library://ns.adobe.com/flex/spark" title="Vídeos">
-	<fx:Declarations>
-		<!-- Place non-visual elements (e.g., services, value objects) here -->
-	</fx:Declarations>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
+		actionBarVisible="false"
+		initialize="initShows(event)"
+		xmlns:s="library://ns.adobe.com/flex/spark"
+		title="{LocalizationModel.showsLabel}">
+	<fx:Script>
+		<![CDATA[
+			import assets.AssetsLibrary;
+
+			import model.LocalizationModel;
+			import model.VideosModel;
+
+			import mx.collections.ArrayCollection;
+			import mx.events.FlexEvent;
+
+			import views.details.ShowsDetailsView;
+
+			import vo.VoVideos;
+
+			private function initShows(event:FlexEvent):void
+			{
+				if ((VideosModel.arrShowsItems) && (VideosModel.arrShowsItems.length == 0))
+				{
+					var file:File = File.applicationDirectory.resolvePath("assets/xml/videos.xml");
+					var stream:FileStream = new FileStream();
+					var xml:XML;
+					VideosModel.arrShowsItems = new ArrayCollection();
+					stream.open(file, FileMode.READ);
+					xml = XML(stream.readUTFBytes(stream.bytesAvailable));
+					stream.close();
+
+					for each (var videosItem:XML in xml.videos)
+					{
+						var videos:VoVideos = new VoVideos();
+						videos.id = videosItem.id;
+						videos.videoTitle = videosItem.videoTitle;
+						videos.youtubeURL = videosItem.youtubeURL;
+						VideosModel.arrShowsItems.addItem(videos);
+					}
+				}
+
+				idList.dataProvider = VideosModel.arrShowsItems;
+			}
+		]]>
+	</fx:Script>
+	<s:BitmapImage source="{AssetsLibrary.generalBackground}"
+				   left="0"
+				   alpha="0.6"
+				   right="0"
+				   width="100%"
+				   height="100%"/>
+	<s:List id="idList"
+			top="76"
+			contentBackgroundAlpha="0.0"
+			height="100%"
+			width="100%"
+			bottom="0"
+			left="0"
+			right="0"
+			itemRenderer="views.renderers.VideosItemRenderer_manually">
+	</s:List>
 </s:View>

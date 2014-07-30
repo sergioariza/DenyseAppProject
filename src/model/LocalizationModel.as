@@ -16,7 +16,7 @@ package model
 		public static var bioLabel:String = "Biografía";
 
 		[Bindable]
-		public static var aboutLabel:String = "Acerca de";
+		public static var configLabel:String = "Configuración";
 
 		public function LocalizationModel()
 		{

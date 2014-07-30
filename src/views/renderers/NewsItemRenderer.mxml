@@ -114,11 +114,11 @@
 				graphics.endFill();
 
 				graphics.moveTo(0, 0);
-				graphics.lineStyle(1, 0x484848, 1);
+				graphics.lineStyle(1, 0x484848, 0.3);
 				graphics.lineTo(unscaledWidth, 0);
 
-				graphics.moveTo(0, unscaledHeight);
-				graphics.lineTo(unscaledWidth, unscaledHeight);
+				graphics.moveTo(0, unscaledHeight - 1);
+				graphics.lineTo(unscaledWidth, unscaledHeight - 1);
 
 				// turn off opaqueBackground since this renderer has some transparency
 				opaqueBackground = null;

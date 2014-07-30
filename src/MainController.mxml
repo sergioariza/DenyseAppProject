@@ -36,10 +36,10 @@
 						 width="100%"
 						 height="100%"
 						 firstView="views.BioView"/>
-		<s:ViewNavigator label="{LocalizationModel.aboutLabel}"
+		<s:ViewNavigator label="{LocalizationModel.configLabel}"
 						 id="idAboutView"
 						 width="100%"
 						 height="100%"
-						 firstView="views.AboutView"/>
+						 firstView="views.ConfigView"/>
 	</s:navigators>
 </s:TabbedViewNavigatorApplication>
