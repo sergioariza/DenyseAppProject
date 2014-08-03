@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
 		xmlns:mx="library://ns.adobe.com/flex/mx"
-		backgroundAlpha="0"
+		backgroundAlpha="0.15"
+		backgroundColor="0x000000"
 		click="view_clickHandler(event)"
 		actionBarVisible="false"
 		xmlns:s="library://ns.adobe.com/flex/spark">
@@ -38,7 +39,6 @@
 				voVideos = VoVideos(value);
 				videoTitle.text = "Título: " + voVideos.videoTitle;
 				idVideoCover.source = parseYoutubeURL(voVideos.youtubeURL);
-				setBackgroundImage();
 			}
 
 			private function parseYoutubeURL(input:String):String
@@ -50,35 +50,6 @@
 				return result;
 			}
 
-			private function setBackgroundImage():void
-			{
-				switch (VideosModel.index)
-				{
-					case 1:
-						VideosModel.index = 2;
-						idBackgroundContainer.source = AssetsLibrary.backgroundList1;
-						break;
-					case 2:
-						VideosModel.index = 3;
-						idBackgroundContainer.source = AssetsLibrary.backgroundList2;
-						break;
-					case 3:
-						VideosModel.index = 4;
-						idBackgroundContainer.source = AssetsLibrary.backgroundList3;
-						break;
-					case 4:
-						VideosModel.index = 1;
-						idBackgroundContainer.source = AssetsLibrary.backgroundList4;
-						break;
-				}
-			}
-
-			/* protected function swfLoader_creationCompleteHandler(event:FlexEvent):void
-			{
-				swfLoader.unloadAndStop();
-				swfLoader.source = videoUrl;
-			} */
-
 			protected function view_clickHandler(event:MouseEvent):void
 			{
 				navigateToURL(new URLRequest(voVideos.youtubeURL));
@@ -86,37 +57,47 @@
 		]]>
 	</fx:Script>
 
-	<s:Group width="100%"
-			 height="150">
+	<s:Group width="100%">
 		<s:Rect top="0"
 				alpha="0.3"
 				bottom="0"
 				left="0"
 				right="0">
 			<s:stroke>
-				<s:SolidColorStroke color="#000000"/>
+				<s:SolidColorStroke color="#484848"/>
 			</s:stroke>
 		</s:Rect>
-		<s:BitmapImage id="idBackgroundContainer"
-					   width="100%"
-					   alpha="0.3"
-					   height="100%"/>
-		<!--<mx:SWFLoader id="swfLoader"
-					  horizontalCenter="15"
-					  verticalCenter="-10"
-					  creationComplete="swfLoader_creationCompleteHandler(event)"
-					  height="250"
-					  autoLoad="true"/>-->
 		<s:HGroup width="100%"
+				  paddingBottom="20"
+				  paddingTop="20"
 				  height="100%"
 				  paddingLeft="20"
 				  paddingRight="20"
 				  verticalAlign="middle">
-			<s:BitmapImage id="idVideoCover"
-						   width="175"
-						   height="100"
-						   verticalCenter="0"
-						   horizontalCenter="0"/>
+			<s:Group>
+				<s:Rect top="0"
+						alpha="0.3"
+						bottom="0"
+						left="0"
+						right="0">
+					<s:stroke>
+						<s:SolidColorStroke color="#000000"
+											alpha="0.3"/>
+					</s:stroke>
+					<s:fill>
+						<s:SolidColor color="0x000000"/>
+					</s:fill>
+				</s:Rect>
+				<s:BitmapImage id="idVideoCover"
+							   width="175"
+							   height="100"
+							   top="10"
+							   left="10"
+							   right="10"
+							   bottom="10"
+							   verticalCenter="0"
+							   horizontalCenter="0"/>
+			</s:Group>
 			<s:VGroup width="50%"
 					  height="100%"
 					  verticalAlign="middle">

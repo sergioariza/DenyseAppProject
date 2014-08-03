@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
-		backgroundAlpha="0"
+		backgroundAlpha="0.15"
+		backgroundColor="0x000000"
 		actionBarVisible="false"
 		xmlns:s="library://ns.adobe.com/flex/spark">
 	<fx:Declarations>
@@ -23,20 +24,7 @@
 
 			import vo.VoShows;
 
-			[Bindable]
 			private var photo:String;
-
-			[Bindable]
-			private var place:String;
-
-			[Bindable]
-			private var bandsWith:String;
-
-			[Bindable]
-			private var dateShow:String;
-
-			[Bindable]
-			private var hourShow:String;
 
 			//Métodos relacionados con el override de set data y otros propios
 			override public function set data(value:Object):void
@@ -47,36 +35,11 @@
 					return;
 
 				var voShows:VoShows = VoShows(value);
+				placeLabel.text = "Lugar: " + voShows.place;
+				bandsWithLabel.text = "Bandas invitadas: " + voShows.bandsWith;
+				dateShowLabel.text = "Fecha y hora: " + voShows.dateShow + " " + voShows.hourShow + "h";
 				photo = voShows.photoURL;
-				place = voShows.place;
-				bandsWith = voShows.bandsWith;
-				dateShow = voShows.dateShow;
-				hourShow = voShows.hourShow;
 				checkCache();
-				setBackgroundImage();
-			}
-
-			private function setBackgroundImage():void
-			{
-				switch (ShowsModel.index)
-				{
-					case 1:
-						ShowsModel.index = 2;
-						idBackgroundContainer.source = AssetsLibrary.backgroundList1;
-						break;
-					case 2:
-						ShowsModel.index = 3;
-						idBackgroundContainer.source = AssetsLibrary.backgroundList2;
-						break;
-					case 3:
-						ShowsModel.index = 4;
-						idBackgroundContainer.source = AssetsLibrary.backgroundList3;
-						break;
-					case 4:
-						ShowsModel.index = 1;
-						idBackgroundContainer.source = AssetsLibrary.backgroundList4;
-						break;
-				}
 			}
 
 			//Caché de imágenes
@@ -114,69 +77,88 @@
 		]]>
 	</fx:Script>
 
-	<s:Group width="100%"
-			 height="530">
+	<s:Group width="100%">
 		<s:Rect top="0"
 				alpha="0.3"
 				bottom="0"
 				left="0"
 				right="0">
 			<s:stroke>
-				<s:SolidColorStroke color="#000000"/>
+				<s:SolidColorStroke color="#484848"/>
 			</s:stroke>
 		</s:Rect>
-		<s:BitmapImage id="idBackgroundContainer"
-					   width="100%"
-					   alpha="0.3"
-					   height="100%"/>
 		<s:VGroup horizontalAlign="center"
 				  gap="5"
+				  paddingTop="10"
+				  paddingBottom="10"
 				  paddingLeft="10"
 				  verticalAlign="middle"
-				  height="100%"
 				  width="100%">
-			<s:Spacer height="10"/>
-			<s:Image id="idPhotoLink"
-					 height="400"
-					 width="400"/>
+			<s:Group>
+				<s:Rect top="0"
+						alpha="0.3"
+						bottom="0"
+						left="0"
+						right="0">
+					<s:stroke>
+						<s:SolidColorStroke color="#000000"
+											alpha="0.3"/>
+					</s:stroke>
+					<s:fill>
+						<s:SolidColor color="0x000000"/>
+					</s:fill>
+				</s:Rect>
+				<s:Image id="idPhotoLink"
+						 top="10"
+						 left="10"
+						 right="10"
+						 bottom="10"
+						 scaleMode="zoom"
+						 cacheAsBitmap="true"
+						 scaleX="0.4"
+						 scaleY="0.4"/>
+			</s:Group>
 			<s:Spacer height="10"/>
 			<s:VGroup gap="5"
-					  horizontalAlign="center"
+					  paddingLeft="30"
+					  horizontalAlign="left"
 					  width="100%">
 				<s:HGroup>
 					<s:Image width="22"
-							 smooth="true"
+							 cacheAsBitmap="true"
 							 height="22"
 							 source="{AssetsLibrary.place}"/>
 					<s:Label fontSize="22"
-							 maxDisplayedLines="1"
-							 styleName="customStyleSpark"
-							 text="{place}"/>
+							 width="100%"
+							 id="placeLabel"
+							 maxDisplayedLines="5"
+							 styleName="customStyleSpark"/>
 				</s:HGroup>
 				<s:HGroup>
 					<s:Image width="22"
+							 cacheAsBitmap="true"
 							 height="22"
-							 smooth="true"
 							 source="{AssetsLibrary.clock}"/>
 					<s:Label fontSize="22"
-							 maxDisplayedLines="1"
-							 styleName="customStyleSpark"
-							 text="{dateShow} {hourShow}h"/>
+							 width="100%"
+							 id="dateShowLabel"
+							 maxDisplayedLines="5"
+							 styleName="customStyleSpark"/>
 				</s:HGroup>
-				<s:HGroup>
+				<s:HGroup width="100%">
 					<s:Image width="22"
-							 smooth="true"
+							 cacheAsBitmap="true"
 							 height="22"
 							 source="{AssetsLibrary.bands}"/>
 					<s:Label fontSize="22"
-							 maxDisplayedLines="1"
-							 styleName="customStyleSpark"
-							 text="{bandsWith}"/>
+							 width="100%"
+							 id="bandsWithLabel"
+							 maxDisplayedLines="5"
+							 styleName="customStyleSpark"/>
 				</s:HGroup>
 			</s:VGroup>
 		</s:VGroup>
 		<s:Image source="{AssetsLibrary.nextIcon}"
-				 smooth="true"
 				 top="250"
 				 right="5"
 				 smoothingQuality="high"

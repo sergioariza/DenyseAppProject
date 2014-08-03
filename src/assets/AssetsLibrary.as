@@ -32,15 +32,15 @@ package assets
 		public static var separator:Class;
 
 		[Bindable]
-		[Embed("assets/icons/bands.png")]
+		[Embed("assets/icons/shows/bands.png")]
 		public static var bands:Class;
 
 		[Bindable]
-		[Embed("assets/icons/clock.png")]
+		[Embed("assets/icons/shows/clock.png")]
 		public static var clock:Class;
 
 		[Bindable]
-		[Embed("assets/icons/place.png")]
+		[Embed("assets/icons/shows/place.png")]
 		public static var place:Class;
 
 		public function AssetsLibrary()

@@ -15,24 +15,19 @@
 
 			import vo.VoNews;
 
-			[Bindable]
-			private var titleLabel:String;
-
-			[Bindable]
-			private var bodyLabel:String;
-
-			[Bindable]
-			private var dateLabel:String;
-
 			private var voNews:VoNews;
 
 			override public function set data(value:Object):void
 			{
 				super.data = value;
 				voNews = VoNews(value);
-				titleLabel = voNews.title;
-				dateLabel = voNews.date;
-				bodyLabel = voNews.body;
+			}
+
+			protected function idScroller_creationCompleteHandler(event:FlexEvent):void
+			{
+				titleLabel.text = voNews.title;
+				dateLabel.text = "Fecha de publicación: " + voNews.date;
+				bodyLabel.text = voNews.body;
 			}
 
 			protected function idNewsPhoto_creationCompleteHandler(event:FlexEvent):void
@@ -55,9 +50,9 @@
 				   width="100%"
 				   height="100%"/>
 	<s:Scroller width="100%"
+				creationComplete="idScroller_creationCompleteHandler(event)"
 				id="idScroller"
-				height="100%"
-				top="77">
+				height="100%">
 		<s:VGroup horizontalAlign="center"
 				  width="100%"
 				  gap="0"
@@ -65,30 +60,50 @@
 				  paddingLeft="20"
 				  paddingRight="20"
 				  paddingBottom="20">
-			<s:TextArea text="{titleLabel}"
-						styleName="customStyleMX"
-						selectable="false"
-						textAlign="center"
-						width="100%"
-						fontSize="28"/>
-			<s:Image id="idNewsPhoto"
-					 creationComplete="idNewsPhoto_creationCompleteHandler(event)"
-					 horizontalCenter="0"
-					 scaleMode="zoom"
-					 scaleX="0.4"
-					 scaleY="0.4"/>
-			<s:TextArea text="Fecha de publicación: {dateLabel}"
-						textAlign="center"
-						styleName="customStyleMX"
-						selectable="false"
-						width="100%"
-						fontSize="16"/>
-			<s:TextArea text="{bodyLabel}"
-						styleName="customStyleMX"
-						selectable="false"
-						textAlign="justify"
-						width="100%"
-						fontSize="20"/>
+			<s:Label id="titleLabel"
+					 styleName="customStyleSpark"
+					 textAlign="center"
+					 width="100%"
+					 fontSize="28"/>
+			<s:Spacer height="10"/>
+			<s:Group>
+				<s:Rect top="0"
+						alpha="0.3"
+						bottom="0"
+						left="0"
+						right="0">
+					<s:stroke>
+						<s:SolidColorStroke color="#000000"
+											alpha="0.3"/>
+					</s:stroke>
+					<s:fill>
+						<s:SolidColor color="0x000000"/>
+					</s:fill>
+				</s:Rect>
+				<s:Image id="idNewsPhoto"
+						 top="10"
+						 left="10"
+						 right="10"
+						 bottom="10"
+						 cacheAsBitmap="true"
+						 creationComplete="idNewsPhoto_creationCompleteHandler(event)"
+						 horizontalCenter="0"
+						 scaleMode="zoom"
+						 scaleX="0.6"
+						 scaleY="0.6"/>
+			</s:Group>
+			<s:Spacer height="5"/>
+			<s:Label id="dateLabel"
+					 textAlign="center"
+					 styleName="customStyleSpark"
+					 width="100%"
+					 fontSize="16"/>
+			<s:Spacer height="20"/>
+			<s:Label id="bodyLabel"
+					 styleName="customStyleSpark"
+					 textAlign="justify"
+					 width="100%"
+					 fontSize="20"/>
 		</s:VGroup>
 	</s:Scroller>
 </s:View>
