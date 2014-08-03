@@ -89,8 +89,8 @@
 						 creationComplete="idNewsPhoto_creationCompleteHandler(event)"
 						 horizontalCenter="0"
 						 scaleMode="zoom"
-						 scaleX="0.6"
-						 scaleY="0.6"/>
+						 scaleX="0.4"
+						 scaleY="0.4"/>
 			</s:Group>
 			<s:Spacer height="5"/>
 			<s:Label id="dateLabel"
