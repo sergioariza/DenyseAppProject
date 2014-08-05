@@ -127,6 +127,7 @@
 					<s:Image width="22"
 							 cacheAsBitmap="true"
 							 height="22"
+							 smooth="true"
 							 source="{AssetsLibrary.place}"/>
 					<s:Label fontSize="22"
 							 width="100%"
@@ -138,6 +139,7 @@
 					<s:Image width="22"
 							 cacheAsBitmap="true"
 							 height="22"
+							 smooth="true"
 							 source="{AssetsLibrary.clock}"/>
 					<s:Label fontSize="22"
 							 width="100%"
@@ -149,6 +151,7 @@
 					<s:Image width="22"
 							 cacheAsBitmap="true"
 							 height="22"
+							 smooth="true"
 							 source="{AssetsLibrary.bands}"/>
 					<s:Label fontSize="22"
 							 width="100%"

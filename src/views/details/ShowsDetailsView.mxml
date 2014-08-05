@@ -133,6 +133,7 @@
 				<s:Spacer height="5"/>
 				<s:HGroup>
 					<s:Image width="22"
+							 smooth="true"
 							 cacheAsBitmap="true"
 							 height="22"
 							 source="{AssetsLibrary.place}"/>
@@ -143,6 +144,7 @@
 				</s:HGroup>
 				<s:HGroup>
 					<s:Image width="22"
+							 smooth="true"
 							 cacheAsBitmap="true"
 							 height="22"
 							 source="{AssetsLibrary.clock}"/>
@@ -153,6 +155,7 @@
 				</s:HGroup>
 				<s:HGroup>
 					<s:Image width="22"
+							 smooth="true"
 							 cacheAsBitmap="true"
 							 height="22"
 							 source="{AssetsLibrary.bands}"/>

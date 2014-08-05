@@ -26,36 +26,43 @@
 	</fx:Style>
 	<fx:Script>
 		<![CDATA[
-			//Métodos relacionados con el override de set data y otros propios
-			/* override public function set data(value:Object):void
-			{
-				super.data = value;
+			import mx.graphics.SolidColor;
+			import mx.graphics.SolidColorStroke;
+			import mx.graphics.Stroke;
+			import mx.states.SetEventHandler;
 
-				if (!data.cache)
-				{
-					saveImageInCache(data.photoURL);
-				}
-			} */
+			import spark.components.Group;
+			import spark.primitives.Rect;
+			import spark.primitives.supportClasses.FilledElement;
 
-			//Caché de imágenes
-			/* private function saveImageInCache(photoURL:String):void
+			protected var groupIcon:Group;
+
+			override protected function createChildren():void
 			{
-				var loader:Loader = new Loader();
-				var request:URLRequest;
-				request = new URLRequest(photoURL);
-				loader.contentLoaderInfo.addEventListener(Event.COMPLETE, imageLoadComplete);
-				loader.load(request);
+				super.createChildren();
+				groupIcon = new Group();
+				var rect:Rect = new Rect();
+				rect.alpha = 0.3;
+				rect.top = 0;
+				rect.bottom = 0;
+				rect.left = 0;
+				rect.right = 0;
+				rect.stroke = new SolidColorStroke(0x000000, 1, 0.3)
+				rect.fill = new SolidColor(0x000000);
+				groupIcon.addElement(rect);
+				addChild(groupIcon);
 			}
 
-			private function imageLoadComplete(event:Event):void
+			override protected function layoutContents(unscaledWidth:Number, unscaledHeight:Number):void
 			{
-				if (!data.cache)
-				{
-					var bitmapData:BitmapData = new BitmapData(event.target.content.width, event.target.content.height, true);
-					bitmapData.draw(event.target.content);
-					data.cache = bitmapData;
-				}
-			} */
+				super.layoutContents(unscaledWidth, unscaledHeight);
+				var groupWidth:Number = iconDisplay.width + 10;
+				var groupHeight:Number = iconDisplay.height + 10;
+				setElementSize(groupIcon, groupWidth, groupHeight);
+				setElementPosition(groupIcon, iconDisplay.x - 5, iconDisplay.y - 5);
+				groupIcon.addElement(iconDisplay);
+				setElementPosition(iconDisplay, groupIcon.x - 5, iconDisplay.y - 24);
+			}
 
 			override protected function measure():void
 			{

@@ -16,6 +16,12 @@
 	</fx:Script>
 	<fx:Style source="/style/mainMenu.css"/>
 	<s:navigators>
+		<!--<s:ViewNavigator label="{LocalizationModel.newsLabel}"
+								 id="idNewsView"
+								 width="100%"
+								 icon="@Embed('assets/icons/tabs/news.png')"
+								 height="100%"
+								 firstView="views.NewsView"/>-->
 		<s:ViewNavigator label="{LocalizationModel.newsLabel}"
 						 id="idNewsView"
 						 width="100%"
