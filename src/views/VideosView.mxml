@@ -57,6 +57,6 @@
 			bottom="0"
 			left="0"
 			right="0"
-			itemRenderer="views.renderers.VideosItemRenderer_manually">
+			itemRenderer="views.renderers.manually.VideosItemRenderer_manually">
 	</s:List>
 </s:View>

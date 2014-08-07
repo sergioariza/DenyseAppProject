@@ -59,9 +59,19 @@
 				var groupWidth:Number = iconDisplay.width + 10;
 				var groupHeight:Number = iconDisplay.height + 10;
 				setElementSize(groupIcon, groupWidth, groupHeight);
-				setElementPosition(groupIcon, iconDisplay.x - 5, iconDisplay.y - 5);
-				groupIcon.addElement(iconDisplay);
-				setElementPosition(iconDisplay, groupIcon.x - 5, iconDisplay.y - 24);
+
+				if (!groupIcon.containsElement(iconDisplay))
+				{
+					groupIcon.addElement(iconDisplay);
+				}
+
+				var topGroup:Number = Math.round(((unscaledHeight - groupHeight) / 2));
+				setElementPosition(groupIcon, 5, topGroup);
+				setElementPosition(iconDisplay, 5, 5);
+
+			/*setElementPosition(groupIcon, unscaledWidth * 0.02, unscaledHeight * 0.20);
+			iconDisplay.x = groupIcon.x + 5;
+			iconDisplay.y = groupIcon.y + 5; */
 			}
 
 			override protected function measure():void
@@ -114,7 +124,7 @@
 
 			override protected function drawBackground(unscaledWidth:Number, unscaledHeight:Number):void
 			{
-				// transparent background for hit detection
+				//Transparent background for hit detection
 				graphics.beginFill(0x000000, 0.15);
 				graphics.lineStyle();
 				graphics.drawRect(0, 0, unscaledWidth, unscaledHeight);
@@ -127,7 +137,7 @@
 				graphics.moveTo(0, unscaledHeight - 1);
 				graphics.lineTo(unscaledWidth, unscaledHeight - 1);
 
-				// turn off opaqueBackground since this renderer has some transparency
+				//Turn off opaqueBackground since this renderer has some transparency
 				opaqueBackground = null;
 			}
 		]]>

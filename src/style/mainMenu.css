@@ -22,10 +22,19 @@ s|TabbedViewNavigator
 s|TabbedViewNavigator #tabBar
 {
 	/*chromeColor: #229988;*/
-	/*backgroundColor: #000000;*/
-	color: #CCCCCC;
-	iconPlacement:center;
-	fontSize : 18;
+	/*chromeColor: #A7919B;*/
+	chromeColor: #957C81;
+	/*backgroundAlpha: 0;
+	borderAlpha: 0;
+	contentBackgroundAlpha: 0;
+	disabledAlpha: 0;
+	focusAlpha: 0;
+	textAlpha: 0;*/
+	color: #000000;
+	iconPlacement: top;
+	fontSize: 14;
+	fontFamily: myFontFamilyMX;
+	letterSpacing: 0;
 }
 
 @font-face { 

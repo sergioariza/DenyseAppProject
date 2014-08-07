@@ -210,21 +210,6 @@
 					  paddingBottom="10"
 					  paddingRight="5"
 					  verticalAlign="middle">
-				<!--<s:Image id="idPhotoLink" name="idPhotoLink"
-						 height="55"
-						 width="55"/>-->
-				<!--<s:Label text="{bodyLabel}"
-						 id="bodyText"
-						 styleName="customStyleSpark"
-						 maxDisplayedLines="4"
-						 width="100%"
-						 fontSize="14"/>-->
-				<!--<s:Image source="{AssetsLibrary.nextIcon}"
-						 smooth="true"
-						 smoothingQuality="high"
-						 buttonMode="true"
-						 height="25"
-						 width="25"/>-->
 			</s:HGroup>
 		</s:VGroup>
 	</s:Group>

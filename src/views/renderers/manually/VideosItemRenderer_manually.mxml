@@ -28,6 +28,8 @@
 
 			private var voVideos:VoVideos = new VoVideos();
 
+			private var photo:String;
+
 			//Métodos relacionados con el override de set data y otros propios
 			override public function set data(value:Object):void
 			{
@@ -38,7 +40,7 @@
 
 				voVideos = VoVideos(value);
 				videoTitle.text = "Título: " + voVideos.videoTitle;
-				idVideoCover.source = parseYoutubeURL(voVideos.youtubeURL);
+				checkCache();
 			}
 
 			private function parseYoutubeURL(input:String):String
@@ -48,6 +50,40 @@
 
 				result = "http://img.youtube.com/vi/" + youtubeId + "/0.jpg"
 				return result;
+			}
+
+			//Caché de imágenes
+			private function checkCache():void
+			{
+				if (data.cache)
+				{
+					idVideoCover.source = new Bitmap(data.cache);
+				}
+				else
+				{
+					photo = parseYoutubeURL(voVideos.youtubeURL);
+					idVideoCover.source = photo;
+					saveImageInCache(photo);
+				}
+			}
+
+			private function saveImageInCache(photoURL:String):void
+			{
+				var loader:Loader = new Loader();
+				var request:URLRequest;
+				request = new URLRequest(photoURL);
+				loader.contentLoaderInfo.addEventListener(Event.COMPLETE, imageLoadComplete);
+				loader.load(request);
+			}
+
+			private function imageLoadComplete(event:Event):void
+			{
+				if (!data.cache)
+				{
+					var bitmapData:BitmapData = new BitmapData(event.target.content.width, event.target.content.height, true);
+					bitmapData.draw(event.target.content);
+					data.cache = bitmapData;
+				}
 			}
 
 			protected function view_clickHandler(event:MouseEvent):void
@@ -103,7 +139,7 @@
 					  verticalAlign="middle">
 				<s:Label fontSize="16"
 						 id="videoTitle"
-						 maxDisplayedLines="1"
+						 maxDisplayedLines="2"
 						 styleName="customStyleSpark"/>
 				<s:Label fontSize="14"
 						 maxDisplayedLines="1"

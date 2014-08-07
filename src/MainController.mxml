@@ -7,7 +7,7 @@
 								  splashScreenImage="@Embed('assets/splash/splash_screen.png')"
 								  xmlns:s="library://ns.adobe.com/flex/spark">
 	<fx:Declarations>
-		<!-- Place non-visual elements (e.g., services, value objects) here -->
+		<!-- Declarations -->
 	</fx:Declarations>
 	<fx:Script>
 		<![CDATA[
@@ -16,36 +16,50 @@
 	</fx:Script>
 	<fx:Style source="/style/mainMenu.css"/>
 	<s:navigators>
-		<!--<s:ViewNavigator label="{LocalizationModel.newsLabel}"
-								 id="idNewsView"
-								 width="100%"
-								 icon="@Embed('assets/icons/tabs/news.png')"
-								 height="100%"
-								 firstView="views.NewsView"/>-->
 		<s:ViewNavigator label="{LocalizationModel.newsLabel}"
 						 id="idNewsView"
 						 width="100%"
 						 height="100%"
-						 firstView="views.NewsView"/>
+						 firstView="views.NewsView">
+			<s:icon>
+				<s:MultiDPIBitmapSource source240dpi="@Embed('assets/icons/tabs/news.png')"/>
+			</s:icon>
+		</s:ViewNavigator>
 		<s:ViewNavigator label="{LocalizationModel.showsLabel}"
 						 id="idShowsView"
 						 width="100%"
 						 height="100%"
-						 firstView="views.ShowsView"/>
+						 firstView="views.ShowsView">
+			<s:icon>
+				<s:MultiDPIBitmapSource source240dpi="@Embed('assets/icons/tabs/shows.png')"/>
+			</s:icon>
+		</s:ViewNavigator>
 		<s:ViewNavigator label="{LocalizationModel.videosLabel}"
 						 id="idVideosView"
 						 width="100%"
 						 height="100%"
-						 firstView="views.VideosView"/>
+						 firstView="views.VideosView">
+			<s:icon>
+				<s:MultiDPIBitmapSource source240dpi="@Embed('assets/icons/tabs/videos.png')"/>
+			</s:icon>
+		</s:ViewNavigator>
 		<s:ViewNavigator label="{LocalizationModel.bioLabel}"
 						 id="idBioView"
 						 width="100%"
 						 height="100%"
-						 firstView="views.BioView"/>
+						 firstView="views.BioView">
+			<s:icon>
+				<s:MultiDPIBitmapSource source240dpi="@Embed('assets/icons/tabs/bio.png')"/>
+			</s:icon>
+		</s:ViewNavigator>
 		<s:ViewNavigator label="{LocalizationModel.configLabel}"
 						 id="idAboutView"
 						 width="100%"
 						 height="100%"
-						 firstView="views.ConfigView"/>
+						 firstView="views.ConfigView">
+			<s:icon>
+				<s:MultiDPIBitmapSource source240dpi="@Embed('assets/icons/tabs/config.png')"/>
+			</s:icon>
+		</s:ViewNavigator>
 	</s:navigators>
 </s:TabbedViewNavigatorApplication>
