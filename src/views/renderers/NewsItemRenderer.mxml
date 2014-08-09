@@ -35,7 +35,21 @@
 			import spark.primitives.Rect;
 			import spark.primitives.supportClasses.FilledElement;
 
-			protected var groupIcon:Group;
+			import vo.VoNews;
+
+			private var groupIcon:Group;
+
+			private var voNews:VoNews;
+
+			override public function set data(value:Object):void
+			{
+				super.data = value;
+
+				if (data == null)
+					return;
+
+				voNews = new VoNews(value);
+			}
 
 			override protected function createChildren():void
 			{
@@ -68,10 +82,6 @@
 				var topGroup:Number = Math.round(((unscaledHeight - groupHeight) / 2));
 				setElementPosition(groupIcon, 5, topGroup);
 				setElementPosition(iconDisplay, 5, 5);
-
-			/*setElementPosition(groupIcon, unscaledWidth * 0.02, unscaledHeight * 0.20);
-			iconDisplay.x = groupIcon.x + 5;
-			iconDisplay.y = groupIcon.y + 5; */
 			}
 
 			override protected function measure():void
@@ -87,7 +97,8 @@
 
 			private function formatMessageFieldText(numLinesParam:int = 3):void
 			{
-				var messageText:String = messageDisplay.text;
+				var messageText:String = voNews.body;
+				messageDisplay.text = messageText;
 				var enoughTrim:Boolean = false;
 
 				while (!enoughTrim)
