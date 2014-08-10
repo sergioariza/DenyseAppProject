@@ -43,6 +43,10 @@ package assets
 		[Embed("assets/icons/shows/place.png")]
 		public static var place:Class;
 
+		[Bindable]
+		[Embed("assets/bio/Denyse_normal.png")]
+		public static var denyseNormal:Class;
+
 		public function AssetsLibrary()
 		{
 		}

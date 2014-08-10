@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
+		actionBarVisible="false"
+		xmlns:s="library://ns.adobe.com/flex/spark">
+	<fx:Script>
+		<![CDATA[
+			import assets.AssetsLibrary;
+		]]>
+	</fx:Script>
+	<s:BitmapImage source="{AssetsLibrary.generalBackground}"
+				   left="0"
+				   alpha="0.6"
+				   right="0"
+				   width="100%"
+				   height="100%"/>
+	<s:Scroller width="100%"
+				id="idScroller"
+				height="100%">
+		<s:VGroup horizontalAlign="center"
+				  width="100%"
+				  gap="0"
+				  paddingTop="20"
+				  paddingLeft="20"
+				  paddingRight="20"
+				  paddingBottom="20">
+			<s:Label styleName="customStyleSpark"
+					 textAlign="center"
+					 width="100%"
+					 text="Joe Fulcanelli"
+					 fontSize="28"/>
+			<s:Spacer height="10"/>
+			<s:Group>
+				<s:Rect top="0"
+						alpha="0.3"
+						bottom="0"
+						left="0"
+						right="0">
+					<s:stroke>
+						<s:SolidColorStroke color="#000000"
+											alpha="0.3"/>
+					</s:stroke>
+					<s:fill>
+						<s:SolidColor color="0x000000"/>
+					</s:fill>
+				</s:Rect>
+				<s:BitmapImage id="imgDenyseButton"
+							   top="10"
+							   left="10"
+							   right="10"
+							   bottom="10"
+							   smooth="true"
+							   scaleX="0.4"
+							   scaleY="0.4"
+							   smoothingQuality="high"
+							   source="@Embed('assets/bio/Joe_normal.png')"/>
+			</s:Group>
+		</s:VGroup>
+	</s:Scroller>
+</s:View>

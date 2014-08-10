@@ -6,16 +6,57 @@
 	<fx:Script>
 		<![CDATA[
 			import assets.AssetsLibrary;
+
+			import flash.net.navigateToURL;
+
+			import views.bioSections.AlexView;
+			import views.bioSections.DenyseView;
+			import views.bioSections.JoeView;
+			import views.bioSections.MaxView;
+
+			protected function DenyseButton_clickHandler(event:MouseEvent):void
+			{
+				navigator.pushView(DenyseView);
+			}
+
+			protected function AlexButton_clickHandler(event:MouseEvent):void
+			{
+				navigator.pushView(AlexView);
+			}
+
+			protected function Joe_clickHandler(event:MouseEvent):void
+			{
+				navigator.pushView(JoeView);
+			}
+
+			protected function Max_clickHandler(event:MouseEvent):void
+			{
+				navigator.pushView(MaxView);
+			}
 		]]>
 	</fx:Script>
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
 
-	<s:BitmapImage source="{AssetsLibrary.generalBackground}"
-				   left="0"
-				   alpha="0.6"
-				   right="0"
-				   width="100%"
-				   height="100%"/>
+	<s:VGroup width="100%"
+			  height="100%"
+			  gap="0">
+		<s:HGroup width="100%"
+				  height="50%"
+				  gap="0">
+			<s:Button skinClass="skins.DenyseButtonSkin"
+					  click="DenyseButton_clickHandler(event)"/>
+			<s:Button skinClass="skins.AlexButtonSkin"
+					  click="AlexButton_clickHandler(event)"/>
+		</s:HGroup>
+		<s:HGroup width="100%"
+				  height="50%"
+				  gap="0">
+			<s:Button skinClass="skins.JoeButtonSkin"
+					  click="Joe_clickHandler(event)"/>
+			<s:Button skinClass="skins.MaxButtonSkin"
+					  click="Max_clickHandler(event)"/>
+		</s:HGroup>
+	</s:VGroup>
 </s:View>
