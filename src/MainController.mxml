@@ -14,7 +14,19 @@
 			import model.LocalizationModel;
 		]]>
 	</fx:Script>
+
 	<fx:Style source="/style/mainMenu.css"/>
+
+	<!--<fx:Style>
+		@namespace s "library://ns.adobe.com/flex/spark";
+		s|TabbedViewNavigator #tabBar {
+			skinClass: ClassReference("skins.ScrollingTabBarSkin");
+		}
+		s|TabbedViewNavigator #tabBar s|Scroller {
+			skinClass: ClassReference("skins.NoScrollBarScrollerSkin");
+		}
+	</fx:Style>-->
+
 	<s:navigators>
 		<s:ViewNavigator label="{LocalizationModel.newsLabel}"
 						 id="idNewsView"
