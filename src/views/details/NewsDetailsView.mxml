@@ -64,8 +64,8 @@
 					 styleName="customStyleSpark"
 					 textAlign="center"
 					 width="100%"
-					 fontSize="28"/>
-			<s:Spacer height="10"/>
+					 fontSize="56"/>
+			<s:Spacer height="50"/>
 			<s:Group>
 				<s:Rect top="0"
 						alpha="0.3"
@@ -89,21 +89,21 @@
 						 creationComplete="idNewsPhoto_creationCompleteHandler(event)"
 						 horizontalCenter="0"
 						 scaleMode="zoom"
-						 scaleX="0.4"
-						 scaleY="0.4"/>
+						 scaleX="1"
+						 scaleY="1"/>
 			</s:Group>
 			<s:Spacer height="5"/>
 			<s:Label id="dateLabel"
 					 textAlign="center"
 					 styleName="customStyleSpark"
 					 width="100%"
-					 fontSize="16"/>
-			<s:Spacer height="20"/>
+					 fontSize="32"/>
+			<s:Spacer height="50"/>
 			<s:Label id="bodyLabel"
 					 styleName="customStyleSpark"
 					 textAlign="justify"
 					 width="100%"
-					 fontSize="20"/>
+					 fontSize="40"/>
 		</s:VGroup>
 	</s:Scroller>
 </s:View>

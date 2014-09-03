@@ -5,20 +5,20 @@
 					styleName="labelStyle"
 					iconField="photoURL"
 					textAlign="center"
-					iconHeight="55"
-					iconWidth="55"
+					iconHeight="225"
+					iconWidth="225"
 					cacheAsBitmap="true"
 					messageStyleName="messageStyle"
 					messageField="body">
 	<fx:Style>
 		.messageStyle {
-			fontSize: 15;
+			fontSize: 30;
 			fontFamily: myFontFamilyMX;
 			textAlign: justify;
 		}
 		
 		.labelStyle {
-			fontSize: 20;
+			fontSize: 40;
 			fontFamily: myFontFamilyMX;
 			textAlign: justify;
 		}

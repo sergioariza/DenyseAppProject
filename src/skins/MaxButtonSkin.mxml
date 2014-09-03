@@ -12,8 +12,8 @@
 
 			protected function creationCompleteHandler(event:FlexEvent):void
 			{
-				imgMaxButton.width = this.stage.fullScreenWidth * 0.5;
-				imgMaxButton.height = this.stage.fullScreenHeight * 0.5;
+				imgMaxButton.width = 600;
+				imgMaxButton.height = 710;
 			}
 		]]>
 	</fx:Script>

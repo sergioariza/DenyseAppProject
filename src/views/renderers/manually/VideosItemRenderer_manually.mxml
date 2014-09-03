@@ -125,8 +125,8 @@
 					</s:fill>
 				</s:Rect>
 				<s:BitmapImage id="idVideoCover"
-							   width="175"
-							   height="100"
+							   width="350"
+							   height="200"
 							   top="10"
 							   left="10"
 							   right="10"
@@ -137,15 +137,15 @@
 			<s:VGroup width="50%"
 					  height="100%"
 					  verticalAlign="middle">
-				<s:Label fontSize="16"
+				<s:Label fontSize="32"
 						 id="videoTitle"
 						 maxDisplayedLines="2"
 						 styleName="customStyleSpark"/>
-				<s:Label fontSize="14"
+				<s:Label fontSize="28"
 						 maxDisplayedLines="1"
 						 styleName="customStyleSpark"
 						 text="Nº reproducciones: 2310"/>
-				<s:Label fontSize="14"
+				<s:Label fontSize="28"
 						 maxDisplayedLines="1"
 						 styleName="customStyleSpark"
 						 text="Fecha vídeo: DD-MM-AAAA"/>

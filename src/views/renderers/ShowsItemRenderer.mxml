@@ -115,8 +115,8 @@
 						 bottom="10"
 						 scaleMode="zoom"
 						 cacheAsBitmap="true"
-						 scaleX="0.4"
-						 scaleY="0.4"/>
+						 scaleX="1"
+						 scaleY="1"/>
 			</s:Group>
 			<s:Spacer height="10"/>
 			<s:VGroup gap="5"
@@ -124,36 +124,36 @@
 					  horizontalAlign="left"
 					  width="100%">
 				<s:HGroup>
-					<s:Image width="22"
+					<s:Image width="44"
 							 cacheAsBitmap="true"
 							 height="22"
 							 smooth="true"
 							 source="{AssetsLibrary.place}"/>
-					<s:Label fontSize="22"
+					<s:Label fontSize="44"
 							 width="100%"
 							 id="placeLabel"
 							 maxDisplayedLines="5"
 							 styleName="customStyleSpark"/>
 				</s:HGroup>
 				<s:HGroup>
-					<s:Image width="22"
+					<s:Image width="44"
 							 cacheAsBitmap="true"
 							 height="22"
 							 smooth="true"
 							 source="{AssetsLibrary.clock}"/>
-					<s:Label fontSize="22"
+					<s:Label fontSize="44"
 							 width="100%"
 							 id="dateShowLabel"
 							 maxDisplayedLines="5"
 							 styleName="customStyleSpark"/>
 				</s:HGroup>
 				<s:HGroup width="100%">
-					<s:Image width="22"
+					<s:Image width="44"
 							 cacheAsBitmap="true"
 							 height="22"
 							 smooth="true"
 							 source="{AssetsLibrary.bands}"/>
-					<s:Label fontSize="22"
+					<s:Label fontSize="44"
 							 width="100%"
 							 id="bandsWithLabel"
 							 maxDisplayedLines="5"
@@ -166,7 +166,7 @@
 				 right="5"
 				 smoothingQuality="high"
 				 buttonMode="true"
-				 height="25"
-				 width="25"/>
+				 height="50"
+				 width="50"/>
 	</s:Group>
 </s:View>

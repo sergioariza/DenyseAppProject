@@ -19,7 +19,7 @@
 
 			private var mapGoogleStaticImageURL:String = "http://maps.googleapis.com/maps/api/staticmap?center=";
 
-			private var mapGoogleStaticImageParams:String = "&zoom=18&size=400x400&markers=color:red%7Ccolor:red%7Clabel:%7C";
+			private var mapGoogleStaticImageParams:String = "&zoom=18&size=600x600&markers=color:red%7Ccolor:red%7Clabel:%7C";
 
 			private var mapGoogleURL:String = "http://maps.google.com/maps?q=";
 
@@ -81,8 +81,8 @@
 					 styleName="customStyleSpark"
 					 textAlign="center"
 					 width="100%"
-					 fontSize="28"/>
-			<s:Spacer height="10"/>
+					 fontSize="56"/>
+			<s:Spacer height="50"/>
 			<s:Group>
 				<s:Rect top="0"
 						alpha="0.3"
@@ -106,25 +106,25 @@
 						 creationComplete="idShowsPhoto_creationCompleteHandler(event)"
 						 horizontalCenter="0"
 						 scaleMode="zoom"
-						 scaleX="0.6"
-						 scaleY="0.6"/>
+						 scaleX="1"
+						 scaleY="1"/>
 			</s:Group>
 			<s:Spacer height="5"/>
 			<s:Label id="datePublishedLabel"
 					 textAlign="center"
 					 styleName="customStyleSpark"
 					 width="100%"
-					 fontSize="16"/>
-			<s:Spacer height="20"/>
+					 fontSize="32"/>
+			<s:Spacer height="50"/>
 			<s:Label id="bodyLabel"
 					 styleName="customStyleSpark"
 					 textAlign="justify"
 					 width="100%"
-					 fontSize="20"/>
-			<s:Spacer height="20"/>
+					 fontSize="40"/>
+			<s:Spacer height="50"/>
 			<s:VGroup gap="5"
 					  width="100%">
-				<s:Label fontSize="20"
+				<s:Label fontSize="40"
 						 id="dataShowsLabel"
 						 width="100%"
 						 styleName="customStyleSpark"
@@ -132,44 +132,44 @@
 						 text="Información del concierto:"/>
 				<s:Spacer height="5"/>
 				<s:HGroup>
-					<s:Image width="22"
+					<s:Image width="44"
 							 smooth="true"
 							 cacheAsBitmap="true"
-							 height="22"
+							 height="44"
 							 source="{AssetsLibrary.place}"/>
-					<s:Label fontSize="20"
+					<s:Label fontSize="40"
 							 id="placeLabel"
 							 width="100%"
 							 styleName="customStyleSpark"/>
 				</s:HGroup>
 				<s:HGroup>
-					<s:Image width="22"
+					<s:Image width="44"
 							 smooth="true"
 							 cacheAsBitmap="true"
-							 height="22"
+							 height="44"
 							 source="{AssetsLibrary.clock}"/>
-					<s:Label fontSize="20"
+					<s:Label fontSize="40"
 							 width="100%"
 							 id="dateShowLabel"
 							 styleName="customStyleSpark"/>
 				</s:HGroup>
 				<s:HGroup>
-					<s:Image width="22"
+					<s:Image width="44"
 							 smooth="true"
 							 cacheAsBitmap="true"
-							 height="22"
+							 height="44"
 							 source="{AssetsLibrary.bands}"/>
-					<s:Label fontSize="20"
+					<s:Label fontSize="40"
 							 width="100%"
 							 id="bandsWithLabel"
 							 styleName="customStyleSpark"/>
 				</s:HGroup>
 			</s:VGroup>
-			<s:Spacer height="20"/>
+			<s:Spacer height="50"/>
 			<s:VGroup gap="5"
 					  horizontalAlign="center"
 					  width="100%">
-				<s:Label fontSize="20"
+				<s:Label fontSize="40"
 						 width="100%"
 						 textDecoration="underline"
 						 textAlign="center"
@@ -199,7 +199,7 @@
 							 verticalCenter="0"
 							 horizontalCenter="0"/>
 				</s:Group>
-				<s:Label fontSize="14"
+				<s:Label fontSize="28"
 						 width="100%"
 						 textAlign="center"
 						 styleName="customStyleSpark"
