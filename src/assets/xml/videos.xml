@@ -12,4 +12,16 @@
 		<youtubeURL>https://www.youtube.com/watch?v=99c8_xDLFaM</youtubeURL>
 		<!-- <youtubeURL2>http://www.youtube.com/v/99c8_xDLFaM?version=3</youtubeURL2> -->
 	</videos>
+	<videos>
+		<id>2</id>
+		<videoTitle>Estoy perdido</videoTitle>
+		<youtubeURL>https://www.youtube.com/watch?v=5Gww5c861CU</youtubeURL>
+		<!-- <youtubeURL2>http://www.youtube.com/v/99c8_xDLFaM?version=3</youtubeURL2> -->
+	</videos>
+	<videos>
+		<id>3</id>
+		<videoTitle>Hiperactiva</videoTitle>
+		<youtubeURL>https://www.youtube.com/watch?v=Z7BQZEi92RA</youtubeURL>
+		<!-- <youtubeURL2>http://www.youtube.com/v/99c8_xDLFaM?version=3</youtubeURL2> -->
+	</videos>
 </list>
