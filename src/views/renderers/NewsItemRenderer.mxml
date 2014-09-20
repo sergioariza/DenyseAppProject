@@ -2,28 +2,14 @@
 <s:IconItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009"
 					xmlns:s="library://ns.adobe.com/flex/spark"
 					labelField="title"
-					styleName="labelStyle"
+					styleName="titleStyle"
 					iconField="photoURL"
 					textAlign="center"
 					iconHeight="225"
 					iconWidth="225"
 					cacheAsBitmap="true"
-					messageStyleName="messageStyle"
+					messageStyleName="descriptionStyle"
 					messageField="body">
-	<fx:Style>
-		.messageStyle {
-			fontSize: 30;
-			fontFamily: myFontFamilyMX;
-			textAlign: justify;
-		}
-		
-		.labelStyle {
-			fontSize: 40;
-			fontFamily: myFontFamilyMX;
-			textAlign: justify;
-		}
-
-	</fx:Style>
 	<fx:Script>
 		<![CDATA[
 			import mx.graphics.SolidColor;

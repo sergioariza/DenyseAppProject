@@ -21,26 +21,20 @@ s|TabbedViewNavigator
 
 s|TabbedViewNavigator #tabBar
 {
+	chromeColor: #957C81;
+	color: #000000;
+	iconPlacement: top;
+	fontSize: 25;
+	fontFamily: travelingTypewriterNotEmbed;
+	letterSpacing: 0;
 	/*chromeColor: #229988;*/
 	/*chromeColor: #A7919B;*/
-	chromeColor: #957C81;
 	/*backgroundAlpha: 0;
 	borderAlpha: 0;
 	contentBackgroundAlpha: 0;
 	disabledAlpha: 0;
 	focusAlpha: 0;
 	textAlpha: 0;*/
-	color: #000000;
-	iconPlacement: top;
-	fontSize: 25;
-	fontFamily: myFontFamilyMX;
-	letterSpacing: 0;
-}
-
-@font-face { 
-	src: url("/style/fonts/TravelingTypewriter.ttf"); 
-	fontFamily: myFontFamilyMX; 
-	embedAsCFF: false; 
 }
 
 @font-face {
@@ -49,8 +43,21 @@ s|TabbedViewNavigator #tabBar
 	embedAsCFF: true;
 }
 
-.customStyleMX {
-	fontFamily: myFontFamilyMX;
+.customStyleSpark {
+	fontFamily: myFontFamilySpark;
+	color: black;
+}
+
+@font-face { 
+	src: url("/style/fonts/TravelingTypewriter.ttf"); 
+	fontFamily: travelingTypewriterNotEmbed; 
+	embedAsCFF: false; 
+}
+
+.descriptionStyle {
+	fontSize: 30;
+	fontFamily: travelingTypewriterNotEmbed;
+	textAlign: justify;
 	borderSkin: null;
 	focusAlpha: 0;
 	color: black;
@@ -59,7 +66,14 @@ s|TabbedViewNavigator #tabBar
 	skinClass: ClassReference("spark.skins.mobile.TextAreaSkin");
 }
 
-.customStyleSpark {
-	fontFamily: myFontFamilySpark;
+.titleStyle {
+	fontSize: 40;
+	fontFamily: travelingTypewriterNotEmbed;
+	textAlign: justify;
+	borderSkin: null;
+	focusAlpha: 0;
 	color: black;
+	contentBackgroundAlpha: 0;
+	borderVisible: false;
+	skinClass: ClassReference("spark.skins.mobile.TextAreaSkin");
 }
