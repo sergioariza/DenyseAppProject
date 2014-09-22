@@ -148,9 +148,9 @@ package skins
 			if (contentGroup.includeInLayout)
 			{
 				var contentGroupHeight:Number = (_isOverlay) ? unscaledHeight : Math.max(unscaledHeight - tabBarHeight, 0);
-				contentGroupHeight += 15;
+				//contentGroupHeight += 15;
 				contentGroup.setLayoutBoundsSize(unscaledWidth, contentGroupHeight);
-				contentGroup.setLayoutBoundsPosition(0, 89);
+				contentGroup.setLayoutBoundsPosition(0, tabBarHeight);
 			}
 		}
 	}

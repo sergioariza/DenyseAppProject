@@ -2,13 +2,11 @@
 <s:IconItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009"
 					xmlns:s="library://ns.adobe.com/flex/spark"
 					labelField="title"
-					styleName="titleStyle"
+					styleName="titleStyleNotEmbed"
 					iconField="photoURL"
 					textAlign="center"
-					iconHeight="225"
-					iconWidth="225"
 					cacheAsBitmap="true"
-					messageStyleName="descriptionStyle"
+					messageStyleName="descriptionStyleNotEmbed"
 					messageField="body">
 	<fx:Script>
 		<![CDATA[
@@ -40,6 +38,7 @@
 			override protected function createChildren():void
 			{
 				super.createChildren();
+
 				groupIcon = new Group();
 				var rect:Rect = new Rect();
 				rect.alpha = 0.3;
@@ -53,30 +52,15 @@
 				addChild(groupIcon);
 			}
 
-			override protected function layoutContents(unscaledWidth:Number, unscaledHeight:Number):void
-			{
-				super.layoutContents(unscaledWidth, unscaledHeight);
-				var groupWidth:Number = iconDisplay.width + 10;
-				var groupHeight:Number = iconDisplay.height + 10;
-				setElementSize(groupIcon, groupWidth, groupHeight);
-
-				if (!groupIcon.containsElement(iconDisplay))
-				{
-					groupIcon.addElement(iconDisplay);
-				}
-
-				var topGroup:Number = Math.round(((unscaledHeight - groupHeight) / 2));
-				setElementPosition(groupIcon, 5, topGroup);
-				setElementPosition(iconDisplay, 5, 5);
-			}
-
 			override protected function measure():void
 			{
 				super.measure();
 				formatMessageFieldText();
 
-				//Resize measuredHeight after formatting messageField
-				var realHeightSize:int = iconHeight > (labelDisplay.textHeight + messageDisplay.textHeight) ? iconHeight : (labelDisplay.textHeight + messageDisplay.textHeight);
+				//Resize measuredHeight after formatting messageField and resize icon
+				var realHeightSize:int = labelDisplay.textHeight + messageDisplay.textHeight;
+				iconHeight = realHeightSize;
+				iconWidth = realHeightSize;
 				var marginTopBottom:int = realHeightSize * 0.15;
 				measuredHeight = realHeightSize + (marginTopBottom * 2);
 			}
@@ -117,6 +101,23 @@
 				}
 
 				messageDisplay.text = messageDisplay.text + "...";
+			}
+
+			override protected function layoutContents(unscaledWidth:Number, unscaledHeight:Number):void
+			{
+				super.layoutContents(unscaledWidth, unscaledHeight);
+				var groupWidth:Number = iconDisplay.width + 10;
+				var groupHeight:Number = iconDisplay.height + 10;
+				setElementSize(groupIcon, groupWidth, groupHeight);
+
+				if (!groupIcon.containsElement(iconDisplay))
+				{
+					groupIcon.addElement(iconDisplay);
+				}
+
+				var topGroup:Number = Math.round(((unscaledHeight - groupHeight) / 2));
+				setElementPosition(groupIcon, 5, topGroup);
+				setElementPosition(iconDisplay, 5, 5);
 			}
 
 			override protected function drawBackground(unscaledWidth:Number, unscaledHeight:Number):void

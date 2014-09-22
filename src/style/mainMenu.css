@@ -39,13 +39,46 @@ s|TabbedViewNavigator #tabBar
 
 @font-face {
 	src:url("/style/fonts/TravelingTypewriter.ttf");
-	fontFamily: myFontFamilySpark;
+	fontFamily: travelingTypewriterEmbed;
 	embedAsCFF: true;
 }
 
-.customStyleSpark {
-	fontFamily: myFontFamilySpark;
+.titleStyleEmbed {
+	fontFamily: travelingTypewriterEmbed;
+	fontSize: 56;
+	textAlign: center;
+	borderSkin: null;
+	focusAlpha: 0;
 	color: black;
+	contentBackgroundAlpha: 0;
+	borderVisible: false;
+	skinClass: ClassReference("spark.skins.mobile.TextAreaSkin");
+}
+
+.descriptionStyleEmbed {
+	fontFamily: travelingTypewriterEmbed;
+	color: black;
+	fontSize: 40;
+	textAlign: justify;
+	borderSkin: null;
+	focusAlpha: 0;
+	color: black;
+	contentBackgroundAlpha: 0;
+	borderVisible: false;
+	skinClass: ClassReference("spark.skins.mobile.TextAreaSkin");
+}
+
+.publishDateStyleEmbed {
+	fontFamily: travelingTypewriterEmbed;
+	fontSize: 32;
+	color: black;
+	textAlign: center;
+	borderSkin: null;
+	focusAlpha: 0;
+	color: black;
+	contentBackgroundAlpha: 0;
+	borderVisible: false;
+	skinClass: ClassReference("spark.skins.mobile.TextAreaSkin");
 }
 
 @font-face { 
@@ -54,8 +87,8 @@ s|TabbedViewNavigator #tabBar
 	embedAsCFF: false; 
 }
 
-.descriptionStyle {
-	fontSize: 30;
+.titleStyleNotEmbed {
+	fontSize: 40;
 	fontFamily: travelingTypewriterNotEmbed;
 	textAlign: justify;
 	borderSkin: null;
@@ -66,8 +99,8 @@ s|TabbedViewNavigator #tabBar
 	skinClass: ClassReference("spark.skins.mobile.TextAreaSkin");
 }
 
-.titleStyle {
-	fontSize: 40;
+.descriptionStyleNotEmbed {
+	fontSize: 30;
 	fontFamily: travelingTypewriterNotEmbed;
 	textAlign: justify;
 	borderSkin: null;

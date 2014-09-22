@@ -19,6 +19,7 @@
 
 			import mx.events.FlexEvent;
 
+			import spark.components.Application;
 			import spark.components.IconItemRenderer;
 			import spark.core.ContentCache;
 
@@ -123,41 +124,41 @@
 					  paddingLeft="30"
 					  horizontalAlign="left"
 					  width="100%">
-				<s:HGroup>
-					<s:Image width="44"
+				<s:HGroup verticalAlign="middle"
+						  width="100%">
+					<s:Image width="35"
 							 cacheAsBitmap="true"
-							 height="22"
+							 height="35"
 							 smooth="true"
 							 source="{AssetsLibrary.place}"/>
-					<s:Label fontSize="44"
-							 width="100%"
+					<s:Label width="100%"
 							 id="placeLabel"
 							 maxDisplayedLines="5"
-							 styleName="customStyleSpark"/>
+							 styleName="descriptionStyleEmbed"/>
 				</s:HGroup>
-				<s:HGroup>
-					<s:Image width="44"
+				<s:HGroup verticalAlign="middle"
+						  width="100%">
+					<s:Image width="35"
 							 cacheAsBitmap="true"
-							 height="22"
+							 height="35"
 							 smooth="true"
 							 source="{AssetsLibrary.clock}"/>
-					<s:Label fontSize="44"
-							 width="100%"
+					<s:Label width="100%"
 							 id="dateShowLabel"
 							 maxDisplayedLines="5"
-							 styleName="customStyleSpark"/>
+							 styleName="descriptionStyleEmbed"/>
 				</s:HGroup>
-				<s:HGroup width="100%">
-					<s:Image width="44"
+				<s:HGroup width="100%"
+						  verticalAlign="middle">
+					<s:Image width="35"
 							 cacheAsBitmap="true"
-							 height="22"
+							 height="35"
 							 smooth="true"
 							 source="{AssetsLibrary.bands}"/>
-					<s:Label fontSize="44"
-							 width="100%"
+					<s:Label width="100%"
 							 id="bandsWithLabel"
 							 maxDisplayedLines="5"
-							 styleName="customStyleSpark"/>
+							 styleName="descriptionStyleEmbed"/>
 				</s:HGroup>
 			</s:VGroup>
 		</s:VGroup>

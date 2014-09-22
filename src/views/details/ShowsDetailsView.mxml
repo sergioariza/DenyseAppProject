@@ -78,10 +78,8 @@
 				  paddingRight="20"
 				  paddingBottom="20">
 			<s:Label id="titleShowsLabel"
-					 styleName="customStyleSpark"
-					 textAlign="center"
-					 width="100%"
-					 fontSize="56"/>
+					 styleName="titleStyleEmbed"
+					 width="100%"/>
 			<s:Spacer height="50"/>
 			<s:Group>
 				<s:Rect top="0"
@@ -111,69 +109,63 @@
 			</s:Group>
 			<s:Spacer height="5"/>
 			<s:Label id="datePublishedLabel"
-					 textAlign="center"
-					 styleName="customStyleSpark"
-					 width="100%"
-					 fontSize="32"/>
+					 styleName="publishDateStyleEmbed"
+					 width="100%"/>
 			<s:Spacer height="50"/>
 			<s:Label id="bodyLabel"
-					 styleName="customStyleSpark"
-					 textAlign="justify"
-					 width="100%"
-					 fontSize="40"/>
+					 styleName="descriptionStyleEmbed"
+					 width="100%"/>
 			<s:Spacer height="50"/>
 			<s:VGroup gap="5"
 					  width="100%">
-				<s:Label fontSize="40"
-						 id="dataShowsLabel"
+				<s:Label id="dataShowsLabel"
 						 width="100%"
-						 styleName="customStyleSpark"
+						 styleName="descriptionStyleEmbed"
 						 textDecoration="underline"
 						 text="Información del concierto:"/>
 				<s:Spacer height="5"/>
 				<s:HGroup>
-					<s:Image width="44"
+					<s:Image width="35"
 							 smooth="true"
 							 cacheAsBitmap="true"
-							 height="44"
+							 height="35"
 							 source="{AssetsLibrary.place}"/>
-					<s:Label fontSize="40"
-							 id="placeLabel"
+					<s:Label id="placeLabel"
+							 maxDisplayedLines="5"
 							 width="100%"
-							 styleName="customStyleSpark"/>
+							 styleName="descriptionStyleEmbed"/>
 				</s:HGroup>
 				<s:HGroup>
-					<s:Image width="44"
+					<s:Image width="35"
 							 smooth="true"
 							 cacheAsBitmap="true"
-							 height="44"
+							 height="35"
 							 source="{AssetsLibrary.clock}"/>
-					<s:Label fontSize="40"
-							 width="100%"
+					<s:Label width="100%"
+							 maxDisplayedLines="5"
 							 id="dateShowLabel"
-							 styleName="customStyleSpark"/>
+							 styleName="descriptionStyleEmbed"/>
 				</s:HGroup>
 				<s:HGroup>
-					<s:Image width="44"
+					<s:Image width="35"
 							 smooth="true"
 							 cacheAsBitmap="true"
-							 height="44"
+							 height="35"
 							 source="{AssetsLibrary.bands}"/>
-					<s:Label fontSize="40"
-							 width="100%"
+					<s:Label width="100%"
+							 maxDisplayedLines="5"
 							 id="bandsWithLabel"
-							 styleName="customStyleSpark"/>
+							 styleName="descriptionStyleEmbed"/>
 				</s:HGroup>
 			</s:VGroup>
 			<s:Spacer height="50"/>
 			<s:VGroup gap="5"
 					  horizontalAlign="center"
 					  width="100%">
-				<s:Label fontSize="40"
-						 width="100%"
+				<s:Label width="100%"
 						 textDecoration="underline"
 						 textAlign="center"
-						 styleName="customStyleSpark"
+						 styleName="descriptionStyleEmbed"
 						 text="Mapa del lugar:"/>
 				<s:Group>
 					<s:Rect top="0"
@@ -199,19 +191,11 @@
 							 verticalCenter="0"
 							 horizontalCenter="0"/>
 				</s:Group>
-				<s:Label fontSize="28"
-						 width="100%"
+				<s:Label width="100%"
 						 textAlign="center"
-						 styleName="customStyleSpark"
+						 styleName="publishDateStyleEmbed"
 						 text="Pulsa en el mapa para acceder a Google Maps"/>
 			</s:VGroup>
 		</s:VGroup>
 	</s:Scroller>
-	<!--<details:StageWebViewUIComponent id="idStageWebViewUIComponent"
-									 xOffset="-1000"
-									 addedToStage="addedToStageHandler(event)"
-									 yOffset="2300"
-									 text="{mapGoogle}"
-									 mapHeight="300"
-									 mapWidth="300"/>-->
 </s:View>

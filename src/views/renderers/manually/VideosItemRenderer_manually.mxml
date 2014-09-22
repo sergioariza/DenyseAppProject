@@ -21,6 +21,7 @@
 
 			import mx.events.FlexEvent;
 
+			import spark.components.Application;
 			import spark.components.IconItemRenderer;
 			import spark.core.ContentCache;
 
@@ -41,15 +42,7 @@
 				voVideos = VoVideos(value);
 				videoTitle.text = "Título: " + voVideos.videoTitle;
 				checkCache();
-			}
-
-			private function parseYoutubeURL(input:String):String
-			{
-				var result:String = "";
-				var youtubeId:String = input.substr(32);
-
-				result = "http://img.youtube.com/vi/" + youtubeId + "/0.jpg"
-				return result;
+				fillInfo();
 			}
 
 			//Caché de imágenes
@@ -65,6 +58,15 @@
 					idVideoCover.source = photo;
 					saveImageInCache(photo);
 				}
+			}
+
+			private function parseYoutubeURL(input:String):String
+			{
+				var result:String = "";
+				var youtubeId:String = input.substr(32);
+
+				result = "http://img.youtube.com/vi/" + youtubeId + "/0.jpg"
+				return result;
 			}
 
 			private function saveImageInCache(photoURL:String):void
@@ -84,6 +86,25 @@
 					bitmapData.draw(event.target.content);
 					data.cache = bitmapData;
 				}
+			}
+
+			private function fillInfo():void
+			{
+				var youtubeId:String = voVideos.youtubeURL.substr(32);
+				var loader:URLLoader = new URLLoader();
+				var request:URLRequest = new URLRequest("https://gdata.youtube.com/feeds/api/videos/" + youtubeId + "?v=2&alt=json");
+				loader.dataFormat = URLLoaderDataFormat.TEXT;
+				loader.addEventListener(Event.COMPLETE, jsonDownloadComplete);
+				loader.load(request);
+			}
+
+			private function jsonDownloadComplete(event:Event):void
+			{
+				var result:Object = JSON.parse(event.target.data);
+				var count:Number = result.entry.yt$statistics.viewCount;
+				var published:String = result.entry.published.$t.toString();
+				videoCount.text = "Nº reproducciones: " + count;
+				videoDate.text = "Fecha vídeo: " + published.substr(8, 2) + "-" + published.substr(5, 4) + "-" + published.substr(0, 4);
 			}
 
 			protected function view_clickHandler(event:MouseEvent):void
@@ -110,7 +131,7 @@
 				  paddingLeft="20"
 				  paddingRight="20"
 				  verticalAlign="middle">
-			<s:Group>
+			<s:Group width="50%">
 				<s:Rect top="0"
 						alpha="0.3"
 						bottom="0"
@@ -125,8 +146,7 @@
 					</s:fill>
 				</s:Rect>
 				<s:BitmapImage id="idVideoCover"
-							   width="350"
-							   height="200"
+							   width="100%"
 							   top="10"
 							   left="10"
 							   right="10"
@@ -134,21 +154,20 @@
 							   verticalCenter="0"
 							   horizontalCenter="0"/>
 			</s:Group>
+			<s:Spacer width="50"/>
 			<s:VGroup width="50%"
 					  height="100%"
 					  verticalAlign="middle">
-				<s:Label fontSize="32"
-						 id="videoTitle"
+				<s:Label id="videoTitle"
+						 width="100%"
 						 maxDisplayedLines="2"
-						 styleName="customStyleSpark"/>
-				<s:Label fontSize="28"
-						 maxDisplayedLines="1"
-						 styleName="customStyleSpark"
-						 text="Nº reproducciones: 2310"/>
-				<s:Label fontSize="28"
-						 maxDisplayedLines="1"
-						 styleName="customStyleSpark"
-						 text="Fecha vídeo: DD-MM-AAAA"/>
+						 styleName="descriptionStyleEmbed"/>
+				<s:Label maxDisplayedLines="1"
+						 id="videoCount"
+						 styleName="descriptionStyleEmbed"/>
+				<s:Label maxDisplayedLines="1"
+						 id="videoDate"
+						 styleName="descriptionStyleEmbed"/>
 			</s:VGroup>
 		</s:HGroup>
 	</s:Group>
