@@ -52,7 +52,7 @@ s|TabbedViewNavigator
 	
 	.titleStyleEmbed {
 		fontFamily: travelingTypewriterEmbed;
-		fontSize: 16;
+		fontSize: 18;
 		textAlign: center;
 		borderSkin: null;
 		focusAlpha: 0;
@@ -65,7 +65,7 @@ s|TabbedViewNavigator
 	.descriptionStyleEmbed {
 		fontFamily: travelingTypewriterEmbed;
 		color: black;
-		fontSize: 14;
+		fontSize: 16;
 		textAlign: justify;
 		borderSkin: null;
 		focusAlpha: 0;
@@ -230,7 +230,7 @@ s|TabbedViewNavigator
 	
 	.titleStyleEmbed {
 		fontFamily: travelingTypewriterEmbed;
-		fontSize: 30;
+		fontSize: 45;
 		textAlign: center;
 		borderSkin: null;
 		focusAlpha: 0;
@@ -243,7 +243,7 @@ s|TabbedViewNavigator
 	.descriptionStyleEmbed {
 		fontFamily: travelingTypewriterEmbed;
 		color: black;
-		fontSize: 20;
+		fontSize: 35;
 		textAlign: justify;
 		borderSkin: null;
 		focusAlpha: 0;
@@ -255,7 +255,7 @@ s|TabbedViewNavigator
 	
 	.publishDateStyleEmbed {
 		fontFamily: travelingTypewriterEmbed;
-		fontSize: 20;
+		fontSize: 30;
 		color: black;
 		textAlign: center;
 		borderSkin: null;
@@ -267,7 +267,7 @@ s|TabbedViewNavigator
 	}
 	
 	.titleStyleNotEmbed {
-		fontSize: 30;
+		fontSize: 38;
 		fontFamily: travelingTypewriterNotEmbed;
 		textAlign: justify;
 		borderSkin: null;
@@ -279,7 +279,7 @@ s|TabbedViewNavigator
 	}
 	
 	.descriptionStyleNotEmbed {
-		fontSize: 20;
+		fontSize: 28;
 		fontFamily: travelingTypewriterNotEmbed;
 		textAlign: justify;
 		borderSkin: null;

@@ -139,6 +139,7 @@
 					</s:Image>
 					<s:Label width="100%"
 							 id="placeLabel"
+							 textAlign="left"
 							 maxDisplayedLines="5"
 							 styleName="descriptionStyleEmbed"/>
 				</s:HGroup>
@@ -155,6 +156,7 @@
 						</s:source>
 					</s:Image>
 					<s:Label width="100%"
+							 textAlign="left"
 							 id="dateShowLabel"
 							 maxDisplayedLines="5"
 							 styleName="descriptionStyleEmbed"/>
@@ -172,6 +174,7 @@
 						</s:source>
 					</s:Image>
 					<s:Label width="100%"
+							 textAlign="left"
 							 id="bandsWithLabel"
 							 maxDisplayedLines="5"
 							 styleName="descriptionStyleEmbed"/>
