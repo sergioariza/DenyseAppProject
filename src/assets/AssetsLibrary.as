@@ -32,18 +32,6 @@ package assets
 		public static var separator:Class;
 
 		[Bindable]
-		[Embed("assets/icons/shows/bands.png")]
-		public static var bands:Class;
-
-		[Bindable]
-		[Embed("assets/icons/shows/clock.png")]
-		public static var clock:Class;
-
-		[Bindable]
-		[Embed("assets/icons/shows/place.png")]
-		public static var place:Class;
-
-		[Bindable]
 		[Embed("assets/bio/Denyse_normal.png")]
 		public static var denyseNormal:Class;
 

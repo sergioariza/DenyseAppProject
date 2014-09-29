@@ -1,84 +1,10 @@
 @namespace s "library://ns.adobe.com/flex/spark";
 @namespace mx "library://ns.adobe.com/flex/halo";
 
-s|ActionBar
-{
-	/*chromeColor: #229988;*/
-	titleAlign: center;
-}
-
-s|ActionBar #titleDisplay
-{
-	color: #CCCCCC; /* default color is white */
-	fontSize: 35;
-	fontFamily: "Comic Sans MS";
-}
-
-s|TabbedViewNavigator 
-{
-	skinClass: ClassReference("skins.TabbedViewNavigatorSkin");
-}
-
-s|TabbedViewNavigator #tabBar
-{
-	chromeColor: #957C81;
-	color: #000000;
-	iconPlacement: top;
-	fontSize: 25;
-	fontFamily: travelingTypewriterNotEmbed;
-	letterSpacing: 0;
-	/*chromeColor: #229988;*/
-	/*chromeColor: #A7919B;*/
-	/*backgroundAlpha: 0;
-	borderAlpha: 0;
-	contentBackgroundAlpha: 0;
-	disabledAlpha: 0;
-	focusAlpha: 0;
-	textAlpha: 0;*/
-}
-
 @font-face {
 	src:url("/style/fonts/TravelingTypewriter.ttf");
 	fontFamily: travelingTypewriterEmbed;
 	embedAsCFF: true;
-}
-
-.titleStyleEmbed {
-	fontFamily: travelingTypewriterEmbed;
-	fontSize: 56;
-	textAlign: center;
-	borderSkin: null;
-	focusAlpha: 0;
-	color: black;
-	contentBackgroundAlpha: 0;
-	borderVisible: false;
-	skinClass: ClassReference("spark.skins.mobile.TextAreaSkin");
-}
-
-.descriptionStyleEmbed {
-	fontFamily: travelingTypewriterEmbed;
-	color: black;
-	fontSize: 40;
-	textAlign: justify;
-	borderSkin: null;
-	focusAlpha: 0;
-	color: black;
-	contentBackgroundAlpha: 0;
-	borderVisible: false;
-	skinClass: ClassReference("spark.skins.mobile.TextAreaSkin");
-}
-
-.publishDateStyleEmbed {
-	fontFamily: travelingTypewriterEmbed;
-	fontSize: 32;
-	color: black;
-	textAlign: center;
-	borderSkin: null;
-	focusAlpha: 0;
-	color: black;
-	contentBackgroundAlpha: 0;
-	borderVisible: false;
-	skinClass: ClassReference("spark.skins.mobile.TextAreaSkin");
 }
 
 @font-face { 
@@ -87,26 +13,280 @@ s|TabbedViewNavigator #tabBar
 	embedAsCFF: false; 
 }
 
-.titleStyleNotEmbed {
-	fontSize: 40;
-	fontFamily: travelingTypewriterNotEmbed;
-	textAlign: justify;
-	borderSkin: null;
-	focusAlpha: 0;
-	color: black;
-	contentBackgroundAlpha: 0;
-	borderVisible: false;
-	skinClass: ClassReference("spark.skins.mobile.TextAreaSkin");
+s|ActionBar
+{
+	/*chromeColor: #229988;*/
+	titleAlign: center;
 }
 
-.descriptionStyleNotEmbed {
-	fontSize: 30;
-	fontFamily: travelingTypewriterNotEmbed;
-	textAlign: justify;
-	borderSkin: null;
-	focusAlpha: 0;
-	color: black;
-	contentBackgroundAlpha: 0;
-	borderVisible: false;
-	skinClass: ClassReference("spark.skins.mobile.TextAreaSkin");
+s|TabbedViewNavigator 
+{
+	skinClass: ClassReference("skins.TabbedViewNavigatorSkin");
+}
+
+@media (application-dpi: 160){	
+	s|ActionBar #titleDisplay
+	{
+		color: #CCCCCC; /* default color is white */
+		fontSize: 35;
+		fontFamily: "Comic Sans MS";
+	}
+	
+	s|TabbedViewNavigator #tabBar
+	{
+		chromeColor: #957C81;
+		color: #000000;
+		iconPlacement: top;
+		fontSize: 9;
+		fontFamily: travelingTypewriterNotEmbed;
+		letterSpacing: 0;
+		/*chromeColor: #229988;*/
+		/*chromeColor: #A7919B;*/
+		/*backgroundAlpha: 0;
+		borderAlpha: 0;
+		contentBackgroundAlpha: 0;
+		disabledAlpha: 0;
+		focusAlpha: 0;
+		textAlpha: 0;*/
+	}
+	
+	.titleStyleEmbed {
+		fontFamily: travelingTypewriterEmbed;
+		fontSize: 16;
+		textAlign: center;
+		borderSkin: null;
+		focusAlpha: 0;
+		color: black;
+		contentBackgroundAlpha: 0;
+		borderVisible: false;
+		skinClass: ClassReference("spark.skins.mobile.TextAreaSkin");
+	}
+	
+	.descriptionStyleEmbed {
+		fontFamily: travelingTypewriterEmbed;
+		color: black;
+		fontSize: 14;
+		textAlign: justify;
+		borderSkin: null;
+		focusAlpha: 0;
+		color: black;
+		contentBackgroundAlpha: 0;
+		borderVisible: false;
+		skinClass: ClassReference("spark.skins.mobile.TextAreaSkin");
+	}
+	
+	.publishDateStyleEmbed {
+		fontFamily: travelingTypewriterEmbed;
+		fontSize: 14;
+		color: black;
+		textAlign: center;
+		borderSkin: null;
+		focusAlpha: 0;
+		color: black;
+		contentBackgroundAlpha: 0;
+		borderVisible: false;
+		skinClass: ClassReference("spark.skins.mobile.TextAreaSkin");
+	}
+	
+	.titleStyleNotEmbed {
+		fontSize: 16;
+		fontFamily: travelingTypewriterNotEmbed;
+		textAlign: justify;
+		borderSkin: null;
+		focusAlpha: 0;
+		color: black;
+		contentBackgroundAlpha: 0;
+		borderVisible: false;
+		skinClass: ClassReference("spark.skins.mobile.TextAreaSkin");
+	}
+	
+	.descriptionStyleNotEmbed {
+		fontSize: 14;
+		fontFamily: travelingTypewriterNotEmbed;
+		textAlign: justify;
+		borderSkin: null;
+		focusAlpha: 0;
+		color: black;
+		contentBackgroundAlpha: 0;
+		borderVisible: false;
+		skinClass: ClassReference("spark.skins.mobile.TextAreaSkin");
+	}
+}
+
+@media (application-dpi: 240){
+	s|ActionBar #titleDisplay
+	{
+		color: #CCCCCC; /* default color is white */
+		fontSize: 35;
+		fontFamily: "Comic Sans MS";
+	}
+	
+	s|TabbedViewNavigator #tabBar
+	{
+		chromeColor: #957C81;
+		color: #000000;
+		iconPlacement: top;
+		fontSize: 14;
+		fontFamily: travelingTypewriterNotEmbed;
+		letterSpacing: 0;
+		/*chromeColor: #229988;*/
+		/*chromeColor: #A7919B;*/
+		/*backgroundAlpha: 0;
+		borderAlpha: 0;
+		contentBackgroundAlpha: 0;
+		disabledAlpha: 0;
+		focusAlpha: 0;
+		textAlpha: 0;*/
+	}
+	
+	.titleStyleEmbed {
+		fontFamily: travelingTypewriterEmbed;
+		fontSize: 28;
+		textAlign: center;
+		borderSkin: null;
+		focusAlpha: 0;
+		color: black;
+		contentBackgroundAlpha: 0;
+		borderVisible: false;
+		skinClass: ClassReference("spark.skins.mobile.TextAreaSkin");
+	}
+	
+	.descriptionStyleEmbed {
+		fontFamily: travelingTypewriterEmbed;
+		color: black;
+		fontSize: 24;
+		textAlign: justify;
+		borderSkin: null;
+		focusAlpha: 0;
+		color: black;
+		contentBackgroundAlpha: 0;
+		borderVisible: false;
+		skinClass: ClassReference("spark.skins.mobile.TextAreaSkin");
+	}
+	
+	.publishDateStyleEmbed {
+		fontFamily: travelingTypewriterEmbed;
+		fontSize: 20;
+		color: black;
+		textAlign: center;
+		borderSkin: null;
+		focusAlpha: 0;
+		color: black;
+		contentBackgroundAlpha: 0;
+		borderVisible: false;
+		skinClass: ClassReference("spark.skins.mobile.TextAreaSkin");
+	}
+	
+	.titleStyleNotEmbed {
+		fontSize: 24;
+		fontFamily: travelingTypewriterNotEmbed;
+		textAlign: justify;
+		borderSkin: null;
+		focusAlpha: 0;
+		color: black;
+		contentBackgroundAlpha: 0;
+		borderVisible: false;
+		skinClass: ClassReference("spark.skins.mobile.TextAreaSkin");
+	}
+	
+	.descriptionStyleNotEmbed {
+		fontSize: 20;
+		fontFamily: travelingTypewriterNotEmbed;
+		textAlign: justify;
+		borderSkin: null;
+		focusAlpha: 0;
+		color: black;
+		contentBackgroundAlpha: 0;
+		borderVisible: false;
+		skinClass: ClassReference("spark.skins.mobile.TextAreaSkin");
+	}
+}
+
+@media (application-dpi: 320){
+	s|ActionBar #titleDisplay
+	{
+		color: #CCCCCC; /* default color is white */
+		fontSize: 35;
+		fontFamily: "Comic Sans MS";
+	}
+	
+	s|TabbedViewNavigator #tabBar
+	{
+		chromeColor: #957C81;
+		color: #000000;
+		iconPlacement: top;
+		fontSize: 19;
+		fontFamily: travelingTypewriterNotEmbed;
+		letterSpacing: 0;
+		/*chromeColor: #229988;*/
+		/*chromeColor: #A7919B;*/
+		/*backgroundAlpha: 0;
+		borderAlpha: 0;
+		contentBackgroundAlpha: 0;
+		disabledAlpha: 0;
+		focusAlpha: 0;
+		textAlpha: 0;*/
+	}
+	
+	.titleStyleEmbed {
+		fontFamily: travelingTypewriterEmbed;
+		fontSize: 30;
+		textAlign: center;
+		borderSkin: null;
+		focusAlpha: 0;
+		color: black;
+		contentBackgroundAlpha: 0;
+		borderVisible: false;
+		skinClass: ClassReference("spark.skins.mobile.TextAreaSkin");
+	}
+	
+	.descriptionStyleEmbed {
+		fontFamily: travelingTypewriterEmbed;
+		color: black;
+		fontSize: 20;
+		textAlign: justify;
+		borderSkin: null;
+		focusAlpha: 0;
+		color: black;
+		contentBackgroundAlpha: 0;
+		borderVisible: false;
+		skinClass: ClassReference("spark.skins.mobile.TextAreaSkin");
+	}
+	
+	.publishDateStyleEmbed {
+		fontFamily: travelingTypewriterEmbed;
+		fontSize: 20;
+		color: black;
+		textAlign: center;
+		borderSkin: null;
+		focusAlpha: 0;
+		color: black;
+		contentBackgroundAlpha: 0;
+		borderVisible: false;
+		skinClass: ClassReference("spark.skins.mobile.TextAreaSkin");
+	}
+	
+	.titleStyleNotEmbed {
+		fontSize: 30;
+		fontFamily: travelingTypewriterNotEmbed;
+		textAlign: justify;
+		borderSkin: null;
+		focusAlpha: 0;
+		color: black;
+		contentBackgroundAlpha: 0;
+		borderVisible: false;
+		skinClass: ClassReference("spark.skins.mobile.TextAreaSkin");
+	}
+	
+	.descriptionStyleNotEmbed {
+		fontSize: 20;
+		fontFamily: travelingTypewriterNotEmbed;
+		textAlign: justify;
+		borderSkin: null;
+		focusAlpha: 0;
+		color: black;
+		contentBackgroundAlpha: 0;
+		borderVisible: false;
+		skinClass: ClassReference("spark.skins.mobile.TextAreaSkin");
+	}
 }

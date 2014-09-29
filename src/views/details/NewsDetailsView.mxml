@@ -41,6 +41,12 @@
 					idNewsPhoto.source = voNews.photoURL;
 				}
 			}
+
+			protected function idNewsPhoto_completeHandler(event:Event):void
+			{
+				idNewsPhoto.width = this.screen.width * 0.75;
+				idNewsPhoto.height = (idNewsPhoto.width / idNewsPhoto.imageDisplay.sourceWidth) * idNewsPhoto.imageDisplay.sourceHeight;
+			}
 		]]>
 	</fx:Script>
 	<s:BitmapImage source="{AssetsLibrary.generalBackground}"
@@ -50,11 +56,10 @@
 				   width="100%"
 				   height="100%"/>
 	<s:Scroller width="100%"
+				height="100%"
 				creationComplete="idScroller_creationCompleteHandler(event)"
-				id="idScroller"
-				height="100%">
+				id="idScroller">
 		<s:VGroup horizontalAlign="center"
-				  width="100%"
 				  gap="0"
 				  paddingTop="20"
 				  paddingLeft="20"
@@ -63,13 +68,11 @@
 			<s:Label id="titleLabel"
 					 styleName="titleStyleEmbed"
 					 width="100%"/>
-			<s:Spacer height="50"/>
+			<s:Spacer height="10"/>
 			<s:Group>
-				<s:Rect top="0"
-						alpha="0.3"
-						bottom="0"
-						left="0"
-						right="0">
+				<s:Rect alpha="0.3"
+						width="{idNewsPhoto.width + 20}"
+						height="{idNewsPhoto.height + 20}">
 					<s:stroke>
 						<s:SolidColorStroke color="#000000"
 											alpha="0.3"/>
@@ -79,22 +82,18 @@
 					</s:fill>
 				</s:Rect>
 				<s:Image id="idNewsPhoto"
-						 top="10"
-						 left="10"
-						 right="10"
-						 bottom="10"
 						 cacheAsBitmap="true"
+						 scaleMode="letterbox"
+						 complete="idNewsPhoto_completeHandler(event)"
 						 creationComplete="idNewsPhoto_creationCompleteHandler(event)"
 						 horizontalCenter="0"
-						 scaleMode="zoom"
-						 scaleX="1"
-						 scaleY="1"/>
+						 verticalCenter="0"/>
 			</s:Group>
 			<s:Spacer height="5"/>
 			<s:Label id="dateLabel"
 					 styleName="publishDateStyleEmbed"
 					 width="100%"/>
-			<s:Spacer height="50"/>
+			<s:Spacer height="20"/>
 			<s:Label id="bodyLabel"
 					 styleName="descriptionStyleEmbed"
 					 width="100%"/>

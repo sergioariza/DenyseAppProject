@@ -58,11 +58,11 @@
 				formatMessageFieldText();
 
 				//Resize measuredHeight after formatting messageField and resize icon
-				var realHeightSize:int = labelDisplay.textHeight + messageDisplay.textHeight;
-				iconHeight = realHeightSize;
-				iconWidth = realHeightSize;
-				var marginTopBottom:int = realHeightSize * 0.15;
-				measuredHeight = realHeightSize + (marginTopBottom * 2);
+				iconHeight = this.screen.width * 0.25;
+				iconWidth = this.screen.width * 0.25;
+
+				var marginTopBottom:Number = iconHeight * 0.15;
+				measuredHeight = iconHeight + (marginTopBottom * 2);
 			}
 
 			private function formatMessageFieldText(numLinesParam:int = 3):void

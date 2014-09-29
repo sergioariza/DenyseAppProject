@@ -31,7 +31,12 @@
 				voShows = VoShows(value);
 			}
 
-			protected function vgroup_creationCompleteHandler(event:FlexEvent):void
+			protected function idBitmapImage_clickHandler(event:MouseEvent):void
+			{
+				navigateToURL(new URLRequest(mapGoogleURL + voShows.latitude.toString() + "," + voShows.length.toString()));
+			}
+
+			protected function idScroller_creationCompleteHandler(event:FlexEvent):void
 			{
 				titleShowsLabel.text = voShows.title;
 				datePublishedLabel.text = "Fecha de publicación: " + voShows.datePublished;
@@ -40,6 +45,12 @@
 				dateShowLabel.text = "Fecha y hora: " + voShows.dateShow + " " + voShows.hourShow + "h";
 				bandsWithLabel.text = "Bandas invitadas: " + voShows.bandsWith;
 				googleMapImage.source = mapGoogleStaticImageURL + voShows.latitude.toString() + "," + voShows.length.toString() + mapGoogleStaticImageParams + voShows.latitude.toString() + "," + voShows.length.toString() + "&sensor=true";
+
+				idShowsPhoto.width = this.screen.width * 0.75;
+				idShowsPhoto.height = (idShowsPhoto.width / idShowsPhoto.imageDisplay.source.width) * idShowsPhoto.imageDisplay.source.height;
+
+				googleMapImage.width = this.screen.width * 0.75;
+				googleMapImage.height = googleMapImage.width;
 			}
 
 			protected function idShowsPhoto_creationCompleteHandler(event:FlexEvent):void
@@ -53,11 +64,6 @@
 					idShowsPhoto.source = voShows.photoURL;
 				}
 			}
-
-			protected function idBitmapImage_clickHandler(event:MouseEvent):void
-			{
-				navigateToURL(new URLRequest(mapGoogleURL + voShows.latitude.toString() + "," + voShows.length.toString()));
-			}
 		]]>
 	</fx:Script>
 	<s:BitmapImage source="{AssetsLibrary.generalBackground}"
@@ -67,11 +73,11 @@
 				   width="100%"
 				   height="100%"/>
 	<s:Scroller width="100%"
+				creationComplete="idScroller_creationCompleteHandler(event)"
 				id="idScroller"
 				height="100%">
 		<s:VGroup horizontalAlign="center"
 				  width="100%"
-				  creationComplete="vgroup_creationCompleteHandler(event)"
 				  gap="0"
 				  paddingTop="20"
 				  paddingLeft="20"
@@ -80,13 +86,11 @@
 			<s:Label id="titleShowsLabel"
 					 styleName="titleStyleEmbed"
 					 width="100%"/>
-			<s:Spacer height="50"/>
+			<s:Spacer height="10"/>
 			<s:Group>
-				<s:Rect top="0"
-						alpha="0.3"
-						bottom="0"
-						left="0"
-						right="0">
+				<s:Rect alpha="0.3"
+						width="{idShowsPhoto.width + 20}"
+						height="{idShowsPhoto.height + 20}">
 					<s:stroke>
 						<s:SolidColorStroke color="#000000"
 											alpha="0.3"/>
@@ -96,26 +100,21 @@
 					</s:fill>
 				</s:Rect>
 				<s:Image id="idShowsPhoto"
-						 top="10"
-						 left="10"
-						 right="10"
-						 bottom="10"
 						 cacheAsBitmap="true"
+						 scaleMode="letterbox"
 						 creationComplete="idShowsPhoto_creationCompleteHandler(event)"
 						 horizontalCenter="0"
-						 scaleMode="zoom"
-						 scaleX="1"
-						 scaleY="1"/>
+						 verticalCenter="0"/>
 			</s:Group>
 			<s:Spacer height="5"/>
 			<s:Label id="datePublishedLabel"
 					 styleName="publishDateStyleEmbed"
 					 width="100%"/>
-			<s:Spacer height="50"/>
+			<s:Spacer height="20"/>
 			<s:Label id="bodyLabel"
 					 styleName="descriptionStyleEmbed"
 					 width="100%"/>
-			<s:Spacer height="50"/>
+			<s:Spacer height="20"/>
 			<s:VGroup gap="5"
 					  width="100%">
 				<s:Label id="dataShowsLabel"
@@ -124,34 +123,49 @@
 						 textDecoration="underline"
 						 text="Información del concierto:"/>
 				<s:Spacer height="5"/>
-				<s:HGroup>
-					<s:Image width="35"
+				<s:HGroup verticalAlign="middle">
+					<s:Image cacheAsBitmap="true"
 							 smooth="true"
-							 cacheAsBitmap="true"
-							 height="35"
-							 source="{AssetsLibrary.place}"/>
+							 smoothingQuality="high"
+							 styleName="showRendererIcon">
+						<s:source>
+							<s:MultiDPIBitmapSource source160dpi="assets/icons/shows/dpi_160/place.png"
+													source240dpi="assets/icons/shows/dpi_240/place.png"
+													source320dpi="assets/icons/shows/dpi_320/place.png"/>
+						</s:source>
+					</s:Image>
 					<s:Label id="placeLabel"
 							 maxDisplayedLines="5"
 							 width="100%"
 							 styleName="descriptionStyleEmbed"/>
 				</s:HGroup>
-				<s:HGroup>
-					<s:Image width="35"
+				<s:HGroup verticalAlign="middle">
+					<s:Image cacheAsBitmap="true"
 							 smooth="true"
-							 cacheAsBitmap="true"
-							 height="35"
-							 source="{AssetsLibrary.clock}"/>
+							 smoothingQuality="high"
+							 styleName="showRendererIcon">
+						<s:source>
+							<s:MultiDPIBitmapSource source160dpi="assets/icons/shows/dpi_160/clock.png"
+													source240dpi="assets/icons/shows/dpi_240/clock.png"
+													source320dpi="assets/icons/shows/dpi_320/clock.png"/>
+						</s:source>
+					</s:Image>
 					<s:Label width="100%"
 							 maxDisplayedLines="5"
 							 id="dateShowLabel"
 							 styleName="descriptionStyleEmbed"/>
 				</s:HGroup>
-				<s:HGroup>
-					<s:Image width="35"
+				<s:HGroup verticalAlign="middle">
+					<s:Image cacheAsBitmap="true"
+							 smoothingQuality="high"
 							 smooth="true"
-							 cacheAsBitmap="true"
-							 height="35"
-							 source="{AssetsLibrary.bands}"/>
+							 styleName="showRendererIcon">
+						<s:source>
+							<s:MultiDPIBitmapSource source160dpi="assets/icons/shows/dpi_160/bands.png"
+													source240dpi="assets/icons/shows/dpi_240/bands.png"
+													source320dpi="assets/icons/shows/dpi_320/bands.png"/>
+						</s:source>
+					</s:Image>
 					<s:Label width="100%"
 							 maxDisplayedLines="5"
 							 id="bandsWithLabel"
