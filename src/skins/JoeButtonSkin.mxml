@@ -12,8 +12,8 @@
 
 			protected function creationCompleteHandler(event:FlexEvent):void
 			{
-				imgJoeButton.width = this.stage.fullScreenWidth * 0.5;
-				imgJoeButton.height = this.stage.fullScreenHeight * 0.5;
+				imgJoeButton.width = 600;
+				imgJoeButton.height = 710;
 			}
 		]]>
 	</fx:Script>

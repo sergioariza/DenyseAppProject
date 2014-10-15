@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:TabbedViewNavigatorApplication xmlns:fx="http://ns.adobe.com/mxml/2009"
-								  frameRate="60"
 								  splashScreenMinimumDisplayTime="3000"
 								  splashScreenScaleMode="stretch"
-								  applicationDPI="240"
 								  splashScreenImage="@Embed('assets/splash/splash_screen.png')"
 								  xmlns:s="library://ns.adobe.com/flex/spark">
 	<fx:Declarations>
@@ -17,16 +15,6 @@
 
 	<fx:Style source="/style/mainMenu.css"/>
 
-	<!--<fx:Style>
-		@namespace s "library://ns.adobe.com/flex/spark";
-		s|TabbedViewNavigator #tabBar {
-			skinClass: ClassReference("skins.ScrollingTabBarSkin");
-		}
-		s|TabbedViewNavigator #tabBar s|Scroller {
-			skinClass: ClassReference("skins.NoScrollBarScrollerSkin");
-		}
-	</fx:Style>-->
-
 	<s:navigators>
 		<s:ViewNavigator label="{LocalizationModel.newsLabel}"
 						 id="idNewsView"
@@ -34,7 +22,9 @@
 						 height="100%"
 						 firstView="views.NewsView">
 			<s:icon>
-				<s:MultiDPIBitmapSource source240dpi="@Embed('assets/icons/tabs/news.png')"/>
+				<s:MultiDPIBitmapSource source160dpi="@Embed('assets/icons/tabs/dpi_160/news.png')"
+										source240dpi="@Embed('assets/icons/tabs/dpi_240/news.png')"
+										source320dpi="@Embed('assets/icons/tabs/dpi_320/news.png')"/>
 			</s:icon>
 		</s:ViewNavigator>
 		<s:ViewNavigator label="{LocalizationModel.showsLabel}"
@@ -43,7 +33,9 @@
 						 height="100%"
 						 firstView="views.ShowsView">
 			<s:icon>
-				<s:MultiDPIBitmapSource source240dpi="@Embed('assets/icons/tabs/shows.png')"/>
+				<s:MultiDPIBitmapSource source160dpi="@Embed('assets/icons/tabs/dpi_160/shows.png')"
+										source240dpi="@Embed('assets/icons/tabs/dpi_240/shows.png')"
+										source320dpi="@Embed('assets/icons/tabs/dpi_320/shows.png')"/>
 			</s:icon>
 		</s:ViewNavigator>
 		<s:ViewNavigator label="{LocalizationModel.videosLabel}"
@@ -52,7 +44,9 @@
 						 height="100%"
 						 firstView="views.VideosView">
 			<s:icon>
-				<s:MultiDPIBitmapSource source240dpi="@Embed('assets/icons/tabs/videos.png')"/>
+				<s:MultiDPIBitmapSource source160dpi="@Embed('assets/icons/tabs/dpi_160/videos.png')"
+										source240dpi="@Embed('assets/icons/tabs/dpi_240/videos.png')"
+										source320dpi="@Embed('assets/icons/tabs/dpi_320/videos.png')"/>
 			</s:icon>
 		</s:ViewNavigator>
 		<s:ViewNavigator label="{LocalizationModel.bioLabel}"
@@ -61,7 +55,9 @@
 						 height="100%"
 						 firstView="views.BioView">
 			<s:icon>
-				<s:MultiDPIBitmapSource source240dpi="@Embed('assets/icons/tabs/bio.png')"/>
+				<s:MultiDPIBitmapSource source160dpi="@Embed('assets/icons/tabs/dpi_160/bio.png')"
+										source240dpi="@Embed('assets/icons/tabs/dpi_240/bio.png')"
+										source320dpi="@Embed('assets/icons/tabs/dpi_320/bio.png')"/>
 			</s:icon>
 		</s:ViewNavigator>
 		<s:ViewNavigator label="{LocalizationModel.configLabel}"
@@ -70,7 +66,9 @@
 						 height="100%"
 						 firstView="views.ConfigView">
 			<s:icon>
-				<s:MultiDPIBitmapSource source240dpi="@Embed('assets/icons/tabs/config.png')"/>
+				<s:MultiDPIBitmapSource source160dpi="@Embed('assets/icons/tabs/dpi_160/config.png')"
+										source240dpi="@Embed('assets/icons/tabs/dpi_240/config.png')"
+										source320dpi="@Embed('assets/icons/tabs/dpi_320/config.png')"/>
 			</s:icon>
 		</s:ViewNavigator>
 	</s:navigators>

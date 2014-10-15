@@ -12,8 +12,8 @@
 
 			protected function creationCompleteHandler(event:FlexEvent):void
 			{
-				imgDenyseButton.width = this.stage.fullScreenWidth * 0.5;
-				imgDenyseButton.height = this.stage.fullScreenHeight * 0.5;
+				imgDenyseButton.width = 600;
+				imgDenyseButton.height = 710;
 			}
 		]]>
 	</fx:Script>

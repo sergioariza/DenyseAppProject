@@ -19,7 +19,7 @@
 
 			private var mapGoogleStaticImageURL:String = "http://maps.googleapis.com/maps/api/staticmap?center=";
 
-			private var mapGoogleStaticImageParams:String = "&zoom=18&size=400x400&markers=color:red%7Ccolor:red%7Clabel:%7C";
+			private var mapGoogleStaticImageParams:String = "&zoom=18&size=600x600&markers=color:red%7Ccolor:red%7Clabel:%7C";
 
 			private var mapGoogleURL:String = "http://maps.google.com/maps?q=";
 
@@ -31,7 +31,12 @@
 				voShows = VoShows(value);
 			}
 
-			protected function vgroup_creationCompleteHandler(event:FlexEvent):void
+			protected function idBitmapImage_clickHandler(event:MouseEvent):void
+			{
+				navigateToURL(new URLRequest(mapGoogleURL + voShows.latitude.toString() + "," + voShows.length.toString()));
+			}
+
+			protected function idScroller_creationCompleteHandler(event:FlexEvent):void
 			{
 				titleShowsLabel.text = voShows.title;
 				datePublishedLabel.text = "Fecha de publicación: " + voShows.datePublished;
@@ -40,6 +45,12 @@
 				dateShowLabel.text = "Fecha y hora: " + voShows.dateShow + " " + voShows.hourShow + "h";
 				bandsWithLabel.text = "Bandas invitadas: " + voShows.bandsWith;
 				googleMapImage.source = mapGoogleStaticImageURL + voShows.latitude.toString() + "," + voShows.length.toString() + mapGoogleStaticImageParams + voShows.latitude.toString() + "," + voShows.length.toString() + "&sensor=true";
+
+				idShowsPhoto.width = this.screen.width * 0.75;
+				idShowsPhoto.height = (idShowsPhoto.width / idShowsPhoto.imageDisplay.source.width) * idShowsPhoto.imageDisplay.source.height;
+
+				googleMapImage.width = this.screen.width * 0.75;
+				googleMapImage.height = googleMapImage.width;
 			}
 
 			protected function idShowsPhoto_creationCompleteHandler(event:FlexEvent):void
@@ -53,11 +64,6 @@
 					idShowsPhoto.source = voShows.photoURL;
 				}
 			}
-
-			protected function idBitmapImage_clickHandler(event:MouseEvent):void
-			{
-				navigateToURL(new URLRequest(mapGoogleURL + voShows.latitude.toString() + "," + voShows.length.toString()));
-			}
 		]]>
 	</fx:Script>
 	<s:BitmapImage source="{AssetsLibrary.generalBackground}"
@@ -67,28 +73,24 @@
 				   width="100%"
 				   height="100%"/>
 	<s:Scroller width="100%"
+				creationComplete="idScroller_creationCompleteHandler(event)"
 				id="idScroller"
 				height="100%">
 		<s:VGroup horizontalAlign="center"
 				  width="100%"
-				  creationComplete="vgroup_creationCompleteHandler(event)"
 				  gap="0"
 				  paddingTop="20"
 				  paddingLeft="20"
 				  paddingRight="20"
 				  paddingBottom="20">
 			<s:Label id="titleShowsLabel"
-					 styleName="customStyleSpark"
-					 textAlign="center"
-					 width="100%"
-					 fontSize="28"/>
+					 styleName="titleStyleEmbed"
+					 width="100%"/>
 			<s:Spacer height="10"/>
 			<s:Group>
-				<s:Rect top="0"
-						alpha="0.3"
-						bottom="0"
-						left="0"
-						right="0">
+				<s:Rect alpha="0.3"
+						width="{idShowsPhoto.width + 20}"
+						height="{idShowsPhoto.height + 20}">
 					<s:stroke>
 						<s:SolidColorStroke color="#000000"
 											alpha="0.3"/>
@@ -98,82 +100,89 @@
 					</s:fill>
 				</s:Rect>
 				<s:Image id="idShowsPhoto"
-						 top="10"
-						 left="10"
-						 right="10"
-						 bottom="10"
 						 cacheAsBitmap="true"
+						 scaleMode="letterbox"
 						 creationComplete="idShowsPhoto_creationCompleteHandler(event)"
 						 horizontalCenter="0"
-						 scaleMode="zoom"
-						 scaleX="0.6"
-						 scaleY="0.6"/>
+						 verticalCenter="0"/>
 			</s:Group>
 			<s:Spacer height="5"/>
 			<s:Label id="datePublishedLabel"
-					 textAlign="center"
-					 styleName="customStyleSpark"
-					 width="100%"
-					 fontSize="16"/>
+					 styleName="publishDateStyleEmbed"
+					 width="100%"/>
 			<s:Spacer height="20"/>
 			<s:Label id="bodyLabel"
-					 styleName="customStyleSpark"
-					 textAlign="justify"
-					 width="100%"
-					 fontSize="20"/>
+					 styleName="descriptionStyleEmbed"
+					 width="100%"/>
 			<s:Spacer height="20"/>
 			<s:VGroup gap="5"
 					  width="100%">
-				<s:Label fontSize="20"
-						 id="dataShowsLabel"
+				<s:Label id="dataShowsLabel"
 						 width="100%"
-						 styleName="customStyleSpark"
+						 styleName="descriptionStyleEmbed"
 						 textDecoration="underline"
 						 text="Información del concierto:"/>
 				<s:Spacer height="5"/>
-				<s:HGroup>
-					<s:Image width="22"
+				<s:HGroup verticalAlign="middle">
+					<s:Image cacheAsBitmap="true"
 							 smooth="true"
-							 cacheAsBitmap="true"
-							 height="22"
-							 source="{AssetsLibrary.place}"/>
-					<s:Label fontSize="20"
-							 id="placeLabel"
+							 smoothingQuality="high"
+							 styleName="showRendererIcon">
+						<s:source>
+							<s:MultiDPIBitmapSource source160dpi="assets/icons/shows/dpi_160/place.png"
+													source240dpi="assets/icons/shows/dpi_240/place.png"
+													source320dpi="assets/icons/shows/dpi_320/place.png"/>
+						</s:source>
+					</s:Image>
+					<s:Label id="placeLabel"
+							 maxDisplayedLines="5"
 							 width="100%"
-							 styleName="customStyleSpark"/>
+							 textAlign="left"
+							 styleName="descriptionStyleEmbed"/>
 				</s:HGroup>
-				<s:HGroup>
-					<s:Image width="22"
+				<s:HGroup verticalAlign="middle">
+					<s:Image cacheAsBitmap="true"
 							 smooth="true"
-							 cacheAsBitmap="true"
-							 height="22"
-							 source="{AssetsLibrary.clock}"/>
-					<s:Label fontSize="20"
-							 width="100%"
+							 smoothingQuality="high"
+							 styleName="showRendererIcon">
+						<s:source>
+							<s:MultiDPIBitmapSource source160dpi="assets/icons/shows/dpi_160/clock.png"
+													source240dpi="assets/icons/shows/dpi_240/clock.png"
+													source320dpi="assets/icons/shows/dpi_320/clock.png"/>
+						</s:source>
+					</s:Image>
+					<s:Label width="100%"
+							 maxDisplayedLines="5"
 							 id="dateShowLabel"
-							 styleName="customStyleSpark"/>
+							 textAlign="left"
+							 styleName="descriptionStyleEmbed"/>
 				</s:HGroup>
-				<s:HGroup>
-					<s:Image width="22"
+				<s:HGroup verticalAlign="middle">
+					<s:Image cacheAsBitmap="true"
+							 smoothingQuality="high"
 							 smooth="true"
-							 cacheAsBitmap="true"
-							 height="22"
-							 source="{AssetsLibrary.bands}"/>
-					<s:Label fontSize="20"
-							 width="100%"
+							 styleName="showRendererIcon">
+						<s:source>
+							<s:MultiDPIBitmapSource source160dpi="assets/icons/shows/dpi_160/bands.png"
+													source240dpi="assets/icons/shows/dpi_240/bands.png"
+													source320dpi="assets/icons/shows/dpi_320/bands.png"/>
+						</s:source>
+					</s:Image>
+					<s:Label width="100%"
+							 maxDisplayedLines="5"
 							 id="bandsWithLabel"
-							 styleName="customStyleSpark"/>
+							 textAlign="left"
+							 styleName="descriptionStyleEmbed"/>
 				</s:HGroup>
 			</s:VGroup>
-			<s:Spacer height="20"/>
+			<s:Spacer height="50"/>
 			<s:VGroup gap="5"
 					  horizontalAlign="center"
 					  width="100%">
-				<s:Label fontSize="20"
-						 width="100%"
+				<s:Label width="100%"
 						 textDecoration="underline"
 						 textAlign="center"
-						 styleName="customStyleSpark"
+						 styleName="descriptionStyleEmbed"
 						 text="Mapa del lugar:"/>
 				<s:Group>
 					<s:Rect top="0"
@@ -199,19 +208,11 @@
 							 verticalCenter="0"
 							 horizontalCenter="0"/>
 				</s:Group>
-				<s:Label fontSize="14"
-						 width="100%"
+				<s:Label width="100%"
 						 textAlign="center"
-						 styleName="customStyleSpark"
+						 styleName="publishDateStyleEmbed"
 						 text="Pulsa en el mapa para acceder a Google Maps"/>
 			</s:VGroup>
 		</s:VGroup>
 	</s:Scroller>
-	<!--<details:StageWebViewUIComponent id="idStageWebViewUIComponent"
-									 xOffset="-1000"
-									 addedToStage="addedToStageHandler(event)"
-									 yOffset="2300"
-									 text="{mapGoogle}"
-									 mapHeight="300"
-									 mapWidth="300"/>-->
 </s:View>

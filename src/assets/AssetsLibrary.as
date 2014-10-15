@@ -4,10 +4,6 @@ package assets
 	public class AssetsLibrary
 	{
 		[Bindable]
-		[Embed("assets/icons/next.png")]
-		public static var nextIcon:Class;
-
-		[Bindable]
 		[Embed("assets/backgrounds/generalBackground.png")]
 		public static var generalBackground:Class;
 
@@ -30,18 +26,6 @@ package assets
 		[Bindable]
 		[Embed("assets/backgrounds/renderers/separator.png")]
 		public static var separator:Class;
-
-		[Bindable]
-		[Embed("assets/icons/shows/bands.png")]
-		public static var bands:Class;
-
-		[Bindable]
-		[Embed("assets/icons/shows/clock.png")]
-		public static var clock:Class;
-
-		[Bindable]
-		[Embed("assets/icons/shows/place.png")]
-		public static var place:Class;
 
 		[Bindable]
 		[Embed("assets/bio/Denyse_normal.png")]

@@ -19,12 +19,16 @@
 
 			import mx.events.FlexEvent;
 
+			import spark.components.Application;
 			import spark.components.IconItemRenderer;
 			import spark.core.ContentCache;
 
 			import vo.VoShows;
 
 			private var photo:String;
+
+			private static var photoWidth:Number = 0;
+			private static var photoHeight:Number = 0;
 
 			//Métodos relacionados con el override de set data y otros propios
 			override public function set data(value:Object):void
@@ -40,6 +44,12 @@
 				dateShowLabel.text = "Fecha y hora: " + voShows.dateShow + " " + voShows.hourShow + "h";
 				photo = voShows.photoURL;
 				checkCache();
+
+				if (ShowsItemRenderer.photoWidth != 0 && ShowsItemRenderer.photoHeight != 0)
+				{
+					idPhotoLink.width = ShowsItemRenderer.photoWidth;
+					idPhotoLink.height = ShowsItemRenderer.photoHeight;
+				}
 			}
 
 			//Caché de imágenes
@@ -74,6 +84,14 @@
 					data.cache = bitmapData;
 				}
 			}
+
+			protected function idPhotoLink_completeHandler(event:Event):void
+			{
+				idPhotoLink.width = this.screen.width * 0.75;
+				idPhotoLink.height = (idPhotoLink.width / idPhotoLink.imageDisplay.sourceWidth) * idPhotoLink.imageDisplay.sourceHeight;
+				ShowsItemRenderer.photoWidth = idPhotoLink.width;
+				ShowsItemRenderer.photoHeight = idPhotoLink.height;
+			}
 		]]>
 	</fx:Script>
 
@@ -95,11 +113,9 @@
 				  verticalAlign="middle"
 				  width="100%">
 			<s:Group>
-				<s:Rect top="0"
-						alpha="0.3"
-						bottom="0"
-						left="0"
-						right="0">
+				<s:Rect alpha="0.3"
+						width="{idPhotoLink.width + 20}"
+						height="{idPhotoLink.height + 20}">
 					<s:stroke>
 						<s:SolidColorStroke color="#000000"
 											alpha="0.3"/>
@@ -109,64 +125,79 @@
 					</s:fill>
 				</s:Rect>
 				<s:Image id="idPhotoLink"
-						 top="10"
-						 left="10"
-						 right="10"
-						 bottom="10"
-						 scaleMode="zoom"
+						 complete="idPhotoLink_completeHandler(event)"
+						 scaleMode="letterbox"
 						 cacheAsBitmap="true"
-						 scaleX="0.4"
-						 scaleY="0.4"/>
+						 horizontalCenter="0"
+						 verticalCenter="0"/>
 			</s:Group>
 			<s:Spacer height="10"/>
 			<s:VGroup gap="5"
 					  paddingLeft="30"
 					  horizontalAlign="left"
 					  width="100%">
-				<s:HGroup>
-					<s:Image width="22"
-							 cacheAsBitmap="true"
-							 height="22"
+				<s:HGroup verticalAlign="middle"
+						  width="100%">
+					<s:Image cacheAsBitmap="true"
 							 smooth="true"
-							 source="{AssetsLibrary.place}"/>
-					<s:Label fontSize="22"
-							 width="100%"
+							 smoothingQuality="high"
+							 styleName="showRendererIcon">
+						<s:source>
+							<s:MultiDPIBitmapSource source160dpi="assets/icons/shows/dpi_160/place.png"
+													source240dpi="assets/icons/shows/dpi_240/place.png"
+													source320dpi="assets/icons/shows/dpi_320/place.png"/>
+						</s:source>
+					</s:Image>
+					<s:Label width="100%"
 							 id="placeLabel"
+							 textAlign="left"
 							 maxDisplayedLines="5"
-							 styleName="customStyleSpark"/>
+							 styleName="descriptionStyleEmbed"/>
 				</s:HGroup>
-				<s:HGroup>
-					<s:Image width="22"
-							 cacheAsBitmap="true"
-							 height="22"
+				<s:HGroup verticalAlign="middle"
+						  width="100%">
+					<s:Image cacheAsBitmap="true"
 							 smooth="true"
-							 source="{AssetsLibrary.clock}"/>
-					<s:Label fontSize="22"
-							 width="100%"
+							 smoothingQuality="high"
+							 styleName="showRendererIcon">
+						<s:source>
+							<s:MultiDPIBitmapSource source160dpi="assets/icons/shows/dpi_160/clock.png"
+													source240dpi="assets/icons/shows/dpi_240/clock.png"
+													source320dpi="assets/icons/shows/dpi_320/clock.png"/>
+						</s:source>
+					</s:Image>
+					<s:Label width="100%"
+							 textAlign="left"
 							 id="dateShowLabel"
 							 maxDisplayedLines="5"
-							 styleName="customStyleSpark"/>
+							 styleName="descriptionStyleEmbed"/>
 				</s:HGroup>
-				<s:HGroup width="100%">
-					<s:Image width="22"
-							 cacheAsBitmap="true"
-							 height="22"
+				<s:HGroup width="100%"
+						  verticalAlign="middle">
+					<s:Image cacheAsBitmap="true"
+							 smoothingQuality="high"
 							 smooth="true"
-							 source="{AssetsLibrary.bands}"/>
-					<s:Label fontSize="22"
-							 width="100%"
+							 styleName="showRendererIcon">
+						<s:source>
+							<s:MultiDPIBitmapSource source160dpi="assets/icons/shows/dpi_160/bands.png"
+													source240dpi="assets/icons/shows/dpi_240/bands.png"
+													source320dpi="assets/icons/shows/dpi_320/bands.png"/>
+						</s:source>
+					</s:Image>
+					<s:Label width="100%"
+							 textAlign="left"
 							 id="bandsWithLabel"
 							 maxDisplayedLines="5"
-							 styleName="customStyleSpark"/>
+							 styleName="descriptionStyleEmbed"/>
 				</s:HGroup>
 			</s:VGroup>
 		</s:VGroup>
-		<s:Image source="{AssetsLibrary.nextIcon}"
+		<!--<s:Image source="{AssetsLibrary.nextIcon}"
 				 top="250"
 				 right="5"
 				 smoothingQuality="high"
 				 buttonMode="true"
-				 height="25"
-				 width="25"/>
+				 height="50"
+				 width="50"/>-->
 	</s:Group>
 </s:View>
