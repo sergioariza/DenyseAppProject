@@ -27,8 +27,8 @@
 
 			private var photo:String;
 
-			private static var photoWidth:Number = 0;
-			private static var photoHeight:Number = 0;
+			private var photoWidth:Number = 0;
+			private var photoHeight:Number = 0;
 
 			//Métodos relacionados con el override de set data y otros propios
 			override public function set data(value:Object):void
@@ -45,10 +45,10 @@
 				photo = voShows.photoURL;
 				checkCache();
 
-				if (ShowsItemRenderer.photoWidth != 0 && ShowsItemRenderer.photoHeight != 0)
+				if (photoWidth != 0 && photoHeight != 0)
 				{
-					idPhotoLink.width = ShowsItemRenderer.photoWidth;
-					idPhotoLink.height = ShowsItemRenderer.photoHeight;
+					idPhotoLink.width = photoWidth;
+					idPhotoLink.height = photoHeight;
 				}
 			}
 
@@ -88,9 +88,9 @@
 			protected function idPhotoLink_completeHandler(event:Event):void
 			{
 				idPhotoLink.width = this.screen.width * 0.75;
-				idPhotoLink.height = (idPhotoLink.width / idPhotoLink.imageDisplay.sourceWidth) * idPhotoLink.imageDisplay.sourceHeight;
-				ShowsItemRenderer.photoWidth = idPhotoLink.width;
-				ShowsItemRenderer.photoHeight = idPhotoLink.height;
+				idPhotoLink.height = (idPhotoLink.width / idPhotoLink.sourceWidth) * idPhotoLink.sourceHeight;
+				photoWidth = idPhotoLink.width;
+				photoHeight = idPhotoLink.height;
 			}
 		]]>
 	</fx:Script>
@@ -110,6 +110,7 @@
 				  paddingTop="10"
 				  paddingBottom="10"
 				  paddingLeft="10"
+				  paddingRight="10"
 				  verticalAlign="middle"
 				  width="100%">
 			<s:Group>
@@ -125,9 +126,9 @@
 					</s:fill>
 				</s:Rect>
 				<s:Image id="idPhotoLink"
+						 cacheAsBitmap="true"
 						 complete="idPhotoLink_completeHandler(event)"
 						 scaleMode="letterbox"
-						 cacheAsBitmap="true"
 						 horizontalCenter="0"
 						 verticalCenter="0"/>
 			</s:Group>
@@ -138,10 +139,9 @@
 					  width="100%">
 				<s:HGroup verticalAlign="middle"
 						  width="100%">
-					<s:Image cacheAsBitmap="true"
-							 smooth="true"
-							 smoothingQuality="high"
-							 styleName="showRendererIcon">
+					<s:Image smooth="true"
+							 cacheAsBitmap="true"
+							 smoothingQuality="high">
 						<s:source>
 							<s:MultiDPIBitmapSource source160dpi="assets/icons/shows/dpi_160/place.png"
 													source240dpi="assets/icons/shows/dpi_240/place.png"
@@ -156,10 +156,9 @@
 				</s:HGroup>
 				<s:HGroup verticalAlign="middle"
 						  width="100%">
-					<s:Image cacheAsBitmap="true"
-							 smooth="true"
-							 smoothingQuality="high"
-							 styleName="showRendererIcon">
+					<s:Image smooth="true"
+							 cacheAsBitmap="true"
+							 smoothingQuality="high">
 						<s:source>
 							<s:MultiDPIBitmapSource source160dpi="assets/icons/shows/dpi_160/clock.png"
 													source240dpi="assets/icons/shows/dpi_240/clock.png"
@@ -174,10 +173,9 @@
 				</s:HGroup>
 				<s:HGroup width="100%"
 						  verticalAlign="middle">
-					<s:Image cacheAsBitmap="true"
-							 smoothingQuality="high"
-							 smooth="true"
-							 styleName="showRendererIcon">
+					<s:Image smoothingQuality="high"
+							 cacheAsBitmap="true"
+							 smooth="true">
 						<s:source>
 							<s:MultiDPIBitmapSource source160dpi="assets/icons/shows/dpi_160/bands.png"
 													source240dpi="assets/icons/shows/dpi_240/bands.png"

@@ -111,6 +111,12 @@
 			{
 				navigateToURL(new URLRequest(voVideos.youtubeURL));
 			}
+
+			protected function idVideoCover_completeHandler(event:Event):void
+			{
+				idVideoCover.width = this.screen.width * 0.25;
+				idVideoCover.height = (idVideoCover.width / idVideoCover.sourceWidth) * idVideoCover.sourceHeight;
+			}
 		]]>
 	</fx:Script>
 
@@ -125,18 +131,17 @@
 			</s:stroke>
 		</s:Rect>
 		<s:HGroup width="100%"
-				  paddingBottom="20"
-				  paddingTop="20"
+				  gap="5"
+				  paddingBottom="10"
+				  paddingTop="10"
 				  height="100%"
-				  paddingLeft="20"
-				  paddingRight="20"
+				  paddingLeft="10"
+				  paddingRight="10"
 				  verticalAlign="middle">
-			<s:Group width="50%">
-				<s:Rect top="0"
-						alpha="0.3"
-						bottom="0"
-						left="0"
-						right="0">
+			<s:Group>
+				<s:Rect alpha="0.3"
+						width="{idVideoCover.width + 20}"
+						height="{idVideoCover.height + 20}">
 					<s:stroke>
 						<s:SolidColorStroke color="#000000"
 											alpha="0.3"/>
@@ -145,17 +150,17 @@
 						<s:SolidColor color="0x000000"/>
 					</s:fill>
 				</s:Rect>
-				<s:BitmapImage id="idVideoCover"
-							   width="100%"
-							   top="10"
-							   left="10"
-							   right="10"
-							   bottom="10"
-							   verticalCenter="0"
-							   horizontalCenter="0"/>
+				<s:Image id="idVideoCover"
+						 cacheAsBitmap="true"
+						 scaleMode="letterbox"
+						 smooth="true"
+						 smoothingQuality="high"
+						 horizontalCenter="0"
+						 verticalCenter="0"
+						 complete="idVideoCover_completeHandler(event)"/>
 			</s:Group>
-			<s:Spacer width="50"/>
-			<s:VGroup width="50%"
+			<s:Spacer width="10"/>
+			<s:VGroup width="100%"
 					  height="100%"
 					  verticalAlign="middle">
 				<s:Label id="videoTitle"
