@@ -52,7 +52,7 @@ s|TabbedViewNavigator
 	
 	.titleStyleEmbed {
 		fontFamily: travelingTypewriterEmbed;
-		fontSize: 18;
+		fontSize: 16;
 		textAlign: center;
 		borderSkin: null;
 		focusAlpha: 0;
@@ -65,7 +65,7 @@ s|TabbedViewNavigator
 	.descriptionStyleEmbed {
 		fontFamily: travelingTypewriterEmbed;
 		color: black;
-		fontSize: 16;
+		fontSize: 14;
 		textAlign: justify;
 		borderSkin: null;
 		focusAlpha: 0;
@@ -77,7 +77,7 @@ s|TabbedViewNavigator
 	
 	.publishDateStyleEmbed {
 		fontFamily: travelingTypewriterEmbed;
-		fontSize: 14;
+		fontSize: 12;
 		color: black;
 		textAlign: center;
 		borderSkin: null;

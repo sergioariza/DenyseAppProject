@@ -12,8 +12,8 @@
 
 			protected function creationCompleteHandler(event:FlexEvent):void
 			{
-				imgAlexButton.width = 600;
-				imgAlexButton.height = 710;
+				imgAlexButton.percentWidth = 100;
+				imgAlexButton.percentHeight = 100;
 			}
 		]]>
 	</fx:Script>

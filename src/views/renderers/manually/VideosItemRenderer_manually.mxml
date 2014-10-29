@@ -13,23 +13,19 @@
 	<fx:Script>
 		<![CDATA[
 			import assets.AssetsLibrary;
-
 			import flash.utils.setTimeout;
-
 			import model.NewsModel;
 			import model.VideosModel;
-
 			import mx.events.FlexEvent;
-
 			import spark.components.Application;
 			import spark.components.IconItemRenderer;
 			import spark.core.ContentCache;
-
 			import vo.VoVideos;
 
 			private var voVideos:VoVideos = new VoVideos();
-
 			private var photo:String;
+			public static var photoWidth:Number = 0;
+			public static var photoHeight:Number = 0;
 
 			//Métodos relacionados con el override de set data y otros propios
 			override public function set data(value:Object):void
@@ -43,6 +39,12 @@
 				videoTitle.text = "Título: " + voVideos.videoTitle;
 				checkCache();
 				fillInfo();
+
+				if (photoWidth != 0 && photoHeight != 0)
+				{
+					idVideoCover.width = photoWidth;
+					idVideoCover.height = photoHeight;
+				}
 			}
 
 			//Caché de imágenes
@@ -116,6 +118,8 @@
 			{
 				idVideoCover.width = this.screen.width * 0.25;
 				idVideoCover.height = (idVideoCover.width / idVideoCover.sourceWidth) * idVideoCover.sourceHeight;
+				photoWidth = idVideoCover.width;
+				photoHeight = idVideoCover.height;
 			}
 		]]>
 	</fx:Script>
@@ -164,13 +168,16 @@
 					  height="100%"
 					  verticalAlign="middle">
 				<s:Label id="videoTitle"
+						 textAlign="left"
 						 width="100%"
 						 maxDisplayedLines="2"
 						 styleName="descriptionStyleEmbed"/>
 				<s:Label maxDisplayedLines="1"
+						 textAlign="left"
 						 id="videoCount"
 						 styleName="descriptionStyleEmbed"/>
 				<s:Label maxDisplayedLines="1"
+						 textAlign="left"
 						 id="videoDate"
 						 styleName="descriptionStyleEmbed"/>
 			</s:VGroup>

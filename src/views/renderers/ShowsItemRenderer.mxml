@@ -11,24 +11,18 @@
 	<fx:Script>
 		<![CDATA[
 			import assets.AssetsLibrary;
-
 			import flash.utils.setTimeout;
-
 			import model.NewsModel;
 			import model.ShowsModel;
-
 			import mx.events.FlexEvent;
-
 			import spark.components.Application;
 			import spark.components.IconItemRenderer;
 			import spark.core.ContentCache;
-
 			import vo.VoShows;
 
 			private var photo:String;
-
-			private var photoWidth:Number = 0;
-			private var photoHeight:Number = 0;
+			public static var photoWidth:Number = 0;
+			public static var photoHeight:Number = 0;
 
 			//Métodos relacionados con el override de set data y otros propios
 			override public function set data(value:Object):void
