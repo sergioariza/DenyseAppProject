@@ -5,6 +5,19 @@
 	<fx:Script>
 		<![CDATA[
 			import assets.AssetsLibrary;
+
+			import mx.events.FlexEvent;
+
+			protected function idPhoto_completeHandler(event:Event):void
+			{
+				idPhoto.width = this.screen.width * 0.75;
+				idPhoto.height = (idPhoto.width / idPhoto.imageDisplay.sourceWidth) * idPhoto.imageDisplay.sourceHeight;
+			}
+
+			protected function bodyLabel_creationCompleteHandler(event:FlexEvent):void
+			{
+				bodyLabel.text = "Denyse Sánchez (nací como David Sánchez Heredia el 1 de Marzo de 1987 en Marbella, Málaga). Cantante y compositor desde 2004. " + "\n\nFue en la navidad del año 91 con sólo 4 años cuando vi en televisión un videoclip de Michael Jackson y a partir de ahí tuve muy claro que me quería dedicar al mundo de la música y el espectáculo. Toda la vida estuve rodeado de montañas de discos que ahora son mi salvación." + "\n\nCon 9 años descubrí a mi grupo favorito \"Obús\" y a día de hoy lo sigue siendo." + "\n\nHe pasado por muchas bandas la primera fue \"Hielo Líquido\" (2003-2004) seguidas de \"Wicked Rose\" (2004-2009) y \"Carmine\" (2009-2011). Todas siempre en el estilo HardRock y GlamRock." + "\n\nCon \"Wicked Rose\" aprendí lo que es una banda, tareas de cada uno convivencia, ensayos y lo más importante para mí, creé mi forma de actuar  y cantar sobre un escenario, aparte de mis primeras composiciones." + "\n\nDe esta banda cabe destacar la actuación en el famoso programa de televisión \"Tú sí que vales\" en el año 2008, donde llegamos a la semifinal del concurso con gran ovación por parte del público y el jurado, la banda al poco tiempo se separa y empecé a rodar con \"Carmine\"." + "\n\nCon \"Carmine\" ganamos varios concursos:" + "\n\n- 1º Festival Torresol (Rincón de la Victoria, Málaga) donde ganamos el primer puesto entre 6 bandas." + "\n\n-	2º Premio en Sala TAF (Madrid) entre más de 150 bandas." + "\n\n- 2º Clasificado en \"Battle of the bands 2011\" celebrado en \"HardRock Café\" (Marbella)." + "\n\n- 1º Premio \"Creaty Films\"." + "\n\nY fuimos teloneros de varios artistas del ámbito nacional (\"PigNoise\", \"Despistaos\", \"Taxi\", \"Mägo De Oz\" y \"No Way Out\")." + "\n\nEl grupo tiene mucha aceptación por parte del público en cada concierto, teniendo así bastantes seguidores. Grabé 2 Discos (CARMINE en 2010 e HISTÉRICOS en 2011) que nosotros mismos auto-producimos y vendíamos en cada concierto, así como merchandising de todo tipo. Hicimos 3 videoclips para la promoción de los álbumes (Todo un impacto para un grupo local). El disco \"Histéricos\" fue disco de la semana en mycd.com, al poco tiempo de editarse." + "\n\nCabe destacar algunas actuaciones \"fuera de lo normal\" para una banda que empieza como: actuación en Plaza De Toros De Marbella, Sala TAF (Madrid), Carpa municipal de San Pedro (Málaga) Festival Ojeando 2011, etc." + "\n\nAl poco tiempo de editar nuestro segundo álbum auto-producido, decido abandonar la banda por diferencias con el manager." + "\n\nMientras que ensayo con una banda, ya en solitario, me dedico a hacer un proyecto para satisfacer ciertas necesidades musicales. Decidí montar un acústico de versiones de los 80's bajo mi nombre, de esta manera seguía en activo mientras ensayaba con mi nueva banda." + "\n\nEn noviembre de 2011 para mi sorpresa, cumplo uno de mis sueños hecho realidad. Fortu Sánchez (mi ídolo y cantante de \"Obús\") me invita a cantar con Obús en la grabación de su DVD y CD \"30 aniversario\" en la sala La Riviera (Madrid) ante más de 3.000 personas, con invitados de lujo, entre ellos, Fito, Carlos Tarque, etc." + "\n\nEn diciembre de 2011 nace mi banda \"Denyse y los Histéricos\". Realmente es la continuación de mi anterior proyecto pero con nuevos músicos y temas tanto anteriores como nuevos." + "\n\nEn abril de 2012 se edita nuestro primer E.P. de presentación con 6 Temas con gran aceptación por parte del público y medios especializados, apareciendo en multitud de páginas, blogs y radios tanto locales con programas especializados, como a nivel nacional en Radio 3 en el programa \"El Vuelo Del Fénix\"." + "\n\nEmprendemos una gira en 2012 para promocionar el E.P. de 22 actuaciones incluyendo festivales, salas, garitos, de esta manera obteniendo el premio a grupo revelación en \"Imagina Málaga 2012\", 3º premio en \"Concurso Bolacu\", cabeza de cartel en \"Ojeando Festival\", actuaciones con gran afluencia de público en grandes escenarios como en la plaza de toros de Estepona y teloneros de la mítica banda de rock \"Asfalto\"." + "\n\nA finales de octubre de 2012 entro a formar parte de la banda \"El Alma\" llevando a la vez 3 proyectos simultáneamente: grupo de versiones en acústico, \"Denyse y los Histéricos\" y \"El Alma\"." + "\n\nEn el año 2013 entramos en gira junto a varias bandas como \"Gaelbah\", \"Sexaine\", \"Cenizas del Edén\" dentro de la gira \"HardRock South Tour\" y en junio del mismo año somos teloneros de mi banda favorita \"Obús\". Un mes después volvemos a pasar por el \"Ojeando Festival\" por 3 años consecutivo siendo este de nuevo un gran éxito para la banda." + "\n\nEn julio tras realizar el último concierto en \"Ojeando Festival\" decido tomarme un descanso y aparcar la música para dedicarme a otras cosas personales, con lo cual la banda que tenía en ese momento desaparece para realizar sus propios proyectos." + "\n\nEn abril de 2014 vuelvo a retomar mi actividad con mi banda pero con otros componentes en ella, grabamos nuestro último EP titulado \"RetroRock\".";
+			}
 		]]>
 	</fx:Script>
 	<s:BitmapImage source="{AssetsLibrary.generalBackground}"
@@ -23,18 +36,15 @@
 				  paddingLeft="20"
 				  paddingRight="20"
 				  paddingBottom="20">
-			<s:Label styleName="customStyleSpark"
+			<s:Label styleName="titleStyleEmbed"
 					 textAlign="center"
 					 width="100%"
-					 text="Denyse Sánchez"
-					 fontSize="28"/>
+					 text="Denyse Sánchez"/>
 			<s:Spacer height="10"/>
 			<s:Group>
-				<s:Rect top="0"
-						alpha="0.3"
-						bottom="0"
-						left="0"
-						right="0">
+				<s:Rect alpha="0.3"
+						width="{idPhoto.width + 20}"
+						height="{idPhoto.height + 20}">
 					<s:stroke>
 						<s:SolidColorStroke color="#000000"
 											alpha="0.3"/>
@@ -43,16 +53,22 @@
 						<s:SolidColor color="0x000000"/>
 					</s:fill>
 				</s:Rect>
-				<s:BitmapImage smooth="true"
-							   top="10"
-							   left="10"
-							   right="10"
-							   bottom="10"
-							   scaleX="0.4"
-							   scaleY="0.4"
-							   smoothingQuality="high"
-							   source="@Embed('assets/bio/Denyse_normal.png')"/>
+				<s:Image smooth="true"
+						 id="idPhoto"
+						 cacheAsBitmap="true"
+						 creationComplete="idPhoto_completeHandler(event)"
+						 scaleMode="letterbox"
+						 smoothingQuality="high"
+						 horizontalCenter="0"
+						 verticalCenter="0"
+						 source="@Embed('assets/bio/Denyse_normal.png')"/>
 			</s:Group>
+			<s:Spacer height="20"/>
+			<s:Label id="bodyLabel"
+					 textAlign="left"
+					 creationComplete="bodyLabel_creationCompleteHandler(event)"
+					 styleName="descriptionStyleEmbed"
+					 width="100%"/>
 		</s:VGroup>
 	</s:Scroller>
 </s:View>
