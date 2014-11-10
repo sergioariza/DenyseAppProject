@@ -40,8 +40,8 @@
   <buildCSSFiles/>
   <flashCatalyst validateFlashCatalystCompatibility="false"/>
   <buildTargets>
-    <buildTarget buildTargetName="com.adobe.flexide.multiplatform.ios.platform" iosSettingsVersion="1" provisioningFile="C:/Users/The_Edge/Adobe Flash Builder 4.6/Fake Certificate (Apple)/Fake.mobileprovision" releasePackageType="ipa-ad-hoc">
-      <airSettings airCertificatePath="C:/Users/The_Edge/Adobe Flash Builder 4.6/Fake Certificate (Apple)/FakeCert.p12" airTimestamp="true" anePathSet="true" version="1">
+    <buildTarget buildTargetName="com.adobe.flexide.multiplatform.ios.platform" iosSettingsVersion="1" provisioningFile="C:/Users/The_Edge/git/DenyseAppProject/bin-release/Fake.mobileprovision" releasePackageType="ipa-ad-hoc">
+      <airSettings airCertificatePath="C:/Users/The_Edge/git/DenyseAppProject/bin-release/FakeCert.p12" airTimestamp="true" anePathSet="true" version="1">
         <airExcludes/>
         <anePaths/>
       </airSettings>

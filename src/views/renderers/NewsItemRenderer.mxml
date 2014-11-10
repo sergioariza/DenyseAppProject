@@ -63,6 +63,8 @@
 
 				var marginTopBottom:Number = iconHeight * 0.15;
 				measuredHeight = iconHeight + (marginTopBottom * 2);
+				measuredWidth = this.screen.width;
+				measuredMinWidth = this.screen.width;
 			}
 
 			private function formatMessageFieldText(numLinesParam:int = 3):void
