@@ -8,6 +8,7 @@
 		<s:HTTPService id="service"
 					   url="https://enigmatic-beyond-4135.herokuapp.com/services/time/"
 					   result="service_resultHandler(event)"
+					   fault="service_faultHandler(event)"
 					   resultFormat="xml"/>
 	</fx:Declarations>
 	<fx:Script>
@@ -21,6 +22,7 @@
 			import mx.core.FlexGlobals;
 			import mx.core.IVisualElement;
 			import mx.events.FlexEvent;
+			import mx.rpc.events.FaultEvent;
 			import mx.rpc.events.ResultEvent;
 
 			import spark.components.Application;
@@ -140,6 +142,11 @@
 				var resultString:String = String(event.result);
 				resultString = resultString.split("&quot;").join('"');
 				trace("Exito!!! Resultado: " + resultString);
+			}
+
+			protected function service_faultHandler(event:FaultEvent):void
+			{
+				trace("Fracaso!!!");
 			}
 		]]>
 	</fx:Script>
