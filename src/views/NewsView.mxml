@@ -4,6 +4,12 @@
 		initialize="initNews(event)"
 		xmlns:s="library://ns.adobe.com/flex/spark"
 		title="{LocalizationModel.newsLabel}">
+	<fx:Declarations>
+		<s:HTTPService id="service"
+					   url="https://enigmatic-beyond-4135.herokuapp.com/services/time/"
+					   result="service_resultHandler(event)"
+					   resultFormat="xml"/>
+	</fx:Declarations>
 	<fx:Script>
 		<![CDATA[
 			import assets.AssetsLibrary;
@@ -15,6 +21,7 @@
 			import mx.core.FlexGlobals;
 			import mx.core.IVisualElement;
 			import mx.events.FlexEvent;
+			import mx.rpc.events.ResultEvent;
 
 			import spark.components.Application;
 			import spark.layouts.VerticalLayout;
@@ -25,6 +32,7 @@
 			import vo.VoNews;
 
 			private var pressed:Boolean = false;
+			private var callingService:Boolean = false;
 			private var startPointPosition:Number = 0;
 
 			/* private static var instance:NewsView;
@@ -41,15 +49,20 @@
 
 			private function initNews(event:FlexEvent):void
 			{
+				var file:File = File.applicationDirectory.resolvePath("assets/xml/news.xml");
+				var stream:FileStream = new FileStream();
+				var xml:XML;
+				stream.open(file, FileMode.READ);
+				xml = XML(stream.readUTFBytes(stream.bytesAvailable));
+				stream.close();
+				loadModel(xml);
+			}
+
+			private function loadModel(xml:XML):void
+			{
 				if ((NewsModel.arrNewsItems) && (NewsModel.arrNewsItems.length == 0))
 				{
-					var file:File = File.applicationDirectory.resolvePath("assets/xml/news.xml");
-					var stream:FileStream = new FileStream();
-					var xml:XML;
 					NewsModel.arrNewsItems = new ArrayCollection();
-					stream.open(file, FileMode.READ);
-					xml = XML(stream.readUTFBytes(stream.bytesAvailable));
-					stream.close();
 
 					for each (var newsItem:XML in xml.news)
 					{
@@ -75,6 +88,9 @@
 			protected function idList_mouseUpHandler(event:MouseEvent):void
 			{
 				pressed = false;
+
+				if (callingService)
+					callingService = false;
 			}
 
 			protected function idList_mouseMoveHandler(event:MouseEvent):void
@@ -95,24 +111,35 @@
 						switch (appDPI)
 						{
 							case 160:
-								trigger = 75;
+								trigger = 100;
 								break;
 							case 240:
-								trigger = 150;
+								trigger = 175;
 								break;
 							case 320:
-								trigger = 300;
+								trigger = 350;
 								break;
 							default:
 								break;
 						}
 
-						if (numberOfRowsInView == vLay.lastIndexInView && this.mouseY - startPointPosition > trigger)
+						if (numberOfRowsInView == vLay.lastIndexInView && this.mouseY - startPointPosition > trigger && !callingService)
 						{
-							trace("Dispara evento!!!");
+							trace("Dispara evento NOTICIAS!!!");
+							callingService = true;
+							service.send();
 						}
 					}
 				}
+			}
+
+			protected function service_resultHandler(event:ResultEvent):void
+			{
+				//var xmlResult:XML = XML(event.result);
+				//loadModel(xmlResult);
+				var resultString:String = String(event.result);
+				resultString = resultString.split("&quot;").join('"');
+				trace("Exito!!! Resultado: " + resultString);
 			}
 		]]>
 	</fx:Script>

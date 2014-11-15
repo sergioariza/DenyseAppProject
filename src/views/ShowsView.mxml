@@ -4,6 +4,12 @@
 		initialize="initShows(event)"
 		xmlns:s="library://ns.adobe.com/flex/spark"
 		title="{LocalizationModel.showsLabel}">
+	<fx:Declarations>
+		<s:HTTPService id="service"
+					   url="https://enigmatic-beyond-4135.herokuapp.com/services/time/"
+					   result="service_resultHandler(event)"
+					   resultFormat="xml"/>
+	</fx:Declarations>
 	<fx:Script>
 		<![CDATA[
 			import assets.AssetsLibrary;
@@ -12,23 +18,38 @@
 			import model.ShowsModel;
 
 			import mx.collections.ArrayCollection;
+			import mx.core.FlexGlobals;
+			import mx.core.IVisualElement;
 			import mx.events.FlexEvent;
+			import mx.rpc.events.ResultEvent;
+
+			import spark.layouts.VerticalLayout;
 
 			import views.details.ShowsDetailsView;
+			import views.renderers.ShowsItemRenderer;
 
 			import vo.VoShows;
 
+			private var pressed:Boolean = false;
+			private var callingService:Boolean = false;
+			private var startPointPosition:Number = 0;
+
 			private function initShows(event:FlexEvent):void
+			{
+				var file:File = File.applicationDirectory.resolvePath("assets/xml/shows.xml");
+				var stream:FileStream = new FileStream();
+				var xml:XML;
+				stream.open(file, FileMode.READ);
+				xml = XML(stream.readUTFBytes(stream.bytesAvailable));
+				stream.close();
+				loadModel(xml);
+			}
+
+			private function loadModel(xml:XML):void
 			{
 				if ((ShowsModel.arrShowsItems) && (ShowsModel.arrShowsItems.length == 0))
 				{
-					var file:File = File.applicationDirectory.resolvePath("assets/xml/shows.xml");
-					var stream:FileStream = new FileStream();
-					var xml:XML;
 					ShowsModel.arrShowsItems = new ArrayCollection();
-					stream.open(file, FileMode.READ);
-					xml = XML(stream.readUTFBytes(stream.bytesAvailable));
-					stream.close();
 
 					for each (var showsItem:XML in xml.shows)
 					{
@@ -50,6 +71,69 @@
 
 				idList.dataProvider = ShowsModel.arrShowsItems;
 			}
+
+			protected function idList_mouseDownHandler(event:MouseEvent):void
+			{
+				pressed = true;
+				startPointPosition = this.mouseY;
+			}
+
+			protected function idList_mouseUpHandler(event:MouseEvent):void
+			{
+				pressed = false;
+
+				if (callingService)
+					callingService = false;
+			}
+
+			protected function idList_mouseMoveHandler(event:MouseEvent):void
+			{
+				if (pressed)
+				{
+					var menuBar:Number = event.stageY - this.mouseY;
+					var firstRow:IVisualElement = idList.dataGroup.getElementAt(0);
+
+					if (firstRow)
+					{
+						var rowHeight:Number = ShowsItemRenderer(firstRow).measuredHeight;
+						var numberOfRowsInView:Number = Math.ceil((this.screen.height - menuBar) / rowHeight) - 1;
+						var vLay:VerticalLayout = idList.layout as VerticalLayout;
+						var appDPI:Number = FlexGlobals.topLevelApplication.applicationDPI;
+						var trigger:Number = 0;
+
+						switch (appDPI)
+						{
+							case 160:
+								trigger = 100;
+								break;
+							case 240:
+								trigger = 175;
+								break;
+							case 320:
+								trigger = 350;
+								break;
+							default:
+								break;
+						}
+
+						if (numberOfRowsInView == vLay.lastIndexInView && this.mouseY - startPointPosition > trigger && !callingService)
+						{
+							trace("Dispara evento CONCIERTOS!!!");
+							callingService = true;
+							service.send();
+						}
+					}
+				}
+			}
+
+			protected function service_resultHandler(event:ResultEvent):void
+			{
+				//var xmlResult:XML = XML(event.result);
+				//loadModel(xmlResult);
+				var resultString:String = String(event.result);
+				resultString = resultString.split("&quot;").join('"');
+				trace("Exito!!! Resultado: " + resultString);
+			}
 		]]>
 	</fx:Script>
 	<s:BitmapImage source="{AssetsLibrary.generalBackground}"
@@ -59,6 +143,9 @@
 				   width="100%"
 				   height="100%"/>
 	<s:List id="idList"
+			mouseDown="idList_mouseDownHandler(event)"
+			mouseUp="idList_mouseUpHandler(event)"
+			mouseMove="idList_mouseMoveHandler(event)"
 			contentBackgroundAlpha="0.0"
 			height="100%"
 			width="100%"
