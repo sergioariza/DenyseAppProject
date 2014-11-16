@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.1" encoding="utf-8"?>
 <list>
 	<shows>
-		<id>0</id>
-		<title>¡Denyse y los Histéricos en Antequera!</title>
-		<body>Noche fantástica y lorem ipsum ad his scripta blandit partiendo, eum fastidii accumsan euripidis in, eum liber hendrerit an. Qui ut wisi vocibus suscipiantur, quo dicit ridens inciderint id. Quo mundi lobortis reformidans eu, legimus senserit definiebas an eos.</body>
-		<bandsWith>Ninguna</bandsWith>
-		<place>Cambayá Club</place>
+		<id>1</id>
+		<title>1¡Denyse y los Histéricos en Antequera!</title>
+		<body>1Noche fantástica y lorem ipsum ad his scripta blandit partiendo, eum fastidii accumsan euripidis in, eum liber hendrerit an. Qui ut wisi vocibus suscipiantur, quo dicit ridens inciderint id. Quo mundi lobortis reformidans eu, legimus senserit definiebas an eos.</body>
+		<bandsWith>1Ninguna</bandsWith>
+		<place>1Cambayá Club</place>
 		<datePublished>20-05-2014</datePublished>
 		<dateShow>07-06-2014</dateShow>
 		<hourShow>23:00</hourShow>
@@ -14,7 +14,7 @@
 		<photoURL>https://fbcdn-sphotos-d-a.akamaihd.net/hphotos-ak-xaf1/v/t1.0-9/10329208_618333008253051_8903932978841957574_n.jpg?oh=efe26a123d2522613d7bb8b7ad8b6213&oe=551916A4&__gda__=1424394517_d260f10305ba2b0482c85673d43544c4</photoURL>
 	</shows>
 	<shows>
-		<id>1</id>
+		<id>0</id>
 		<title>¡Denyse y los Histéricos en Málaga!</title>
 		<body>Noche fantástica y lorem ipsum ad his scripta blandit partiendo, eum fastidii accumsan euripidis in, eum liber hendrerit an. Qui ut wisi vocibus suscipiantur, quo dicit ridens inciderint id. Quo mundi lobortis reformidans eu, legimus senserit definiebas an eos.</body>
 		<bandsWith>Octubre Rojo</bandsWith>

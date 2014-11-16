@@ -6,7 +6,7 @@
 		title="{LocalizationModel.newsLabel}">
 	<fx:Declarations>
 		<s:HTTPService id="service"
-					   url="https://enigmatic-beyond-4135.herokuapp.com/services/time/"
+					   url="https://enigmatic-beyond-4135.herokuapp.com/services/denyse/news/1/5/"
 					   result="service_resultHandler(event)"
 					   fault="service_faultHandler(event)"
 					   resultFormat="xml"/>
@@ -36,6 +36,7 @@
 			private var pressed:Boolean = false;
 			private var callingService:Boolean = false;
 			private var startPointPosition:Number = 0;
+			private var lastIndexInViewWhenPressed:Number = 0;
 
 			/* private static var instance:NewsView;
 
@@ -51,31 +52,28 @@
 
 			private function initNews(event:FlexEvent):void
 			{
-				var file:File = File.applicationDirectory.resolvePath("assets/xml/news.xml");
+				/* var file:File = File.applicationDirectory.resolvePath("assets/xml/news.xml");
 				var stream:FileStream = new FileStream();
 				var xml:XML;
 				stream.open(file, FileMode.READ);
 				xml = XML(stream.readUTFBytes(stream.bytesAvailable));
 				stream.close();
-				loadModel(xml);
+				loadModel(xml); */
+				service.send();
 			}
 
 			private function loadModel(xml:XML):void
 			{
-				if ((NewsModel.arrNewsItems) && (NewsModel.arrNewsItems.length == 0))
+				for each (var newsItem:XML in xml.news)
 				{
-					NewsModel.arrNewsItems = new ArrayCollection();
-
-					for each (var newsItem:XML in xml.news)
-					{
-						var news:VoNews = new VoNews();
-						news.id = newsItem.id;
-						news.title = newsItem.title;
-						news.body = newsItem.body;
-						news.date = newsItem.date;
-						news.photoURL = newsItem.photoURL;
-						NewsModel.arrNewsItems.addItem(news);
-					}
+					var news:VoNews = new VoNews();
+					news.id = newsItem.id;
+					news.title = newsItem.title;
+					news.body = newsItem.body;
+					news.date = newsItem.date;
+					news.photoURL = newsItem.photoURL;
+					NewsModel.arrNewsItems.addItem(news);
+					NewsModel.newsPublished++;
 				}
 
 				idList.dataProvider = NewsModel.arrNewsItems;
@@ -84,6 +82,8 @@
 			protected function idList_mouseDownHandler(event:MouseEvent):void
 			{
 				pressed = true;
+				var vLay:VerticalLayout = idList.layout as VerticalLayout;
+				lastIndexInViewWhenPressed = vLay.lastIndexInView;
 				startPointPosition = this.mouseY;
 			}
 
@@ -109,6 +109,12 @@
 						var vLay:VerticalLayout = idList.layout as VerticalLayout;
 						var appDPI:Number = FlexGlobals.topLevelApplication.applicationDPI;
 						var trigger:Number = 0;
+						var extraOffset:Number = 0;
+
+						if (lastIndexInViewWhenPressed > vLay.lastIndexInView)
+						{
+							extraOffset = (lastIndexInViewWhenPressed - vLay.lastIndexInView) * rowHeight;
+						}
 
 						switch (appDPI)
 						{
@@ -125,10 +131,11 @@
 								break;
 						}
 
-						if (numberOfRowsInView == vLay.lastIndexInView && this.mouseY - startPointPosition > trigger && !callingService)
+						if ((numberOfRowsInView == vLay.lastIndexInView) && (this.mouseY - startPointPosition > (trigger + extraOffset)) && !callingService)
 						{
 							trace("Dispara evento NOTICIAS!!!");
 							callingService = true;
+							service.url = "https://enigmatic-beyond-4135.herokuapp.com/services/denyse/news/" + (NewsModel.newsPublished + 1) + "/5/";
 							service.send();
 						}
 					}
@@ -137,16 +144,14 @@
 
 			protected function service_resultHandler(event:ResultEvent):void
 			{
-				//var xmlResult:XML = XML(event.result);
-				//loadModel(xmlResult);
+				trace("Éxito en XML News!!!");
 				var resultString:String = String(event.result);
-				resultString = resultString.split("&quot;").join('"');
-				trace("Exito!!! Resultado: " + resultString);
+				loadModel(new XML(resultString));
 			}
 
 			protected function service_faultHandler(event:FaultEvent):void
 			{
-				trace("Fracaso!!!");
+				trace("Fracaso en XML Noticias!!!");
 			}
 		]]>
 	</fx:Script>

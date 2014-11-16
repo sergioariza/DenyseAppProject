@@ -6,7 +6,7 @@
 		title="{LocalizationModel.showsLabel}">
 	<fx:Declarations>
 		<s:HTTPService id="service"
-					   url="https://enigmatic-beyond-4135.herokuapp.com/services/time/"
+					   url="https://enigmatic-beyond-4135.herokuapp.com/services/denyse/videos/1/5/"
 					   result="service_resultHandler(event)"
 					   fault="service_faultHandler(event)"
 					   resultFormat="xml"/>
@@ -35,6 +35,7 @@
 			private var pressed:Boolean = false;
 			private var callingService:Boolean = false;
 			private var startPointPosition:Number = 0;
+			private var lastIndexInViewWhenPressed:Number = 0;
 
 			private function initShows(event:FlexEvent):void
 			{
@@ -49,18 +50,14 @@
 
 			private function loadModel(xml:XML):void
 			{
-				if ((VideosModel.arrShowsItems) && (VideosModel.arrShowsItems.length == 0))
+				for each (var videosItem:XML in xml.videos)
 				{
-					VideosModel.arrShowsItems = new ArrayCollection();
-
-					for each (var videosItem:XML in xml.videos)
-					{
-						var videos:VoVideos = new VoVideos();
-						videos.id = videosItem.id;
-						videos.videoTitle = videosItem.videoTitle;
-						videos.youtubeURL = videosItem.youtubeURL;
-						VideosModel.arrShowsItems.addItem(videos);
-					}
+					var videos:VoVideos = new VoVideos();
+					videos.id = videosItem.id;
+					videos.videoTitle = videosItem.videoTitle;
+					videos.youtubeURL = videosItem.youtubeURL;
+					VideosModel.arrShowsItems.addItem(videos);
+					VideosModel.videosPublished++;
 				}
 
 				idList.dataProvider = VideosModel.arrShowsItems;
@@ -69,6 +66,8 @@
 			protected function idList_mouseDownHandler(event:MouseEvent):void
 			{
 				pressed = true;
+				var vLay:VerticalLayout = idList.layout as VerticalLayout;
+				lastIndexInViewWhenPressed = vLay.lastIndexInView;
 				startPointPosition = this.mouseY;
 			}
 
@@ -94,6 +93,12 @@
 						var vLay:VerticalLayout = idList.layout as VerticalLayout;
 						var appDPI:Number = FlexGlobals.topLevelApplication.applicationDPI;
 						var trigger:Number = 0;
+						var extraOffset:Number = 0;
+
+						if (lastIndexInViewWhenPressed > vLay.lastIndexInView)
+						{
+							extraOffset = (lastIndexInViewWhenPressed - vLay.lastIndexInView) * rowHeight;
+						}
 
 						switch (appDPI)
 						{
@@ -110,10 +115,11 @@
 								break;
 						}
 
-						if (numberOfRowsInView == vLay.lastIndexInView && this.mouseY - startPointPosition > trigger && !callingService)
+						if ((numberOfRowsInView == vLay.lastIndexInView) && (this.mouseY - startPointPosition > (trigger + extraOffset)) && !callingService)
 						{
 							trace("Dispara evento VÍDEOS!!!");
 							callingService = true;
+							service.url = "https://enigmatic-beyond-4135.herokuapp.com/services/denyse/news/" + (VideosModel.videosPublished + 1) + "/5/";
 							service.send();
 						}
 					}
@@ -122,16 +128,14 @@
 
 			protected function service_resultHandler(event:ResultEvent):void
 			{
-				//var xmlResult:XML = XML(event.result);
-				//loadModel(xmlResult);
+				trace("Éxito en XML Videos!!!");
 				var resultString:String = String(event.result);
-				resultString = resultString.split("&quot;").join('"');
-				trace("Exito!!! Resultado: " + resultString);
+				loadModel(new XML(resultString));
 			}
 
 			protected function service_faultHandler(event:FaultEvent):void
 			{
-				trace("Fracaso!!!");
+				trace("Fracaso en XML Videos!!!");
 			}
 		]]>
 	</fx:Script>

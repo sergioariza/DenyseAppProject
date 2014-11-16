@@ -7,7 +7,9 @@ package model
 		[ArrayElementType("vo.VoVideos")]
 		public static var arrShowsItems:ArrayCollection = new ArrayCollection();
 
-		public static var index:int = 1;
+		public static var index:Number = 1;
+
+		public static var videosPublished:Number = 0;
 
 		public function VideosModel()
 		{
