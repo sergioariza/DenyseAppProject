@@ -18,6 +18,9 @@ package model
 		[Bindable]
 		public static var configLabel:String = "Config";
 
+		[Bindable]
+		public static var moreItemsLabel:String = "Toca aquí para cargar más...";
+
 		public function LocalizationModel()
 		{
 		}

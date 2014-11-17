@@ -39,13 +39,15 @@
 
 			private function initShows(event:FlexEvent):void
 			{
-				var file:File = File.applicationDirectory.resolvePath("assets/xml/shows.xml");
+				/* var file:File = File.applicationDirectory.resolvePath("assets/xml/shows.xml");
 				var stream:FileStream = new FileStream();
 				var xml:XML;
 				stream.open(file, FileMode.READ);
 				xml = XML(stream.readUTFBytes(stream.bytesAvailable));
 				stream.close();
-				loadModel(xml);
+				loadModel(xml); */
+				if (ShowsModel.arrShowsItems == 0)
+					service.send();
 			}
 
 			private function loadModel(xml:XML):void
@@ -127,7 +129,8 @@
 						{
 							trace("Dispara evento CONCIERTOS!!!");
 							callingService = true;
-							service.url = "https://enigmatic-beyond-4135.herokuapp.com/services/denyse/news/" + (ShowsModel.showsPublished + 1) + "/5/";
+							//service.url = "https://enigmatic-beyond-4135.herokuapp.com/services/denyse/shows/" + (ShowsModel.showsPublished + 1) + "/5/";
+							service.url = "https://enigmatic-beyond-4135.herokuapp.com/services/denyse/shows/1/5/";
 							service.send();
 						}
 					}

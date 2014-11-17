@@ -59,7 +59,8 @@
 				xml = XML(stream.readUTFBytes(stream.bytesAvailable));
 				stream.close();
 				loadModel(xml); */
-				service.send();
+				if (NewsModel.arrNewsItems == 0)
+					service.send();
 			}
 
 			private function loadModel(xml:XML):void
@@ -135,7 +136,8 @@
 						{
 							trace("Dispara evento NOTICIAS!!!");
 							callingService = true;
-							service.url = "https://enigmatic-beyond-4135.herokuapp.com/services/denyse/news/" + (NewsModel.newsPublished + 1) + "/5/";
+							//service.url = "https://enigmatic-beyond-4135.herokuapp.com/services/denyse/news/" + (NewsModel.newsPublished + 1) + "/5/";
+							service.url = "https://enigmatic-beyond-4135.herokuapp.com/services/denyse/news/1/5/";
 							service.send();
 						}
 					}
@@ -161,17 +163,26 @@
 				   right="0"
 				   width="100%"
 				   height="100%"/>
-	<s:List id="idList"
-			mouseDown="idList_mouseDownHandler(event)"
-			mouseUp="idList_mouseUpHandler(event)"
-			mouseMove="idList_mouseMoveHandler(event)"
-			contentBackgroundAlpha="0.0"
-			height="100%"
-			width="100%"
-			bottom="0"
-			left="0"
-			right="0"
-			change="navigator.pushView(NewsDetailsView, idList.selectedItem)"
-			itemRenderer="views.renderers.NewsItemRenderer">
-	</s:List>
+	<s:VGroup height="100%"
+			  width="100%"
+			  gap="0">
+		<s:List id="idList"
+				mouseDown="idList_mouseDownHandler(event)"
+				mouseUp="idList_mouseUpHandler(event)"
+				mouseMove="idList_mouseMoveHandler(event)"
+				contentBackgroundAlpha="0.0"
+				height="100%"
+				width="100%"
+				bottom="0"
+				left="0"
+				right="0"
+				change="navigator.pushView(NewsDetailsView, idList.selectedItem)"
+				itemRenderer="views.renderers.NewsItemRenderer">
+		</s:List>
+		<!--<s:Label id="lblMoreItems"
+				 width="100%"
+				 height="15"
+				 styleName="descriptionStyleEmbed"
+				 text="{LocalizationModel.moreItemsLabel}"/>-->
+	</s:VGroup>
 </s:View>
