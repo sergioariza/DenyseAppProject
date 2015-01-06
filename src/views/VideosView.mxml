@@ -45,7 +45,7 @@
 				xml = XML(stream.readUTFBytes(stream.bytesAvailable));
 				stream.close();
 				loadModel(xml); */
-				if (VideosModel.arrShowsItems == 0)
+				if (VideosModel.arrVideosItems.length == 0)
 					service.send();
 			}
 
@@ -57,11 +57,11 @@
 					videos.id = videosItem.id;
 					videos.videoTitle = videosItem.videoTitle;
 					videos.youtubeURL = videosItem.youtubeURL;
-					VideosModel.arrShowsItems.addItem(videos);
+					VideosModel.arrVideosItems.addItem(videos);
 					VideosModel.videosPublished++;
 				}
 
-				idList.dataProvider = VideosModel.arrShowsItems;
+				idList.dataProvider = VideosModel.arrVideosItems;
 			}
 
 			protected function idList_mouseDownHandler(event:MouseEvent):void

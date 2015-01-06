@@ -46,7 +46,7 @@
 				xml = XML(stream.readUTFBytes(stream.bytesAvailable));
 				stream.close();
 				loadModel(xml); */
-				if (ShowsModel.arrShowsItems == 0)
+				if (ShowsModel.arrShowsItems.length == 0)
 					service.send();
 			}
 

@@ -59,7 +59,7 @@
 				xml = XML(stream.readUTFBytes(stream.bytesAvailable));
 				stream.close();
 				loadModel(xml); */
-				if (NewsModel.arrNewsItems == 0)
+				if (NewsModel.arrNewsItems.length == 0)
 					service.send();
 			}
 
