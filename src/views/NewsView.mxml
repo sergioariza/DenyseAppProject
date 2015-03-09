@@ -6,10 +6,10 @@
 		title="{LocalizationModel.newsLabel}">
 	<fx:Declarations>
 		<s:HTTPService id="service"
-					   url="https://enigmatic-beyond-4135.herokuapp.com/services/denyse/news/1/5/"
+					   url="https://musikapp.herokuapp.com/news/sergioariza@outlook.com"
 					   result="service_resultHandler(event)"
 					   fault="service_faultHandler(event)"
-					   resultFormat="xml"/>
+					   resultFormat="text"/>
 	</fx:Declarations>
 	<fx:Script>
 		<![CDATA[
@@ -38,34 +38,15 @@
 			private var startPointPosition:Number = 0;
 			private var lastIndexInViewWhenPressed:Number = 0;
 
-			/* private static var instance:NewsView;
-
-			public static function getInstance():NewsView
-			{
-				if (instance == null)
-				{
-					instance = new NewsView();
-				}
-
-				return instance;
-			} */
-
 			private function initNews(event:FlexEvent):void
 			{
-				/* var file:File = File.applicationDirectory.resolvePath("assets/xml/news.xml");
-				var stream:FileStream = new FileStream();
-				var xml:XML;
-				stream.open(file, FileMode.READ);
-				xml = XML(stream.readUTFBytes(stream.bytesAvailable));
-				stream.close();
-				loadModel(xml); */
 				if (NewsModel.arrNewsItems.length == 0)
 					service.send();
 			}
 
-			private function loadModel(xml:XML):void
+			private function loadModel(arrayNews:Array):void
 			{
-				for each (var newsItem:XML in xml.news)
+				for each (var newsItem:Object in arrayNews)
 				{
 					var news:VoNews = new VoNews();
 					news.id = newsItem.id;
@@ -136,8 +117,7 @@
 						{
 							trace("Dispara evento NOTICIAS!!!");
 							callingService = true;
-							//service.url = "https://enigmatic-beyond-4135.herokuapp.com/services/denyse/news/" + (NewsModel.newsPublished + 1) + "/5/";
-							service.url = "https://enigmatic-beyond-4135.herokuapp.com/services/denyse/news/1/5/";
+							service.url = "https://musikapp.herokuapp.com/news/sergioariza@outlook.com";
 							service.send();
 						}
 					}
@@ -146,9 +126,9 @@
 
 			protected function service_resultHandler(event:ResultEvent):void
 			{
-				trace("Éxito en XML News!!!");
-				var resultString:String = String(event.result);
-				loadModel(new XML(resultString));
+				trace("Éxito en JSON News!!!");
+				var arrayNews:Array = new Array(JSON.parse(String(event.result)))[0];
+				loadModel(arrayNews);
 			}
 
 			protected function service_faultHandler(event:FaultEvent):void
